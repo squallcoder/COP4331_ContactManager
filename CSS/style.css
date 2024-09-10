@@ -1,7 +1,68 @@
-.loginDiv {
-	align-items: center;
+body {
+	background-color: #f0f0f0;
+	font-family: 'Ubuntu', sans-serif;
+	margin: 0;
 	display: flex;
 	justify-content: center;
-	height: 300px;
+	align-items: center;
+	height: 100vh;
+}
 
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#title {
+	font-size: 2.5em;
+	color: #24282f;
+	margin-bottom: 30px;
+}
+
+/* Styling for the login div */
+.loginDiv {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	width: 300px;
+	text-align: center;
+}
+
+#inner-title {
+	font-size: 1.2em;
+	color: #666;
+	margin-bottom: 15px;
+}
+
+.input-field {
+	width: 100%;
+	padding: 10px;
+	margin: 10px 0;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 1em;
+}
+
+.buttons {
+	width: 100%;
+	padding: 10px;
+	background-color: #7584a5;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 1em;
+	cursor: pointer;
+	margin-bottom: 15px;
+}
+
+.buttons:hover {
+	background-color: #667777;
+}
+
+#loginResult {
+	color: red;
+	font-size: 0.9em;
 }
