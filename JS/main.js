@@ -13,11 +13,16 @@ function doLogin() {
 function createAccount() {
     const username = document.getElementById('createUsername').value;
     const password = document.getElementById('createPassword').value;
-    
-    if (username && password) {
-        document.getElementById('loginResult').innerHTML = "Account Created!";
-    } 
+    const confpassword = document.getElementById('confirmPassword').value;
+    if (password != confpassword) {
+        document.getElementById('loginResult').innerHTML = "Your passwords do not match.";
+    }
     else {
-        document.getElementById('loginResult').innerHTML = "Please enter a valid username and password.";
+        if (username && password) {
+            document.getElementById('loginResult').innerHTML = "Account Created!";
+        }
+        else {
+            document.getElementById('loginResult').innerHTML = "Please enter a valid username and password.";
+        }
     }
 }
