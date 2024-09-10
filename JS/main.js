@@ -3,7 +3,7 @@ function doLogin() {
     const password = document.getElementById('loginPassword').value;
     
     if (username && password) {
-        document.getElementById('loginResult').innerHTML = "Logged In!";
+        window.location.href = 'contacts.html';
     } 
     else {
         document.getElementById('loginResult').innerHTML = "Please enter a valid username and password.";
