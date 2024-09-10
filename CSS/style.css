@@ -55,6 +55,7 @@ body {
 	font-size: 1em;
 	cursor: pointer;
 	margin-bottom: 15px;
+	margin-top: 15px;
 }
 
 .buttons:hover {
@@ -64,4 +65,15 @@ body {
 #loginResult {
 	color: red;
 	font-size: 0.9em;
+}
+
+#loginRedirect {
+    color: #7584a5;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#loginRedirect:hover {
+    color: #667777;
+	background-color: #d6d8dd;
 }
