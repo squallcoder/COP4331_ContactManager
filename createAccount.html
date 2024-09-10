@@ -1,0 +1,39 @@
+<html>
+
+<head>
+
+	<head>
+		<title>Create Account</title>
+		<script type="text/javascript" src="JS/main.js"></script>
+		<link href="CSS/style.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	</head>
+
+<body>
+
+	<h1 id="title">Create Account</h1>
+
+	<span id="inner-title">Enter User Information</span>
+	<div class="createAccDiv">
+		<input type="text" id="createUsername" placeholder="Username" /><br />
+		<input type="password" id="createPassword" placeholder="Password" /><br />
+		<button type="button" id="createButton" class="buttons" onclick="createAccount();"> Create </button>
+		<span id="loginResult"></span>
+	</div>
+
+    <script>
+		function createAccount() {
+			const username = document.getElementById('createUsername').value;
+			const password = document.getElementById('createPassword').value;
+			
+			if (username && password) {
+				document.getElementById('loginResult').innerHTML = "Account Created!";
+			} 
+            else {
+				document.getElementById('loginResult').innerHTML = "Please enter a valid username and password.";
+			}
+		}
+	</script>
+
+</body>
+</html>

@@ -20,6 +20,20 @@
 		<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Do It </button>
 		<span id="loginResult"></span>
 	</div>
-<div></div>	
+
+	<script>
+		function createAccount() {
+			const username = document.getElementById('createUsername').value;
+			const password = document.getElementById('createPassword').value;
+			
+			if (username && password) {
+				document.getElementById('loginResult').innerHTML = "Logged In!";
+			} 
+			else {
+				document.getElementById('loginResult').innerHTML = "Please enter a valid username and password.";
+			}
+		}
+	</script>
+	
 </body>
 </html>
