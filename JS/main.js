@@ -18,8 +18,9 @@ function createAccount() {
         document.getElementById('loginResult').innerHTML = "Your passwords do not match.";
     }
     else {
-        if (username && password) {
+        if (username && password && confpassword) {
             document.getElementById('loginResult').innerHTML = "Account Created!";
+            document.getElementById('loginRedirect').style.display = 'inline';
         }
         else {
             document.getElementById('loginResult').innerHTML = "Please enter a valid username and password.";
