@@ -1,7 +1,4 @@
 <html>
-
-<head>
-
 	<head>
 		<title>COP 4331 Contact Manager</title>
 		<script type="text/javascript" src="JS/main.js"></script>
@@ -9,34 +6,16 @@
 		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	</head>
 
-<body>
+	<body>
+		<h1 id="title">COP 4331 Contact Manager</h1>
 
-	<h1 id="title">COP 4331 Contact Manager</h1>
+		<span id="inner-title">Login In Page</span>
+		<div class="loginDiv">
+			<input type="text" id="loginName" placeholder="Username" /><br />
+			<input type="password" id="loginPassword" placeholder="Password" /><br />
+			<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Login </button>
+			<span id="loginResult"></span>
+		</div>	
+	</body>
 
-	<span id="inner-title">Login In Page</span>
-	<div class="loginDiv">
-		<input type="text" id="loginName" placeholder="Username" /><br />
-		<input type="password" id="loginPassword" placeholder="Password" /><br />
-		<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Do It </button>
-		<span id="loginResult"></span>
-	</div>
-
-<<<<<<< HEAD
-	<script>
-		function createAccount() {
-			const username = document.getElementById('createUsername').value;
-			const password = document.getElementById('createPassword').value;
-			
-			if (username && password) {
-				document.getElementById('loginResult').innerHTML = "Logged In!";
-			} 
-			else {
-				document.getElementById('loginResult').innerHTML = "Please enter a valid username and password.";
-			}
-		}
-	</script>
-	
-=======
->>>>>>> d574c27360ab4d04334a6679a04fff1ee766f99e
-</body>
 </html>
