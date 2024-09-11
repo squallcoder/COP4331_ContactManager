@@ -15,10 +15,17 @@ body {
 	align-items: center;
 }
 
-#title {
+#Title {
 	font-size: 2.5em;
 	color: #24282f;
 	margin-bottom: 30px;
+}
+
+#titleForContactManager{
+	font-size: 2.5em;
+	color: #24282f;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .loginDiv {
@@ -48,7 +55,7 @@ body {
 .buttons {
 	width: 100%;
 	padding: 10px;
-	background-color: #7584a5;
+	background-color:green;
 	color: white;
 	border: none;
 	border-radius: 5px;
@@ -87,4 +94,11 @@ body {
 #accountRedirect:hover {
     color: #667777;
 	background-color: #d6d8dd;
+}
+
+.top-nav input[type="search"]{
+	width :400px;
+	box-sizing: border-box;
+	border: 2px solid black;
+	border-radius: 4px;
 }
