@@ -22,7 +22,7 @@ body {
 }
 
 .loginDiv {
-	background-color: #fff;
+	background-color: black;
 	padding: 20px;
 	border-radius: 10px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -32,7 +32,7 @@ body {
 
 #inner-title {
 	font-size: 1.2em;
-	color: #666;
+	color: white;
 	margin-bottom: 15px;
 }
 
