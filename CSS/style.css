@@ -59,7 +59,7 @@ body {
 .buttons {
 	width: 100%;
 	padding: 10px;
-	background-color:green;
+	background-color:blue;
 	color: white;
 	border: none;
 	border-radius: 5px;
@@ -70,7 +70,8 @@ body {
 }
 
 .buttons:hover {
-	background-color: #667777;
+	color: white;
+	background-color: none;
 }
 
 #loginResult {
@@ -90,14 +91,14 @@ body {
 }
 
 #accountRedirect {
-    color: #7584a5;
+    color: #064be0;
     font-size: 1em;
     cursor: pointer;
 }
 
 #accountRedirect:hover {
-    color: #667777;
-	background-color: #d6d8dd;
+    color: white;
+	background-color: none;
 }
 
 .contact-container {
