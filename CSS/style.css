@@ -70,8 +70,8 @@ body {
 }
 
 .buttons:hover {
-	color: white;
-	background-color: none;
+	color:white;
+	background-color: grey;
 }
 
 #loginResult {
