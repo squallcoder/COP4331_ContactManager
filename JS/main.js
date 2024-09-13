@@ -1,4 +1,4 @@
-const urlBase = 'https://www.averagesite.xyz/LAMPAPI';
+const urlBase = 'http://www.averagesite.xyz/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
