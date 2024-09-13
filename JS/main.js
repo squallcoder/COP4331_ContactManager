@@ -108,11 +108,53 @@ function createAccount() {
     const username = document.getElementById('createUsername').value;
     const password = document.getElementById('createPassword').value;
     const confpassword = document.getElementById('confirmPassword').value;
+
     if (password != confpassword) {
         document.getElementById('loginResult').innerHTML = "Your passwords do not match.";
     }
+
     else {
         if (username && password && confpassword) {
+
+            let tmp = {login:login,password:password};
+            //	var tmp = {login:login,password:hash};
+            let jsonPayload = JSON.stringify( tmp );
+                
+            let url = urlBase + '/CreateAccount.' + extension;
+            
+            let xhr = new XMLHttpRequest();
+
+            xhr.open("POST", url, true);
+	        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+	{
+	xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				let jsonObject = JSON.parse( xhr.responseText );
+				userId = jsonObject.id;
+		
+				if( userId < 1 )
+				{		
+					document.getElementById("loginResult").innerHTML = "Can't Create Account";
+					return;
+				}
+		
+				firstName = jsonObject.firstName;
+				lastName = jsonObject.lastName;
+
+				saveCookie();
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("loginResult").innerHTML = err.message;
+	}
+
             document.getElementById('loginResult').innerHTML = "Account Created!";
             document.getElementById('loginRedirect').style.display = 'inline';
         }
@@ -120,6 +162,10 @@ function createAccount() {
             document.getElementById('loginResult').innerHTML = "Please enter a valid username and password.";
         }
     }
+
+    document.getElementById("loginResult").innerHTML = "";
+
+    
 }
 
 const contacts = [
