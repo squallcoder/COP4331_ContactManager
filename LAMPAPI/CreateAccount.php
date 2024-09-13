@@ -24,11 +24,12 @@
 
 		if( $row = $result->fetch_assoc()  )
 		{
-			returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
+
+			returnWithError("Found Record Found");
 		}
 		else
 		{
-			returnWithError("No Records Found");
+			returnWithError("Found Record Found");
 		}
 
 		$stmt->close();
