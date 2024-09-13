@@ -1,7 +1,15 @@
 <?php
 
-// i need to connect to the database, idk how?
-    $inData = getRequestInfo();
+$conn = new mysqli("localhost", "Admin", "Team7", "SmallProject"); 	
+if( $conn->connect_error )
+{
+	returnWithError( $conn->connect_error );
+}
+else
+{
+    // call the function to add the contact
+    addContact($id, $firstName, $lastName, $phoneNumber, $email);
+}
 
 // create contact function
 function addContact($id, $firstName, $lastName, $phoneNumber, $email){
@@ -22,7 +30,5 @@ function addContact($id, $firstName, $lastName, $phoneNumber, $email){
     }
 }
 
-//finally call the function to add the contact
-addContact($id, $firstName, $lastName, $phoneNumber, $email);
 
 ?>
