@@ -106,7 +106,6 @@ function readCookie()
 
 function createAccount() {
 
-	userId = 0;
      firstName = document.getElementById('FirstName').value;
      lastName = document.getElementById('LastName').value;
     const login = document.getElementById('createUsername').value;
@@ -149,6 +148,8 @@ function createAccount() {
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;
 
+				window.location.href = "login.html";
+				
 				saveCookie();
 			}
 		};
