@@ -207,6 +207,10 @@
         "password" : {
           "type" : "string",
           "example" : "thisIsaPassword"
+        },
+        "firstName" : {
+          "type" : "string",
+          "example" : null
         }
       }
     },
