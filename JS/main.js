@@ -9,7 +9,7 @@ function doLogin() {
 	userId = 0;
 	firstName = "";
 	lastName = "";
-    const username = document.getElementById('loginName').value;
+    const login = document.getElementById('loginName').value;
     const password = document.getElementById('loginPassword').value;
     
     // if (username && password) {
@@ -21,7 +21,7 @@ function doLogin() {
 
 	document.getElementById("loginResult").innerHTML = "";
 
-	let tmp = {username:username,password:password};
+	let tmp = {login:login,password:password};
 //	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
