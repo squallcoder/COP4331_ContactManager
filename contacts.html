@@ -6,17 +6,50 @@
 		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	</head>
 
-    <body></body>
-		<div class="container">
-			<h1 id="titleForContactManager">Contact Manager</h1>
-		</div>
+    <body>
+		<h1 id="ContactTitle">Contact Manager</h1>
+		<main>
+		<section class="contact-container">
+			<div class="top-nav">
+				<input type="search" id="searchBar" placeholder="Search contact here...">
+				<button type="button" id="searchButton" class="buttons" onclick="search();">Search</button>
+			</div>
 
-		  <div class="top-nav">
-		  <form action="">
-			<input type="search" id="mySearch" onkeyup="myFunction()" placeholder="Search contact here...">
-			<input type="submit" value="Search">
-		  </form>
-		</div>
+			<div class="contact-list" id="contactList"></div>
+		</section>
 
+		<div id="contactModal" class="modal">
+			<div class="modal-content">
+				<span class="close" onclick="closeModal()">&times;</span>
+				<h2 id="contactName"></h2>
+				<p><strong>Email:</strong> <span id="contactEmail"></span></p>
+				<p><strong>Phone:</strong> <span id="contactPhone"></span></p>
+				<a href="updateContact.html" id="updateContact">Edit/Update Contact</a>
+			</div>
+		</div>
+	
+		<div class="buttons-container">
+		<div class="Add">
+			<h2 id="AddContact"><h2>
+			  <div class="model-addd">
+				  <button type="button" id="AddButton" onclick="">Add Contact</button>
+			  </div>
+	  		</div>
+
+			<div class="Delete">
+			  	<h2 id="deleteContact"></h2>
+					<div class="model-delete">
+						<button type="button" id="deleteButton" onclick="">Delete Contact</button>
+					</div>
+				</div>
+
+			<div class="Update">
+				<h2 id="updateContact"><h2>
+				  <div class="model-update">
+					  <button type="button" id="updateButton" onclick="">Update Contact</button>
+				  </div>
+				</div>
+		</div>
+	    </main>
 	</body>
 </html>

@@ -2,10 +2,10 @@ body {
 	background-color: #f0f0f0;
 	font-family: 'Ubuntu', sans-serif;
 	margin: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
+	/* display: flex; */
+	/* justify-content: center; */
+	/* align-items: center; */
+	/* height: 100vh; */
 }
 
 .container {
@@ -21,15 +21,19 @@ body {
 	margin-bottom: 30px;
 }
 
-#titleForContactManager{
+#ContactTitle{
 	font-size: 2.5em;
 	color: #24282f;
-    margin: 0 auto;
-    text-align: center;
+	text-align: center;
+	margin: 20px 0;
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 .loginDiv {
-	background-color: black;
+	background-color: grey;
 	padding: 20px;
 	border-radius: 10px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -52,10 +56,12 @@ body {
 	font-size: 1em;
 }
 
+
+
 .buttons {
 	width: 100%;
 	padding: 10px;
-	background-color:green;
+	background-color: black;
 	color: white;
 	border: none;
 	border-radius: 5px;
@@ -66,7 +72,8 @@ body {
 }
 
 .buttons:hover {
-	background-color: #667777;
+	color:white;
+	background-color: grey;
 }
 
 #loginResult {
@@ -86,19 +93,115 @@ body {
 }
 
 #accountRedirect {
-    color: #7584a5;
+    color: #064be0;
     font-size: 1em;
     cursor: pointer;
 }
 
 #accountRedirect:hover {
-    color: #667777;
-	background-color: #d6d8dd;
+    color: white;
+	background-color: none;
 }
 
-.top-nav input[type="search"]{
-	width :400px;
-	box-sizing: border-box;
-	border: 2px solid black;
-	border-radius: 4px;
+.contact-container {
+	width: 500px;
+	height: 500px;
+	background-color: white;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	position: absolute;
+	top: 120px;
+	left: 5%;
+	transform: translateX(-5%);
+}
+
+.top-nav {
+	padding: 10px;
+	background-color: #f0f0f0;
+	border-bottom: 1px solid #ccc;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+
+
+#searchBar {
+	margin-right: 10px;
+	width: 600;
+	height: 40px;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+#searchButton{
+	width: 150px;
+	height: 40px;
+}
+
+.buttons-container{
+	display: flex;
+	flex-direction: row;
+	/* align-items: center; */
+	justify-content: space-evenly;
+	/* width: 100%; */
+	/* padding-right: 20px; */
+	align-items: baseline;
+}
+
+
+
+.contact-list {
+	overflow-y: auto;
+	height: calc(100% - 60px);
+	background-color: #fff;
+	padding: 10px;
+}
+
+.contact-item {
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+	cursor: pointer;
+}
+
+.contact-item:hover {
+	background-color: #f0f0f0;
+}
+
+.modal {
+	display: none; 
+	position: fixed; 
+	z-index: 1; 
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+	background-color: white;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #ccc;
+	width: 300px;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
 }
