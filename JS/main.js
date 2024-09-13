@@ -1,3 +1,5 @@
+const urlBase = 'https://www.averagesite.xyz/LAMPAPI';
+const extension = 'php';
 function doLogin() {
     const username = document.getElementById('loginName').value;
     const password = document.getElementById('loginPassword').value;
