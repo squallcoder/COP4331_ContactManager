@@ -2,10 +2,10 @@ body {
 	background-color: #f0f0f0;
 	font-family: 'Ubuntu', sans-serif;
 	margin: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
+	/* display: flex; */
+	/* justify-content: center; */
+	/* align-items: center; */
+	/* height: 100vh; */
 }
 
 .container {
@@ -33,7 +33,7 @@ body {
 }
 
 .loginDiv {
-	background-color: black;
+	background-color: grey;
 	padding: 20px;
 	border-radius: 10px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -56,10 +56,12 @@ body {
 	font-size: 1em;
 }
 
+
+
 .buttons {
 	width: 100%;
 	padding: 10px;
-	background-color:blue;
+	background-color: black;
 	color: white;
 	border: none;
 	border-radius: 5px;
@@ -109,6 +111,10 @@ body {
 	border-radius: 10px;
 	overflow: hidden;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	position: absolute;
+	top: 120px;
+	left: 5%;
+	transform: translateX(-5%);
 }
 
 .top-nav {
@@ -120,12 +126,33 @@ body {
 	align-items: center;
 }
 
+
+
 #searchBar {
 	margin-right: 10px;
+	width: 600;
+	height: 40px;
 	padding: 8px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
 }
+
+#searchButton{
+	width: 150px;
+	height: 40px;
+}
+
+.buttons-container{
+	display: flex;
+	flex-direction: row;
+	/* align-items: center; */
+	justify-content: space-evenly;
+	/* width: 100%; */
+	/* padding-right: 20px; */
+	align-items: baseline;
+}
+
+
 
 .contact-list {
 	overflow-y: auto;

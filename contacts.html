@@ -8,15 +8,15 @@
 
     <body>
 		<h1 id="ContactTitle">Contact Manager</h1>
-
-		<div class="contact-container">
+		<main>
+		<section class="contact-container">
 			<div class="top-nav">
 				<input type="search" id="searchBar" placeholder="Search contact here...">
 				<button type="button" id="searchButton" class="buttons" onclick="search();">Search</button>
 			</div>
 
 			<div class="contact-list" id="contactList"></div>
-		</div>
+		</section>
 
 		<div id="contactModal" class="modal">
 			<div class="modal-content">
@@ -24,13 +24,32 @@
 				<h2 id="contactName"></h2>
 				<p><strong>Email:</strong> <span id="contactEmail"></span></p>
 				<p><strong>Phone:</strong> <span id="contactPhone"></span></p>
+				<a href="updateContact.html" id="updateContact">Edit/Update Contact</a>
 			</div>
 		</div>
+	
+		<div class="buttons-container">
+		<div class="Add">
+			<h2 id="AddContact"><h2>
+			  <div class="model-addd">
+				  <button type="button" id="AddButton" onclick="">Add Contact</button>
+			  </div>
+	  		</div>
 
-		<div id="DeleteModel">
-			<div class="model-delete">
-				<h2 id="deleteContact">Delete Contact</h2>
-			</div>
+			<div class="Delete">
+			  	<h2 id="deleteContact"></h2>
+					<div class="model-delete">
+						<button type="button" id="deleteButton" onclick="">Delete Contact</button>
+					</div>
+				</div>
+
+			<div class="Update">
+				<h2 id="updateContact"><h2>
+				  <div class="model-update">
+					  <button type="button" id="updateButton" onclick="">Update Contact</button>
+				  </div>
+				</div>
 		</div>
+	    </main>
 	</body>
 </html>
