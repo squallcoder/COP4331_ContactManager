@@ -211,6 +211,10 @@
         "firstName" : {
           "type" : "string",
           "example" : null
+        },
+        "lastName" : {
+          "type" : "string",
+          "example" : null
         }
       }
     },
