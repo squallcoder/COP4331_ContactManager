@@ -105,8 +105,8 @@ function readCookie()
 
 
 function createAccount() {
-    const firstName = document.getElementById('FirstName').value;
-    const lastName = document.getElementById('LastName').value;
+          firstName = document.getElementById('FirstName').value;
+          lastName = document.getElementById('LastName').value;
     const login = document.getElementById('createUsername').value;
     const password = document.getElementById('createPassword').value;
     const confpassword = document.getElementById('confirmPassword').value;
