@@ -1,6 +1,14 @@
 const urlBase = 'https://www.averagesite.xyz/LAMPAPI';
 const extension = 'php';
+
+let userId = 0;
+let firstName = "";
+let lastName = "";
 function doLogin() {
+	
+	userId = 0;
+	firstName = "";
+	lastName = "";
     const username = document.getElementById('loginName').value;
     const password = document.getElementById('loginPassword').value;
     
@@ -11,19 +19,20 @@ function doLogin() {
     //     document.getElementById('loginResult').innerHTML = "Please enter a valid username and password.";
     // }
 
-    let tmp = {username:username, password:password};
+	document.getElementById("loginResult").innerHTML = "";
 
-    let jsonPayLoad = JSON.stringify(tmp);
-
-    let url = urlBase + '/Login.' + extension;
+	let tmp = {username:username,password:password};
+//	var tmp = {login:login,password:hash};
+	let jsonPayload = JSON.stringify( tmp );
+	
+	let url = urlBase + '/Login.' + extension;
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-    try
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
 	{
-		xhr.onreadystatechange = function() 
+	xhr.onreadystatechange = function() 
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
@@ -32,7 +41,7 @@ function doLogin() {
 		
 				if( userId < 1 )
 				{		
-					document.getElementById("loginResult").innerHTML = "Please enter a valid username and password.";
+					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
 					return;
 				}
 		
@@ -41,7 +50,7 @@ function doLogin() {
 
 				saveCookie();
 	
-				window.location.href = 'contacts.html';
+				window.location.href = "color.html";
 			}
 		};
 		xhr.send(jsonPayload);
