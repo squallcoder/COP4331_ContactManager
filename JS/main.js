@@ -1,7 +1,15 @@
-const urlBase = 'https://www.averagesite.xyz/LAMPAPI';
+const urlBase = 'http://www.averagesite.xyz/LAMPAPI';
 const extension = 'php';
+
+let userId = 0;
+let firstName = "";
+let lastName = "";
 function doLogin() {
-    const username = document.getElementById('loginName').value;
+	
+	userId = 0;
+	firstName = "";
+	lastName = "";
+    const login = document.getElementById('loginName').value;
     const password = document.getElementById('loginPassword').value;
     
     // if (username && password) {
@@ -11,19 +19,20 @@ function doLogin() {
     //     document.getElementById('loginResult').innerHTML = "Please enter a valid username and password.";
     // }
 
-    let tmp = {username:username, password:password};
+	document.getElementById("loginResult").innerHTML = "";
 
-    let jsonPayLoad = JSON.stringify(tmp);
-
-    let url = urlBase + '/Login.' + extension;
+	let tmp = {login:login,password:password};
+//	var tmp = {login:login,password:hash};
+	let jsonPayload = JSON.stringify( tmp );
+	
+	let url = urlBase + '/Login.' + extension;
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-    try
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
 	{
-		xhr.onreadystatechange = function() 
+	xhr.onreadystatechange = function() 
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
@@ -32,7 +41,7 @@ function doLogin() {
 		
 				if( userId < 1 )
 				{		
-					document.getElementById("loginResult").innerHTML = "Please enter a valid username and password.";
+					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
 					return;
 				}
 		
@@ -41,7 +50,7 @@ function doLogin() {
 
 				saveCookie();
 	
-				window.location.href = 'contacts.html';
+				window.location.href = "contacts.html";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -96,14 +105,58 @@ function readCookie()
 
 
 function createAccount() {
-    const username = document.getElementById('createUsername').value;
+          firstName = document.getElementById('FirstName').value;
+          lastName = document.getElementById('LastName').value;
+    const login = document.getElementById('createUsername').value;
     const password = document.getElementById('createPassword').value;
     const confpassword = document.getElementById('confirmPassword').value;
+
     if (password != confpassword) {
         document.getElementById('loginResult').innerHTML = "Your passwords do not match.";
     }
+
     else {
-        if (username && password && confpassword) {
+        if (login && password && confpassword && firstName && lastName) {
+
+            let tmp = {login:login,password:password,firstName:firstName, lastName:lastName};
+            //	var tmp = {login:login,password:hash};
+            let jsonPayload = JSON.stringify( tmp );
+                
+            let url = urlBase + '/CreateAccount.' + extension;
+            
+            let xhr = new XMLHttpRequest();
+
+            xhr.open("POST", url, true);
+	        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+	{
+	xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				let jsonObject = JSON.parse( xhr.responseText );
+				userId = jsonObject.id;
+		
+				if( userId < 1 )
+				{		
+					document.getElementById("loginResult").innerHTML = "Can't Create Account";
+					return;
+				}
+		
+				firstName = jsonObject.firstName;
+				lastName = jsonObject.lastName;
+
+				saveCookie();
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("loginResult").innerHTML = err.message;
+	}
+
             document.getElementById('loginResult').innerHTML = "Account Created!";
             document.getElementById('loginRedirect').style.display = 'inline';
         }
@@ -111,6 +164,10 @@ function createAccount() {
             document.getElementById('loginResult').innerHTML = "Please enter a valid username and password.";
         }
     }
+
+    document.getElementById("loginResult").innerHTML = "";
+
+    
 }
 
 const contacts = [

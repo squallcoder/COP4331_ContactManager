@@ -1,10 +1,14 @@
 <?php
 
+
 	$inData = getRequestInfo();
 	
 	$id = 0;
-	$firstName = "";
-	$lastName = "";
+	$firstName = $inData["firstName"];
+$lastName = $inData["lastName"];
+$login = $inData["login"];
+
+	$password = $inData["password"];
 
 	$conn = new mysqli("localhost", "Admin", "Team7", "SmallProject"); 	
 	if( $conn->connect_error )
@@ -20,11 +24,14 @@
 
 		if( $row = $result->fetch_assoc()  )
 		{
-			returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
+
+			returnWithError("Records Found");
+	//		returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
 		}
 		else
-		{
-			returnWithError("No Records Found");
+	{
+		$sql = "INSERT INTO Users (FirstName, LastName, Login, Password) VALUES ('$firstName', '$lastName', '$login', '$password');";
+		mysqli_query($conn,$sql);
 		}
 
 		$stmt->close();
@@ -53,5 +60,30 @@
 		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
-	
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
