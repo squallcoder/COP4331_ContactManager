@@ -105,10 +105,8 @@ function readCookie()
 
 
 function createAccount() {
-	
-	userId = 0;
-	firstName = "";
-	lastName = "";
+    const firstName = document.getElementById('FirstName').value;
+    const lastName = document.getElementById('LastName').value;
     const login = document.getElementById('createUsername').value;
     const password = document.getElementById('createPassword').value;
     const confpassword = document.getElementById('confirmPassword').value;
@@ -118,9 +116,9 @@ function createAccount() {
     }
 
     else {
-        if (login && password && confpassword) {
+        if (login && password && confpassword && firstName && lastName) {
 
-            let tmp = {login:login,password:password};
+            let tmp = {login:login,password:password,firstName:firstName, lastName:lastName};
             //	var tmp = {login:login,password:hash};
             let jsonPayload = JSON.stringify( tmp );
                 
