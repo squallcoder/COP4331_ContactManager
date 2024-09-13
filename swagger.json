@@ -22,7 +22,7 @@
   "paths" : {
     "/CreateAccount.php" : {
       "post" : {
-        "tags" : [ "Userss" ],
+        "tags" : [ "Users" ],
         "summary" : "Creates a user account",
         "operationId" : "createAcct",
         "description" : "Creates a user account",
@@ -198,7 +198,7 @@
   "definitions" : {
     "CreateAccount" : {
       "type" : "object",
-      "required" : [ "login", "password" ],
+      "required" : [ "login", "password", "firstName", "lastName" ],
       "properties" : {
         "login" : {
           "type" : "string",
@@ -207,6 +207,10 @@
         "password" : {
           "type" : "string",
           "example" : "thisIsaPassword"
+        },
+        "firstName" : {
+          "type" : "string",
+          "example" : null
         }
       }
     },
