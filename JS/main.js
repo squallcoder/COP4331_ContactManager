@@ -105,7 +105,11 @@ function readCookie()
 
 
 function createAccount() {
-    const username = document.getElementById('createUsername').value;
+	
+	userId = 0;
+	firstName = "";
+	lastName = "";
+    const login = document.getElementById('createUsername').value;
     const password = document.getElementById('createPassword').value;
     const confpassword = document.getElementById('confirmPassword').value;
 
@@ -114,7 +118,7 @@ function createAccount() {
     }
 
     else {
-        if (username && password && confpassword) {
+        if (login && password && confpassword) {
 
             let tmp = {login:login,password:password};
             //	var tmp = {login:login,password:hash};
