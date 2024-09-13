@@ -210,7 +210,11 @@
         },
         "firstName" : {
           "type" : "string",
-          "example" : null
+          "example" : "boo"
+        },
+        "lastName" : {
+          "type" : "string",
+          "example" : "beep"
         }
       }
     },
