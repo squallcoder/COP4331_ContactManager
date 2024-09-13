@@ -28,7 +28,7 @@ else
             $id = $row['id'];
 
             //output info we collect
-            $output .= '<div> '.$fname.' '.$lname.' <div';
+            $output .= '<div> '.$fname.' '.$lname.' <div>';
         }
     }
 
