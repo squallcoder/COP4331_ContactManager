@@ -6,50 +6,69 @@
 		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	</head>
 
-    <body>
+	<body>
 		<h1 id="ContactTitle">Contact Manager</h1>
 		<main>
-		<section class="contact-container">
-			<div class="top-nav">
-				<input type="search" id="searchBar" placeholder="Search contact here...">
-				<button type="button" id="searchButton" class="buttons" onclick="search();">Search</button>
-			</div>
-
-			<div class="contact-list" id="contactList"></div>
-		</section>
-
-		<div id="contactModal" class="modal">
-			<div class="modal-content">
-				<span class="close" onclick="closeModal()">&times;</span>
-				<h2 id="contactName"></h2>
-				<p><strong>Email:</strong> <span id="contactEmail"></span></p>
-				<p><strong>Phone:</strong> <span id="contactPhone"></span></p>
-				<a href="updateContact.html" id="updateContact">Edit/Update Contact</a>
-			</div>
-		</div>
-	
-		<div class="buttons-container">
-		<div class="Add">
-			<h2 id="AddContact"><h2>
-			  <div class="model-add">
-				  <button type="button" id="AddButton" onclick="">Add Contact</button>
-			  </div>
-	  		</div>
-
-			<div class="Delete">
-			  	<h2 id="deleteContact"></h2>
-					<div class="model-delete">
-						<button type="button" id="deleteButton" onclick="">Delete Contact</button>
+			<div class="main-content">
+				<section class="contact-container">
+					<div class="top-nav">
+						<input type="search" id="searchBar" placeholder="Search contact here...">
+						<button type="button" id="searchButton" class="buttons" onclick="search();">Search</button>
 					</div>
-				</div>
 
-			<div class="Update">
-				<h2 id="updateContact"><h2>
-				  <div class="model-update">
-					  <button type="button" id="updateButton" onclick="">Update Contact</button>
-				  </div>
-			</div>
+					<div class="contact-list" id="contactList"></div>
+				</section>
+
+				<div class="buttons-container">
+					<button type="button" id="addButton" onclick="openAddContactModal()">Add Contact</button>
+					<button type="button" id="deleteButton" onclick="">Delete Contact</button>
+					<button type="button" id="updateButton" onclick="openSelectContactModal()">Update Contact</button>
 		</div>
-	    </main>
+			</div>
+
+			<div id="contactModal" class="modal">
+				<div class="modal-content">
+					<span class="close" onclick="closeModal()">&times;</span>
+					<h2 id="contactName"></h2>
+					<p><strong>Email:</strong> <span id="contactEmail"></span></p>
+					<p><strong>Phone:</strong> <span id="contactPhone"></span></p>
+					<button class="buttons" onclick="openEditContactModalFromView()">Update Contact</button>
+				</div>
+			</div>
+
+			<div id="selectContactModal" class="modal">
+				<div class="modal-content">
+					<span class="close" onclick="closeSelectContactModal()">&times;</span>
+					<h2>Select a contact to update</h2>
+					<input type="text" id="contactToUpdate" placeholder="Enter contact name...">
+					<button class="buttons" onclick="showContactToEdit()">Show Contact</button>
+					<span id="contactResult"></span>
+				</div>
+			</div>
+
+			<div id="editContactModal" class="modal">
+				<div class="modal-content">
+					<span class="close" onclick="closeEditContactModal()">&times;</span>
+					<h2>Edit Contact Information</h2>
+					<p><strong>Name:</strong> <span id="editContactName"></span></p>
+					<p><strong>Email:</strong> <input type="text" id="editContactEmail"></p>
+					<p><strong>Phone:</strong> <input type="text" id="editContactPhone"></p>
+					<button class="buttons"onclick="saveContactEdits()">Save Changes</button>
+				</div>
+			</div>
+
+			<div id="addContactModal" class="modal">
+				<div class="modal-content">
+					<span class="close" onclick="closeAddContactModal()">&times;</span>
+					<h2>Add New Contact</h2>
+					<p><strong>First Name:</strong> <input type="text" id="newContactFirstName"></p>
+					<p><strong>Last Name:</strong> <input type="text" id="newContactLastName"></p>
+					<p><strong>Email:</strong> <input type="text" id="newContactEmail"></p>
+					<p><strong>Phone:</strong> <input type="text" id="newContactPhone"></p>
+					<button class="buttons" onclick="addContact()">Add Contact</button>
+					<span id="addResult"></span>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>
