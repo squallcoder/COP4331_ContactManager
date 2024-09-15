@@ -2,10 +2,6 @@ body {
 	background-color: #f0f0f0;
 	font-family: 'Ubuntu', sans-serif;
 	margin: 0;
-	/* display: flex; */
-	/* justify-content: center; */
-	/* align-items: center; */
-	/* height: 100vh; */
 }
 
 .container {
@@ -25,15 +21,11 @@ body {
 	font-size: 2.5em;
 	color: #24282f;
 	text-align: center;
-	margin: 20px 0;
-	position: absolute;
-	top: 20px;
-	left: 50%;
-	transform: translateX(-50%);
+	margin: 40px 0;
 }
 
 .loginDiv {
-	background-color: grey;
+	background-color: #cfd9ef;
 	padding: 20px;
 	border-radius: 10px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -43,7 +35,7 @@ body {
 
 #inner-title {
 	font-size: 1.2em;
-	color: white;
+	color: black;
 	margin-bottom: 15px;
 }
 
@@ -56,24 +48,22 @@ body {
 	font-size: 1em;
 }
 
-
-
 .buttons {
 	width: 100%;
 	padding: 10px;
-	background-color: black;
+	background-color: #24282f;
 	color: white;
 	border: none;
 	border-radius: 5px;
 	font-size: 1em;
 	cursor: pointer;
-	margin-bottom: 15px;
+	margin-bottom: 10px;
 	margin-top: 15px;
 }
 
 .buttons:hover {
 	color:white;
-	background-color: grey;
+	background-color: #565f77;
 }
 
 #loginResult {
@@ -81,42 +71,24 @@ body {
 	font-size: 0.9em;
 }
 
-#loginRedirect {
-    color: #7584a5;
-    font-size: 1em;
-    cursor: pointer;
-}
-
-#loginRedirect:hover {
-    color: #667777;
-	background-color: #d6d8dd;
-}
-
-#accountRedirect {
-    color: #064be0;
-    font-size: 1em;
-    cursor: pointer;
-}
-
-#accountRedirect:hover {
-    color: white;
-	background-color: none;
+.main-content {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 90vw;
+	margin: 0 auto;
+	padding-top: 20px;
 }
 
 .contact-container {
-	width: 500px;
-	height: 500px;
+	width: 60%;
+	height: 60vh;
 	background-color: white;
 	border: 1px solid #ccc;
 	border-radius: 10px;
 	overflow: hidden;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	position: absolute;
-	top: 120px;
-	left: 5%;
-	transform: translateX(-5%);
 }
-
 .top-nav {
 	padding: 10px;
 	background-color: #f0f0f0;
@@ -126,11 +98,9 @@ body {
 	align-items: center;
 }
 
-
-
 #searchBar {
 	margin-right: 10px;
-	width: 600;
+	width: 800;
 	height: 40px;
 	padding: 8px;
 	border: 1px solid #ccc;
@@ -141,17 +111,37 @@ body {
 	width: 150px;
 	height: 40px;
 }
-
-.buttons-container{
-	display: flex;
-	flex-direction: row;
-	/* align-items: center; */
-	justify-content: space-evenly;
-	/* width: 100%; */
-	/* padding-right: 20px; */
-	/* align-items: baseline; */
+#searchButton:hover {
+    background-color: #7584a5;
+    color: white;
 }
 
+.buttons-container {
+	width: 35%;
+	display: flex;
+	flex-direction: column;
+	justify-content:center;
+	height: 60vh;
+}
+
+.buttons-container button {
+	width: 100%;
+	padding: 20px;
+	background-color: #24282f;
+	color: white;
+	border: none;
+	border-radius: 10px;
+	font-size: 1.2em;
+	cursor: pointer;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+
+.buttons-container button:hover {
+    background-color: #7584a5;
+    color: white;
+}
 
 .contact-list {
 	overflow-y: auto;
