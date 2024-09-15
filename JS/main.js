@@ -225,3 +225,93 @@ function closeModal() {
 }
 
 window.onload = populateContacts;
+
+function openSelectContactModal() {
+    document.getElementById("selectContactModal").style.display = "block";
+}
+
+function closeSelectContactModal() {
+    document.getElementById("selectContactModal").style.display = "none";
+}
+
+function openEditContactModal(contact) {
+    document.getElementById("editContactName").textContent = contact.name;
+    document.getElementById("editContactEmail").value = contact.email;
+    document.getElementById("editContactPhone").value = contact.phone;
+    document.getElementById("editContactModal").style.display = "block";
+}
+
+function closeEditContactModal() {
+    document.getElementById("editContactModal").style.display = "none";
+}
+
+function showContactToEdit() {
+    const contactName = document.getElementById("contactToUpdate").value;
+    const contact = contacts.find(c => c.name.toLowerCase() === contactName.toLowerCase());
+
+    if (contact) {
+        closeSelectContactModal();
+        openEditContactModal(contact);
+    } 
+	else {
+        document.getElementById('contactResult').innerHTML = "Contact not found.";
+    }
+}
+
+function saveContactEdits() {
+    const contactName = document.getElementById("editContactName").textContent;
+    const newEmail = document.getElementById("editContactEmail").value;
+    const newPhone = document.getElementById("editContactPhone").value;
+
+    const contact = contacts.find(c => c.name === contactName);
+    if (contact) {
+        contact.email = newEmail;
+        contact.phone = newPhone;
+        closeEditContactModal();
+    }
+}
+
+function openEditContactModalFromView() {
+    const contactName = document.getElementById('contactName').innerText;
+    const contactEmail = document.getElementById('contactEmail').innerText;
+    const contactPhone = document.getElementById('contactPhone').innerText;
+
+    const contact = contacts.find(c => c.name === contactName);
+    
+    if (contact) {
+        document.getElementById("editContactName").textContent = contact.name;
+        document.getElementById("editContactEmail").value = contact.email;
+        document.getElementById("editContactPhone").value = contact.phone;
+        
+        closeModal();
+        document.getElementById("editContactModal").style.display = "block";
+    }
+}
+
+function openAddContactModal() {
+    document.getElementById("addContactModal").style.display = "block";
+}
+
+function closeAddContactModal() {
+    document.getElementById("addContactModal").style.display = "none";
+}
+
+function addContact() {
+    const firstName = document.getElementById('newContactFirstName').value;
+	const lastName = document.getElementById('newContactLastName').value;
+    const email = document.getElementById('newContactEmail').value;
+    const phone = document.getElementById('newContactPhone').value;
+	const name = firstName.concat(" ", lastName);
+
+    if (name && email && phone) {
+        contacts.push({ name, email, phone });
+        closeAddContactModal();
+        contactItem.onclick = function() {
+            openModal(index);
+        };
+        populateContacts();
+    } 
+	else {
+		document.getElementById('addResult').innerHTML = "Please fill out all fields.";
+    }
+}
