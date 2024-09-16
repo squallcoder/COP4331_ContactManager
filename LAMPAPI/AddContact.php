@@ -1,5 +1,8 @@
 <?php
 
+//requesting info
+$inData = getRequestInfo();
+
 $conn = new mysqli("localhost", "Admin", "Team7", "SmallProject"); 	
 if( $conn->connect_error )
 {
@@ -7,12 +10,21 @@ if( $conn->connect_error )
 }
 else
 {
+    // defining vars
+    $firstName = $inData["firstName"];
+    $lastName = $inData["lastName"];
+    $Phone = $inData["phone"];
+    $Email = $inData["email"];
+    $UserID = $inData["userID"];
+
     // call the function to add the contact
-    addContact($FirstName, $LastName, $Phone, $Email, $UserID);
+    addContact($conn, $FirstName, $LastName, $Phone, $Email, $UserID);
+
+    $conn->close();
 }
 
 // create contact function
-function addContact($FirstName, $LastName, $Phone, $Email, $UserID){
+function addContact($conn, $FirstName, $LastName, $Phone, $Email, $UserID){
     $FirstName = mysqli_real_escape_string($conn, $FirstName);
     $LastName = mysqli_real_escape_string($conn, $LastName);
     $Phone = mysqli_real_escape_string($conn, $Phone);
@@ -25,12 +37,35 @@ function addContact($FirstName, $LastName, $Phone, $Email, $UserID){
 
     // checking if contact was created successfully by running a query
     if (mysqli_query($conn, $query)){
-        echo "Contact successfully created!";
+        //echo "Contact successfully created!";
 
     } else{
-        echo "Error creating contact.... please try again" . mysqli_error($conn);
+       // echo "Error creating contact.... please try again" . mysqli_error($conn);
     }
 }
+
+function getRequestInfo()
+	{
+		return json_decode(file_get_contents('php://input'), true);
+	}
+
+	function sendResultInfoAsJson( $obj )
+	{
+		header('Content-type: application/json');
+		echo $obj;
+	}
+	
+	function returnWithError( $err )
+	{
+		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		sendResultInfoAsJson( $retValue );
+	}
+	
+	function returnWithInfo( $firstName, $lastName, $id )
+	{
+		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+		sendResultInfoAsJson( $retValue );
+	}
 
 
 ?>
