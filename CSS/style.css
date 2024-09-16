@@ -22,6 +22,8 @@ body {
 	color: #24282f;
 	text-align: center;
 	margin: 40px 0;
+	text-decoration: underline;
+
 }
 
 .loginDiv {
@@ -74,16 +76,18 @@ body {
 .main-content {
 	display: flex;
 	justify-content: space-between;
-	align-items: flex-start;
+	/* align-items: center; */
 	width: 90vw;
 	margin: 0 auto;
 	padding-top: 20px;
 }
 
 .contact-container {
-	width: 60%;
+	width: 50%;
 	height: 60vh;
 	background-color: white;
+	margin-top: 150px;
+	margin-left: 450px;
 	border: 1px solid #ccc;
 	border-radius: 10px;
 	overflow: hidden;
@@ -100,7 +104,7 @@ body {
 
 #searchBar {
 	margin-right: 10px;
-	width: 800;
+	width: 800px;
 	height: 40px;
 	padding: 8px;
 	border: 1px solid #ccc;
@@ -117,24 +121,30 @@ body {
 }
 
 .buttons-container {
-	width: 35%;
+	width: 1000px;
 	display: flex;
-	flex-direction: column;
-	justify-content:center;
-	height: 60vh;
+	flex-direction: row;
+	gap: 0em;
+	justify-content:space-evenly;
+	position: relative;
+	bottom: 700px;
+	left: 450px;
+	align-items: center;
+	height: 150px;
 }
 
 .buttons-container button {
-	width: 100%;
+	width: 200px;
 	padding: 20px;
 	background-color: #24282f;
 	color: white;
 	border: none;
 	border-radius: 10px;
-	font-size: 1.2em;
+	font-size: 1.0em;
 	cursor: pointer;
 	margin-top: 50px;
 	margin-bottom: 50px;
+	align-items: center;
 }
 
 

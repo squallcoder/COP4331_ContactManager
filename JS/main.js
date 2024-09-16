@@ -315,3 +315,33 @@ function addContact() {
 		document.getElementById('addResult').innerHTML = "Please fill out all fields.";
     }
 }
+
+function openDeleteContactModal() {
+    document.getElementById("deleteContactModal").style.display = "block";
+}
+
+function closeDeleteContactModal() {
+    document.getElementById("deleteContactModal").style.display = "none";
+}
+
+function deleteContact() {
+    const firstName = document.getElementById('deleteContactFirstName').value;
+	const lastName = document.getElementById('deleteContactLastName').value;
+	const name = firstName.concat(" ", lastName);
+
+    if(!firstName || !lastName) {
+		document.getElementById('deleteResult').innerHTML = "Please fill out all fields.";
+        return;
+    }
+
+    const contactIndex = contacts.findIndex(c => c.name === name);
+    if (contactIndex !== -1) {
+        contacts.splice(contactIndex, 1) //Removes contact from the array
+        closeDeleteContactModal();
+        document.getElementById('deleteResult').innerHTML = "Contact deleted successfully.";
+    }
+
+    else {
+        document.getElementById('deleteResult').innerHTML = "Contact not found.";
+    }
+}

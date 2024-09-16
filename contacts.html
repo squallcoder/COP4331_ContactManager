@@ -9,21 +9,23 @@
 	<body>
 		<h1 id="ContactTitle">Contact Manager</h1>
 		<main>
-			<div class="main-content">
-				<section class="contact-container">
-					<div class="top-nav">
-						<input type="search" id="searchBar" placeholder="Search contact here...">
-						<button type="button" id="searchButton" class="buttons" onclick="search();">Search</button>
-					</div>
+			<!-- <div class="main-content">
 
-					<div class="contact-list" id="contactList"></div>
-				</section>
+			</div> -->
 
-				<div class="buttons-container">
-					<button type="button" id="addButton" onclick="openAddContactModal()">Add Contact</button>
-					<button type="button" id="deleteButton" onclick="">Delete Contact</button>
-					<button type="button" id="updateButton" onclick="openSelectContactModal()">Update Contact</button>
-		</div>
+			<section class="contact-container">
+				<div class="top-nav">
+					<input type="search" id="searchBar" placeholder="Search contact here...">
+					<button type="button" id="searchButton" class="buttons" onclick="search();">Search</button>
+				</div>
+
+				<div class="contact-list" id="contactList"></div>
+			</section>
+
+			<div class="buttons-container">
+				<button type="button" id="addButton" onclick="openAddContactModal()">Add Contact</button>
+				<button type="button" id="deleteButton" onclick="openDeleteContactModal()">Delete Contact</button>
+				<button type="button" id="updateButton" onclick="openSelectContactModal()">Update Contact</button>
 			</div>
 
 			<div id="contactModal" class="modal">
@@ -67,6 +69,16 @@
 					<p><strong>Phone:</strong> <input type="text" id="newContactPhone"></p>
 					<button class="buttons" onclick="addContact()">Add Contact</button>
 					<span id="addResult"></span>
+				</div>
+			</div>
+			<div id="deleteContactModal" class="modal">
+				<div class="modal-content">
+				<span class="close" onclick="closeDeleteContactModal()">&times</span>
+				<h2>Enter the Contact you want to delete</h2>
+				<p><strong>First Name:</strong> <input type="text" id="deleteContactFirstName"></p>
+				<p><strong>Last Name:</strong> <input type="text" id="deleteContactLastName"></p>
+				<button class="buttons" onclick="deleteContact()">Delete Contact</button>
+				<span id="deleteResult"></span>
 				</div>
 			</div>
 		</main>
