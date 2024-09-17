@@ -3,7 +3,9 @@
 //requesting info
 $inData = getRequestInfo();
 
-$conn = new mysqli("localhost", "Admin", "Team7", "SmallProject"); 	
+$conn = new mysqli("localhost", "Admin", "Team7", "SmallProject");
+mysqli_select_db ($conn, "Contacts") or die ("could not find db"); //added this to see if it would work to solve the 500
+
 if( $conn->connect_error )
 {
 	returnWithError( $conn->connect_error );
