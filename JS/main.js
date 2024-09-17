@@ -106,8 +106,8 @@ function readCookie()
 
 function createAccount() {
 
-     firstName = document.getElementById('FirstName').value;
-     lastName = document.getElementById('LastName').value;
+    firstName = document.getElementById('FirstName').value;
+    lastName = document.getElementById('LastName').value;
     const login = document.getElementById('createUsername').value;
     const password = document.getElementById('createPassword').value;
     const confpassword = document.getElementById('confirmPassword').value;
@@ -246,7 +246,10 @@ function closeEditContactModal() {
 }
 
 function showContactToEdit() {
-    const contactName = document.getElementById("contactToUpdate").value;
+    const firstName = document.getElementById('updateContactFirstName').value;
+	const lastName = document.getElementById('updateContactLastName').value;
+
+    const contactName = firstName.concat(" ", lastName);
     const contact = contacts.find(c => c.name.toLowerCase() === contactName.toLowerCase());
 
     if (contact) {
@@ -306,9 +309,6 @@ function addContact() {
     if (name && email && phone) {
         contacts.push({ name, email, phone });
         closeAddContactModal();
-        contactItem.onclick = function() {
-            openModal(index);
-        };
         populateContacts();
     } 
 	else {
@@ -325,23 +325,54 @@ function closeDeleteContactModal() {
 }
 
 function deleteContact() {
-    const firstName = document.getElementById('deleteContactFirstName').value;
-	const lastName = document.getElementById('deleteContactLastName').value;
-	const name = firstName.concat(" ", lastName);
+    const firstName = document.getElementById('deleteContactFirstName').value.trim();
+    const lastName = document.getElementById('deleteContactLastName').value.trim();
 
-    if(!firstName || !lastName) {
-		document.getElementById('deleteResult').innerHTML = "Please fill out all fields.";
+    if (!firstName || !lastName) {
+        document.getElementById('deleteResult').innerHTML = "Please fill out all fields.";
         return;
     }
 
-    const contactIndex = contacts.findIndex(c => c.name === name);
-    if (contactIndex !== -1) {
-        contacts.splice(contactIndex, 1) //Removes contact from the array
-        closeDeleteContactModal();
-        document.getElementById('deleteResult').innerHTML = "Contact deleted successfully.";
-    }
+    const contactName = firstName.concat(" ", lastName).toLowerCase();
+    const contactIndex = contacts.findIndex(c => c.name.toLowerCase() === contactName);
 
+    if (contactIndex !== -1) {
+        contacts.splice(contactIndex, 1);
+        closeDeleteContactModal();
+        populateContacts();
+        document.getElementById('deleteResult').innerHTML = "Contact deleted successfully.";
+    } 
     else {
         document.getElementById('deleteResult').innerHTML = "Contact not found.";
     }
+}
+
+function deleteContactFromModal() {
+    const contactName = document.getElementById('contactName').innerText;
+    const contactIndex = contacts.findIndex(c => c.name === contactName);
+
+    if (contactIndex !== -1) {
+        contacts.splice(contactIndex, 1);
+        closeModal();
+        populateContacts();
+    } 
+}
+
+function search() {
+    const searchName = document.getElementById('searchBar').value.trim().toLowerCase();
+    const contact = contacts.find(c => c.name.toLowerCase() === searchName);
+
+    if (contact) {
+        const contactIndex = contacts.findIndex(c => c.name.toLowerCase() === searchName.toLowerCase());
+        openModal(contactIndex);
+            
+    }
+    else {
+        document.getElementById('searchModal').style.display = 'block';
+        document.getElementById('searchResult').innerHTML = "Contact not found.";
+    }
+}
+
+function closeSearchModal() {
+    document.getElementById('searchModal').style.display = 'none';
 }
