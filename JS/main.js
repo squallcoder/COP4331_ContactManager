@@ -302,14 +302,21 @@ function closeAddContactModal() {
 function addContact() {
     const firstName = document.getElementById('newContactFirstName').value;
 	const lastName = document.getElementById('newContactLastName').value;
-    const email = document.getElementById('newContactEmail').value;
-    const phone = document.getElementById('newContactPhone').value;
-	const name = firstName.concat(" ", lastName);
+    const newEmail = document.getElementById('newContactEmail').value;
+    const newPhone = document.getElementById('newContactPhone').value;
+	const fullName = firstName.concat(" ", lastName);
 
-    if (name && email && phone) {
-        contacts.push({ name, email, phone });
-        closeAddContactModal();
+    const newContact = {
+        name: fullName,
+        email: newEmail,
+        phone: newPhone
+    };
+
+    if (firstName && lastName && newEmail && newPhone) {
+        // contacts.push({ name, email, phone });
+        contacts.splice(0,0,newContact);
         populateContacts();
+        closeAddContactModal();
     } 
 	else {
 		document.getElementById('addResult').innerHTML = "Please fill out all fields.";
