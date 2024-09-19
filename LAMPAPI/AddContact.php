@@ -1,52 +1,41 @@
 <?php
+	$inData = getRequestInfo();
+	$UserID = $inData["userID"];
+	$Phone = $inData["phone"];
+	$Email = $inData["email"];
+	$FirstName = $inData["firstName"];
+	$LastName = $inData["lastName"];
 
-//requesting info
-$inData = getRequestInfo();
+	$conn = new mysqli("localhost", "Admin", "Team7", "SmallProject"); 	
+	if( $conn->connect_error )
+	{
+		returnWithError( $conn->connect_error );
+	}
+	else
+	{
+		$stmt = $conn->prepare("SELECT UserID FROM Contacts WHERE FirstName=? AND LastName =?");
+		$stmt->bind_param("ss", $inData["firstName"], $inData["lastName"]);
+		$stmt->execute();
+		$result = $stmt->get_result();
 
-$conn = new mysqli("localhost", "Admin", "Team7", "SmallProject");
-mysqli_select_db ($conn, "Contacts") or die ("could not find db"); //added this to see if it would work to solve the 500
+		if( $row = $result->fetch_assoc()  )
+		{
 
-if( $conn->connect_error )
-{
-	returnWithError( $conn->connect_error );
-}
-else
-{
-    // defining vars
-    $firstName = $inData["firstName"];
-    $lastName = $inData["lastName"];
-    $Phone = $inData["phone"];
-    $Email = $inData["email"];
-    $UserID = $inData["userID"];
+			returnWithError("Contact Found");
+	//		returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
+		}
+		else
+	{
+		//(FirstName, LastName, Phone, Email, UserID) VALUES ('$FirstName', '$LastName', '$Phone', '$Email', '$UserID')
+		$sql = "INSERT INTO Contacts (FirstName, LastName, Phone, Email, userID) VALUES ('$FirstName', '$LastName', '$Phone', '$Email', '$UserID');";
+		mysqli_query($conn,$sql);
+		}
 
-    // call the function to add the contact
-    addContact($conn, $firstName, $lastName, $Phone, $Email, $UserID);
-
-    $conn->close();
-}
-
-// create contact function
-function addContact($conn, $FirstName, $LastName, $Phone, $Email, $UserID){
-    $FirstName = mysqli_real_escape_string($conn, $FirstName);
-    $LastName = mysqli_real_escape_string($conn, $LastName);
-    $Phone = mysqli_real_escape_string($conn, $Phone);
-    $Email = mysqli_real_escape_string($conn, $Email);
-    $UserID = mysqli_real_escape_string($conn, $UserID);
-
-    // insert contact into the database CHECK THIS
-    /* UPDATED SYNTAX AND VARIABLES -c*/
-    $query = "INSERT INTO Contacts (FirstName, LastName, Phone, Email, UserID) VALUES ('$FirstName', '$LastName', '$Phone', '$Email', '$UserID')";
-
-    // checking if contact was created successfully by running a query
-    if (mysqli_query($conn, $query)){
-        //echo "Contact successfully created!";
-
-    } else{
-       // echo "Error creating contact.... please try again" . mysqli_error($conn);
-    }
-}
-
-function getRequestInfo()
+		$stmt->close();
+		$conn->close();
+	}
+	
+	function getRequestInfo()
 	{
 		return json_decode(file_get_contents('php://input'), true);
 	}
@@ -68,6 +57,4 @@ function getRequestInfo()
 		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
-
-
 ?>
