@@ -5,8 +5,8 @@
 	
 	$id = 0;
 	$firstName = $inData["firstName"];
-$lastName = $inData["lastName"];
-$login = $inData["login"];
+	$lastName = $inData["lastName"];
+	$login = $inData["login"];
 
 	$password = $inData["password"];
 
@@ -61,7 +61,7 @@ $login = $inData["login"];
 		sendResultInfoAsJson( $retValue );
 	}
  
- 
+?> 
 
 
 

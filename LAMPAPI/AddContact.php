@@ -1,34 +1,60 @@
 <?php
+	$inData = getRequestInfo();
+	$UserID = $inData["userID"];
+	$Phone = $inData["phone"];
+	$Email = $inData["email"];
+	$FirstName = $inData["firstName"];
+	$LastName = $inData["lastName"];
 
-$conn = new mysqli("localhost", "Admin", "Team7", "SmallProject"); 	
-if( $conn->connect_error )
-{
-	returnWithError( $conn->connect_error );
-}
-else
-{
-    // call the function to add the contact
-    addContact($id, $firstName, $lastName, $phoneNumber, $email);
-}
+	$conn = new mysqli("localhost", "Admin", "Team7", "SmallProject"); 	
+	if( $conn->connect_error )
+	{
+		returnWithError( $conn->connect_error );
+	}
+	else
+	{
+		$stmt = $conn->prepare("SELECT UserID,FirstName,LastName FROM Contacts WHERE Phone = ? AND Email =?");
+		$stmt->bind_param("ss", $inData["phone"], $inData["email"]);
+		$stmt->execute();
+		$result = $stmt->get_result();
 
-// create contact function
-function addContact($id, $firstName, $lastName, $phoneNumber, $email){
-    $firstName = mysqli_real_escape_string($conn, $firstName);
-    $lastName = mysqli_real_escape_string($conn, $lastName);
-    $phoneNumber = mysqli_real_escape_string($conn, $phoneNumber);
-    $email = mysqli_real_escape_string($conn, $email);
+		if( $row = $result->fetch_assoc()  )
+		{
 
-    // insert contact into the database CHECK THIS
-    $query = "INSERT INTO contacts (id, firstName, lastName, phoneNumber, email) VALUES ('$id', '$firstName', '$lastName', '$phoneNumber', '$email')";
+			returnWithError("Contact Found");
+	//		returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
+		}
+		else
+	{
+		//(FirstName, LastName, Phone, Email, UserID) VALUES ('$FirstName', '$LastName', '$Phone', '$Email', '$UserID')
+		$sql = "INSERT INTO Contacts (FirstName, LastName, Phone, Email, userID) VALUES ('$FirstName', '$LastName', '$Phone', '$Email', '$UserID');";
+		mysqli_query($conn,$sql);
+		}
 
-    // checking if contact was created successfully by running a query
-    if (mysqli_query($conn, $query)){
-        echo "Contact successfully created!";
+		$stmt->close();
+		$conn->close();
+	}
+	
+	function getRequestInfo()
+	{
+		return json_decode(file_get_contents('php://input'), true);
+	}
 
-    } else{
-        echo "Error creating contact.... please try again" . mysqli_error($conn);
-    }
-}
-
-
+	function sendResultInfoAsJson( $obj )
+	{
+		header('Content-type: application/json');
+		echo $obj;
+	}
+	
+	function returnWithError( $err )
+	{
+		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		sendResultInfoAsJson( $retValue );
+	}
+	
+	function returnWithInfo( $firstName, $lastName, $id )
+	{
+		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+		sendResultInfoAsJson( $retValue );
+	}
 ?>

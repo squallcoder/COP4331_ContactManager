@@ -234,29 +234,41 @@
     },
     "Contact" : {
       "type" : "object",
-      "required" : [ "userId", "email", "phone" ],
+      "required" : [ "userId", "firstName", "lastName", "email", "phone" ],
       "properties" : {
         "userId" : {
           "type" : "integer",
           "example" : 1
         },
-        "color" : {
+        "firstName" : {
           "type" : "string",
-          "example" : "John Doe"
+          "example" : "John"
+        },
+        "lastName" : {
+          "type" : "string",
+          "example" : "Doe"
+        },
+        "email" : {
+          "type" : "string",
+          "example" : "example@gmail.com"
+        },
+        "phone" : {
+          "type" : "string",
+          "example" : "333-333-3333"
         }
       }
     },
     "Search" : {
       "type" : "object",
-      "required" : [ "userId", "search" ],
+      "required" : [ "firstName", "lastName" ],
       "properties" : {
-        "userId" : {
-          "type" : "integer",
-          "example" : 1
-        },
-        "search" : {
+        "firstName" : {
           "type" : "string",
-          "example" : "John"
+          "example" : "Jon"
+        },
+        "lastName" : {
+          "type" : "string",
+          "example" : "Doe"
         }
       }
     },
