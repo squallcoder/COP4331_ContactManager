@@ -20,7 +20,7 @@ else
     $UserID = $inData["userID"];
 
     // call the function to add the contact
-    addContact($conn, $FirstName, $LastName, $Phone, $Email, $UserID);
+    addContact($conn, $firstName, $lastName, $Phone, $Email, $UserID);
 
     $conn->close();
 }
