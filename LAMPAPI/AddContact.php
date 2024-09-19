@@ -13,8 +13,8 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT UserID FROM Contacts WHERE FirstName=? AND LastName =?");
-		$stmt->bind_param("ss", $inData["firstName"], $inData["lastName"]);
+		$stmt = $conn->prepare("SELECT UserID,FirstName,LastName FROM Contacts WHERE Phone = ? AND Email =?");
+		$stmt->bind_param("ss", $inData["phone"], $inData["email"]);
 		$stmt->execute();
 		$result = $stmt->get_result();
 
