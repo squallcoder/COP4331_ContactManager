@@ -49,7 +49,8 @@ function doLogin() {
 				lastName = jsonObject.lastName;
 
 				saveCookie();
-	
+                alert(userId);
+                
 				window.location.href = "contacts.html";
 			}
 		};
@@ -173,6 +174,7 @@ function createAccount() {
     
 }
 
+
 const contacts = [
     { name: 'Alice Johnson', email: 'alice.johnson@example.com', phone: '555-123-4567' },
     { name: 'Bob Smith', email: 'bob.smith@example.com', phone: '555-987-6543' },
@@ -224,7 +226,7 @@ function closeModal() {
     document.getElementById('contactModal').style.display = 'none';
 }
 
-window.onload = populateContacts;
+// window.onload = populateContacts; //This populates the default array of contents to the contact
 
 function openSelectContactModal() {
     document.getElementById("selectContactModal").style.display = "block";
@@ -299,30 +301,6 @@ function closeAddContactModal() {
     document.getElementById("addContactModal").style.display = "none";
 }
 
-function addContact() {
-    const firstName = document.getElementById('newContactFirstName').value;
-	const lastName = document.getElementById('newContactLastName').value;
-    const newEmail = document.getElementById('newContactEmail').value;
-    const newPhone = document.getElementById('newContactPhone').value;
-	const fullName = firstName.concat(" ", lastName);
-
-    const newContact = {
-        name: fullName,
-        email: newEmail,
-        phone: newPhone
-    };
-
-    if (firstName && lastName && newEmail && newPhone) {
-        // contacts.push({ name, email, phone });
-        contacts.splice(0,0,newContact);
-        populateContacts();
-        closeAddContactModal();
-    } 
-	else {
-		document.getElementById('addResult').innerHTML = "Please fill out all fields.";
-    }
-}
-
 function openDeleteContactModal() {
     document.getElementById("deleteContactModal").style.display = "block";
 }
@@ -382,4 +360,28 @@ function search() {
 
 function closeSearchModal() {
     document.getElementById('searchModal').style.display = 'none';
+}
+
+function addContact() {
+    const firstName = document.getElementById('newContactFirstName').value;
+	const lastName = document.getElementById('newContactLastName').value;
+    const newEmail = document.getElementById('newContactEmail').value;
+    const newPhone = document.getElementById('newContactPhone').value;
+	const fullName = firstName.concat(" ", lastName);
+
+    const newContact = {
+        name: fullName,
+        email: newEmail,
+        phone: newPhone
+    };
+
+    if (firstName && lastName && newEmail && newPhone) {
+        // contacts.push({ name, email, phone });
+        contacts.splice(0,0,newContact);
+        populateContacts();
+        closeAddContactModal();
+    } 
+	else {
+		document.getElementById('addResult').innerHTML = "Please fill out all fields.";
+    }
 }
