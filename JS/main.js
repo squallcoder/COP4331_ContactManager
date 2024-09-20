@@ -395,7 +395,7 @@ function addContact() {
         phone: newPhone
     };
 
-    alert(userId);
+    alert(result);
 
     if (firstName && lastName && newEmail && newPhone) {
         // contacts.push({ name, email, phone });
