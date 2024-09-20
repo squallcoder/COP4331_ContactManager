@@ -25,6 +25,7 @@ function doLogin() {
 	let tmp = {login:login,password:password};
 //	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
+	alert(jsonPayload);
 	console.log(jsonPayload);
 	
 	let url = urlBase + '/Login.' + extension;
