@@ -1,7 +1,7 @@
 const urlBase = 'http://www.averagesite.xyz/LAMPAPI';
 const extension = 'php';
 
-let userId = 0;
+var userId = 0;
 let firstName = "";
 let lastName = "";
 function doLogin() {
@@ -47,7 +47,7 @@ function doLogin() {
 		
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;
-
+                
 				saveCookie();
                 alert(userId);
                 
@@ -378,6 +378,7 @@ function addContact() {
         phone: newPhone
     };
 
+    alert(userId);
     if (firstName && lastName && newEmail && newPhone) {
         // contacts.push({ name, email, phone });
         contacts.splice(0,0,newContact);
