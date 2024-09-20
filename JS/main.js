@@ -25,6 +25,7 @@ function doLogin() {
 	let tmp = {login:login,password:password};
 //	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
+	console.log(jsonPayload);
 	
 	let url = urlBase + '/Login.' + extension;
 
@@ -423,7 +424,7 @@ function addContact() {
                         userId = jsonObject.id;
         
                 
-                        if( userId < 1 )
+                        if( result < 1 )
                         {		
                             document.getElementById("addResult").innerHTML = "Unable to Add Contact";
                             return;
