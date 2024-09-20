@@ -6,7 +6,7 @@ let firstName = "";
 let lastName = "";
 function doLogin() {
 	
-	userId = 0;
+	// userId = 0;
 	firstName = "";
 	lastName = "";
     const login = document.getElementById('loginName').value;
