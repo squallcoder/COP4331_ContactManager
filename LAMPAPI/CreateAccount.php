@@ -36,6 +36,8 @@
 
 		$stmt->close();
 		$conn->close();
+
+		returnWithInfo( $firstName, $lastName, $row['ID'] );
 	}
 	
 	function getRequestInfo()

@@ -25,12 +25,15 @@ function doLogin() {
 	let tmp = {login:login,password:password};
 //	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
+	alert(jsonPayload);
+	console.log(jsonPayload);
 	
 	let url = urlBase + '/Login.' + extension;
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	alert(xhr.responseText);
 	try
 	{
 	xhr.onreadystatechange = function() 
@@ -50,8 +53,8 @@ function doLogin() {
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;
                 
-				saveCookie();
-                alert(userId);
+    				saveCookie();
+		                 alert(userId);
 
 				window.location.href = "contacts.html";
 			}
@@ -371,20 +374,21 @@ function addContact() {
     
     const cDecoded = decodeURI(document.cookie);
     const cArray = cDecoded.split("; ");
-    let userId;
+    let result;
 
     cArray.forEach(element => {
     if(element.indexOf("UserId") == 0){
-        userId = element.substring(6+1);
-        alert(userId);
+        result = element.substring(6+1);
         }
     }
     )
 
+    alert(result);
+
     
 
-    const firstName = document.getElementById('newContactFirstName').value;
-	const lastName = document.getElementById('newContactLastName').value;
+     firstName = document.getElementById('newContactFirstName').value;
+	 lastName = document.getElementById('newContactLastName').value;
     const email = document.getElementById('newContactEmail').value;
     const phone = document.getElementById('newContactPhone').value;
 	const fullName = firstName.concat(" ", lastName);
@@ -399,10 +403,9 @@ function addContact() {
 
     if (firstName && lastName && email && phone) {
         
-        let tmp = {userId:userId,firstName:firstName,lastName:lastName, email:email ,phone:phone};
+	    let tmp = {userId:result,firstName:firstName,lastName:lastName,email:email,phone:phone};
         
             let jsonPayload = JSON.stringify( tmp );
-            
             let url = urlBase + '/AddContact.' + extension;
         
             let xhr = new XMLHttpRequest();
@@ -414,11 +417,15 @@ function addContact() {
                 {
                     if (this.readyState == 4 && this.status == 200) 
                     {
+			//alert(xhr.responseText);
+			console.log(jsonPayload);
+		    
+			alert(jsonPayload);            
                         let jsonObject = JSON.parse( xhr.responseText );
                         userId = jsonObject.id;
         
                 
-                        if( userId < 1 )
+                        if( result < 1 )
                         {		
                             document.getElementById("addResult").innerHTML = "Unable to Add Contact";
                             return;
@@ -447,4 +454,6 @@ function addContact() {
 	else {
 		document.getElementById('addResult').innerHTML = "Please fill out all fields.";
     }
+
+
 }
