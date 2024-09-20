@@ -277,7 +277,7 @@
       "required" : [ "userId", "search", "delete" ],
       "properties" : {
         "userId" : {
-          "type" : "integer",
+          "type" : "number",
           "example" : 1
         },
         "search" : {
