@@ -381,7 +381,6 @@ function addContact() {
                     saveCookie();
                     alert(userId);
 
-                    window.location.href = "contacts.html";
                 }
             };
             xhr.send(jsonPayload);
@@ -393,7 +392,7 @@ function addContact() {
     if (firstName && lastName && newEmail && newPhone) {
         // contacts.push({ name, email, phone });
         contacts.splice(0, 0, newContact);
-        // populateContacts();
+        populateContacts();
         closeAddContactModal();
     }
     else {
