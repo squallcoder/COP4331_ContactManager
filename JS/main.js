@@ -2,11 +2,12 @@ const urlBase = 'http://www.averagesite.xyz/LAMPAPI';
 const extension = 'php';
 
 var userId = 0;
+var holdUserID;
 let firstName = "";
 let lastName = "";
 function doLogin() {
 	
-	// userId = 0;
+	userId = 0;
 	firstName = "";
 	lastName = "";
     const login = document.getElementById('loginName').value;
@@ -37,7 +38,8 @@ function doLogin() {
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				let jsonObject = JSON.parse( xhr.responseText );
-				var userId = jsonObject.id;
+				userId = jsonObject.id;
+
 		
 				if( userId < 1 )
 				{		
@@ -50,7 +52,8 @@ function doLogin() {
                 
 				saveCookie();
                 alert(userId);
-                
+                holdUserID = userId;
+
 				window.location.href = "contacts.html";
 			}
 		};
@@ -378,7 +381,7 @@ function addContact() {
         phone: newPhone
     };
 
-    alert(userId);
+    alert(holdUserID);
     if (firstName && lastName && newEmail && newPhone) {
         // contacts.push({ name, email, phone });
         contacts.splice(0,0,newContact);
