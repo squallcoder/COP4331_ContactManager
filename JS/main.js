@@ -377,10 +377,11 @@ function addContact() {
     cArray.forEach(element => {
     if(element.indexOf("UserId") == 0){
         result = element.substring(6+1);
-        alert(result);
         }
     }
     )
+
+    alert(result);
 
     
 
@@ -400,10 +401,10 @@ function addContact() {
 
     if (firstName && lastName && email && phone) {
         
-	    let tmp = {userId:result,firstName:firstName,lastName:lastName, email:email ,phone:phone};
+	    let tmp = {userId:result,firstName:firstName,lastName:lastName,email:email,phone:phone};
         
             let jsonPayload = JSON.stringify( tmp );
-            
+	    alert(jsonPayload);            
             let url = urlBase + '/AddContact.' + extension;
         
             let xhr = new XMLHttpRequest();
@@ -451,4 +452,6 @@ function addContact() {
 	else {
 		document.getElementById('addResult').innerHTML = "Please fill out all fields.";
     }
+
+
 }
