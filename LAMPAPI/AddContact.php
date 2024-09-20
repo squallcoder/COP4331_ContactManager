@@ -1,4 +1,5 @@
 <?php
+
 	$inData = getRequestInfo();
 	$UserID = $inData["userId"];
 	$Phone = $inData["phone"];
@@ -22,7 +23,7 @@
 //		{
 
 //			returnWithError("Contact Found");
-	//		returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
+//		returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
 //		}
 //		else
 //	{
@@ -32,7 +33,9 @@
 //		}
 
 //		$stmt->close();
-		$conn->close();
+	$conn->close();
+
+		returnWithInfo( $FirstName, $LastName, $UserID );
 	}
 	
 	function getRequestInfo()
@@ -57,4 +60,5 @@
 		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
+
 ?>
