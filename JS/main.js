@@ -371,12 +371,12 @@ function addContact() {
     
     const cDecoded = decodeURI(document.cookie);
     const cArray = cDecoded.split("; ");
-    let userId;
+    let result;
 
     cArray.forEach(element => {
     if(element.indexOf("UserId") == 0){
-        userId = element.substring(6+1);
-        alert(userId);
+        result = element.substring(6+1);
+        alert(result);
         }
     }
     )
@@ -399,7 +399,7 @@ function addContact() {
 
     if (firstName && lastName && email && phone) {
         
-        let tmp = {userId:userId,firstName:firstName,lastName:lastName, email:email ,phone:phone};
+	    let tmp = {userId:result,firstName:firstName,lastName:lastName, email:email ,phone:phone};
         
             let jsonPayload = JSON.stringify( tmp );
             
@@ -414,7 +414,7 @@ function addContact() {
                 {
                     if (this.readyState == 4 && this.status == 200) 
                     {
-			alert(xhr.responseText);
+			//alert(xhr.responseText);
                         let jsonObject = JSON.parse( xhr.responseText );
                         userId = jsonObject.id;
         
