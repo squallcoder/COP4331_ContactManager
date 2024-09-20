@@ -52,7 +52,7 @@ function doLogin() {
                 
 				saveCookie();
                 alert(userId);
-                holdUserID = userId;
+                var holdUserID = userId;
 
 				window.location.href = "contacts.html";
 			}
