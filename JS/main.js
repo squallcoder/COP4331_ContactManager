@@ -270,13 +270,13 @@ function showContactToEdit() {
 
 function saveContactEdits() {
     const contactName = document.getElementById("editContactName").textContent;
-    const newEmail = document.getElementById("editContactEmail").value;
-    const newPhone = document.getElementById("editContactPhone").value;
+    const newemail = document.getElementById("editContactEmail").value;
+    const phone = document.getElementById("editContactPhone").value;
 
     const contact = contacts.find(c => c.name === contactName);
     if (contact) {
-        contact.email = newEmail;
-        contact.phone = newPhone;
+        contact.email = newemail;
+        contact.phone = phone;
         closeEditContactModal();
     }
 }
@@ -371,34 +371,75 @@ function addContact() {
     
     const cDecoded = decodeURI(document.cookie);
     const cArray = cDecoded.split("; ");
-    let result;
+    let userId;
 
-    cArray.forEach(element =>{
+    cArray.forEach(element => {
     if(element.indexOf("UserId") == 0){
-        result = element.substring(6+1);
-        alert(result);
-    }
+        userId = element.substring(6+1);
+        alert(userId);
+        }
     }
     )
 
+    
 
     const firstName = document.getElementById('newContactFirstName').value;
 	const lastName = document.getElementById('newContactLastName').value;
-    const newEmail = document.getElementById('newContactEmail').value;
-    const newPhone = document.getElementById('newContactPhone').value;
+    const email = document.getElementById('newContactEmail').value;
+    const phone = document.getElementById('newContactPhone').value;
 	const fullName = firstName.concat(" ", lastName);
 
 
     const newContact = {
         name: fullName,
-        email: newEmail,
-        phone: newPhone
+        email: email,
+        phone: phone
     };
+    
 
-    alert(result);
+    if (firstName && lastName && email && phone) {
+        
+        let tmp = {userId:userId,firstName:firstName,lastName:lastName, email:email ,phone:phone};
+        
+            let jsonPayload = JSON.stringify( tmp );
+            
+            let url = urlBase + '/AddContact.' + extension;
+        
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+            try
+            {
+            xhr.onreadystatechange = function() 
+                {
+                    if (this.readyState == 4 && this.status == 200) 
+                    {
+                        let jsonObject = JSON.parse( xhr.responseText );
+                        userId = jsonObject.id;
+        
+                
+                        if( userId < 1 )
+                        {		
+                            document.getElementById("addResult").innerHTML = "Unable to Add Contact";
+                            return;
+                        }
+                
+                        firstName = jsonObject.firstName;
+                        lastName = jsonObject.lastName;
+                        
+                        saveCookie();
+                        alert(userId);
+        
+                        // window.location.href = "contacts.html";
+                    }
+                };
+                xhr.send(jsonPayload);
+            }
+            catch(err)
+            {
+                document.getElementById("addResult").innerHTML = err.message;
+            }
 
-    if (firstName && lastName && newEmail && newPhone) {
-        // contacts.push({ name, email, phone });
         contacts.splice(0,0,newContact);
         populateContacts();
         closeAddContactModal();
