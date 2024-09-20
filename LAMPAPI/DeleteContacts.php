@@ -11,24 +11,16 @@
     } else {
 
         // defining vars
-        $firstName = $inData["firstName"];
-        $lastName = $inData["lastName"];
-        
-        $fName = mysqli_real_escape_string($conn, $fName);
-        $lName = mysqli_real_escape_string($conn, $lName);
+        $fName = $inData["firstName"];
+        $lName = $inData["lastName"];
 
-        $query = $conn->prepare("DELETE FROM Contacts WHERE FirstName='$fName', LastName='$lName'");
-        $query->execute();
-		$result = $query->get_result();
-    
-        if($row = $result->fetch_assoc()){
-            echo "Contact deleted";
-        } 
-        else {
-            echo "Error: ".$query. "<br>".$conn->error;
-        }
+        $query = "DELETE FROM Contacts WHERE FirstName='$fName', LastName='$lName'";
+        mysqli_query($conn,$query);
 
-        $query->close();
+        //$query = $conn->prepare("DELETE FROM Contacts WHERE FirstName='$fName', LastName='$lName'");
+        //$query->execute();
+		//$result = $query->get_result();
+
         $conn->close();
     }
 

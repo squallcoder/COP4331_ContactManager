@@ -9,24 +9,15 @@
     {
 	    returnWithError($conn->connect_error);
     } else {
-        $id = mysqli_real_escape_string($conn, $id);
-        $fName = mysqli_real_escape_string($conn, $firstName);
-        $lName = mysqli_real_escape_string($conn, $lastName);
-        $phone = mysqli_real_escape_string($conn, $phoneNumber);
-        $email = mysqli_real_escape_string($conn, $email);
+        $id = $inData["Id"];
+        $fName = $inData["firstName"];
+        $lName = $inData["lastName"];
+        $phone = $inData["phone"];
+        $email = $inData["email"];
 
-        $query = $conn->prepare("UPDATE Contacts SET FirstName='$fName', LastName='$lName', Phone='$phone', Email='$email' WHERE ID='$id'");
-        $query->execute();
-		$result = $query->get_result();
-    
-        if($row = $result->fetch_assoc()){
-            echo "Contact deleted";
-        } 
-        else {
-            echo "Error: ".$query. "<br>".$conn->error;
-        }
+        $query = "UPDATE Contacts SET FirstName='$fName', LastName='$lName', Phone='$phone', Email='$email' WHERE ID='$id'";
+		mysqli_query($conn,$query);
 
-        $query->close();
         $conn->close();
     }
 
