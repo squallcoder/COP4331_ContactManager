@@ -1,6 +1,6 @@
 <?php
 	$inData = getRequestInfo();
-	$UserID = $inData["userID"];
+	$UserID = $inData["userId"];
 	$Phone = $inData["phone"];
 	$Email = $inData["email"];
 	$FirstName = $inData["firstName"];
@@ -13,25 +13,25 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT UserID FROM Contacts WHERE FirstName=? AND LastName =?");
-		$stmt->bind_param("ss", $inData["firstName"], $inData["lastName"]);
-		$stmt->execute();
-		$result = $stmt->get_result();
+//		$stmt = $conn->prepare("SELECT UserID FROM Contacts WHERE FirstName=? AND LastName =?");
+//		$stmt->bind_param("ss", $inData["firstName"], $inData["lastName"]);
+//		$stmt->execute();
+//		$result = $stmt->get_result();
 
-		if( $row = $result->fetch_assoc()  )
-		{
+//		if( $row = $result->fetch_assoc()  )
+//		{
 
-			returnWithError("Contact Found");
+//			returnWithError("Contact Found");
 	//		returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
-		}
-		else
-	{
+//		}
+//		else
+//	{
 		//(FirstName, LastName, Phone, Email, UserID) VALUES ('$FirstName', '$LastName', '$Phone', '$Email', '$UserID')
-		$sql = "INSERT INTO Contacts (FirstName, LastName, Phone, Email, userID) VALUES ('$FirstName', '$LastName', '$Phone', '$Email', '$UserID');";
+		$sql = "INSERT INTO Contacts (FirstName, LastName, Phone, Email, UserID) VALUES ('$FirstName', '$LastName', '$Phone', '$Email', '$UserID');";
 		mysqli_query($conn,$sql);
-		}
+//		}
 
-		$stmt->close();
+//		$stmt->close();
 		$conn->close();
 	}
 	
