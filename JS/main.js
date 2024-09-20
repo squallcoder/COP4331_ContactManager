@@ -1,7 +1,8 @@
 const urlBase = 'http://www.averagesite.xyz/LAMPAPI';
 const extension = 'php';
 
-let userId = 0;
+var userId = 0;
+var holdUserID;
 let firstName = "";
 let lastName = "";
 function doLogin() {
@@ -38,6 +39,7 @@ function doLogin() {
 			{
 				let jsonObject = JSON.parse( xhr.responseText );
 				userId = jsonObject.id;
+
 		
 				if( userId < 1 )
 				{		
@@ -47,10 +49,10 @@ function doLogin() {
 		
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;
-
+                
 				saveCookie();
                 alert(userId);
-                
+
 				window.location.href = "contacts.html";
 			}
 		};
@@ -63,12 +65,15 @@ function doLogin() {
 
 }
 
+
 function saveCookie()
 {
 	let minutes = 20;
 	let date = new Date();
 	date.setTime(date.getTime()+(minutes*60*1000));	
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+	document.cookie = "firstName=" + firstName + ";expires=" + date.toGMTString();
+    document.cookie = "LastName=" + lastName + ";expires=" + date.toGMTString();
+    document.cookie = "UserId=" + userId + ";expires=" + date.toGMTString();
 }
 
 function readCookie()
@@ -265,13 +270,13 @@ function showContactToEdit() {
 
 function saveContactEdits() {
     const contactName = document.getElementById("editContactName").textContent;
-    const newEmail = document.getElementById("editContactEmail").value;
-    const newPhone = document.getElementById("editContactPhone").value;
+    const newemail = document.getElementById("editContactEmail").value;
+    const phone = document.getElementById("editContactPhone").value;
 
     const contact = contacts.find(c => c.name === contactName);
     if (contact) {
-        contact.email = newEmail;
-        contact.phone = newPhone;
+        contact.email = newemail;
+        contact.phone = phone;
         closeEditContactModal();
     }
 }
@@ -363,20 +368,78 @@ function closeSearchModal() {
 }
 
 function addContact() {
+    
+    const cDecoded = decodeURI(document.cookie);
+    const cArray = cDecoded.split("; ");
+    let userId;
+
+    cArray.forEach(element => {
+    if(element.indexOf("UserId") == 0){
+        userId = element.substring(6+1);
+        alert(userId);
+        }
+    }
+    )
+
+    
+
     const firstName = document.getElementById('newContactFirstName').value;
 	const lastName = document.getElementById('newContactLastName').value;
-    const newEmail = document.getElementById('newContactEmail').value;
-    const newPhone = document.getElementById('newContactPhone').value;
+    const email = document.getElementById('newContactEmail').value;
+    const phone = document.getElementById('newContactPhone').value;
 	const fullName = firstName.concat(" ", lastName);
+
 
     const newContact = {
         name: fullName,
-        email: newEmail,
-        phone: newPhone
+        email: email,
+        phone: phone
     };
+    
 
-    if (firstName && lastName && newEmail && newPhone) {
-        // contacts.push({ name, email, phone });
+    if (firstName && lastName && email && phone) {
+        
+        let tmp = {userId:userId,firstName:firstName,lastName:lastName, email:email ,phone:phone};
+        
+            let jsonPayload = JSON.stringify( tmp );
+            
+            let url = urlBase + '/AddContact.' + extension;
+        
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+            try
+            {
+            xhr.onreadystatechange = function() 
+                {
+                    if (this.readyState == 4 && this.status == 200) 
+                    {
+                        let jsonObject = JSON.parse( xhr.responseText );
+                        userId = jsonObject.id;
+        
+                
+                        if( userId < 1 )
+                        {		
+                            document.getElementById("addResult").innerHTML = "Unable to Add Contact";
+                            return;
+                        }
+                
+                        firstName = jsonObject.firstName;
+                        lastName = jsonObject.lastName;
+                        
+                        saveCookie();
+                        alert(userId);
+        
+                        // window.location.href = "contacts.html";
+                    }
+                };
+                xhr.send(jsonPayload);
+            }
+            catch(err)
+            {
+                document.getElementById("addResult").innerHTML = err.message;
+            }
+
         contacts.splice(0,0,newContact);
         populateContacts();
         closeAddContactModal();
