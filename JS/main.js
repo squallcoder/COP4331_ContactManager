@@ -383,8 +383,8 @@ function addContact() {
 
     
 
-    const firstName = document.getElementById('newContactFirstName').value;
-	const lastName = document.getElementById('newContactLastName').value;
+     firstName = document.getElementById('newContactFirstName').value;
+	 lastName = document.getElementById('newContactLastName').value;
     const email = document.getElementById('newContactEmail').value;
     const phone = document.getElementById('newContactPhone').value;
 	const fullName = firstName.concat(" ", lastName);
