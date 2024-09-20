@@ -31,6 +31,7 @@ function doLogin() {
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	alert(xhr.responseText);
 	try
 	{
 	xhr.onreadystatechange = function() 
