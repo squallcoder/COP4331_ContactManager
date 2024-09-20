@@ -374,13 +374,12 @@ function addContact() {
     let result;
 
     cArray.forEach(element =>{
-    if(element.indexOf("userId") == 0){
+    if(element.indexOf("UserId") == 0){
         result = element.substring(6+1);
+        alert(result);
     }
     }
     )
-
-    alert(result);
 
 
     const firstName = document.getElementById('newContactFirstName').value;
