@@ -39,7 +39,7 @@ function doLogin() {
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				let jsonObject = JSON.parse( xhr.responseText );
-				userId = jsonObject.id;
+//				userId = jsonObject.id;
 
 		
 				if( userId < 1 )
@@ -48,11 +48,11 @@ function doLogin() {
 					return;
 				}
 		
-				firstName = jsonObject.firstName;
-				lastName = jsonObject.lastName;
+//				firstName = jsonObject.firstName;
+//				lastName = jsonObject.lastName;
                 
-				saveCookie();
-                alert(userId);
+    				saveCookie();
+		                 alert(userId);
 
 				window.location.href = "contacts.html";
 			}
@@ -404,7 +404,6 @@ function addContact() {
 	    let tmp = {userId:result,firstName:firstName,lastName:lastName,email:email,phone:phone};
         
             let jsonPayload = JSON.stringify( tmp );
-	    alert(jsonPayload);            
             let url = urlBase + '/AddContact.' + extension;
         
             let xhr = new XMLHttpRequest();
@@ -417,8 +416,9 @@ function addContact() {
                     if (this.readyState == 4 && this.status == 200) 
                     {
 			//alert(xhr.responseText);
-			console.log(xhr.responseText);
-
+			console.log(jsonPayload);
+		    
+			alert(jsonPayload);            
                         let jsonObject = JSON.parse( xhr.responseText );
                         userId = jsonObject.id;
         
