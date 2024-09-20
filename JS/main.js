@@ -226,7 +226,7 @@ function closeModal() {
     document.getElementById('contactModal').style.display = 'none';
 }
 
-// window.onload = populateContacts; //This populates the default array of contents to the contact
+window.onload = populateContacts; //This populates the default array of contents to the contact
 
 function openSelectContactModal() {
     document.getElementById("selectContactModal").style.display = "block";
