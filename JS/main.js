@@ -369,6 +369,8 @@ function addContact() {
     const newPhone = document.getElementById('newContactPhone').value;
 	const fullName = firstName.concat(" ", lastName);
 
+    alert(userId)
+
     const newContact = {
         name: fullName,
         email: newEmail,
