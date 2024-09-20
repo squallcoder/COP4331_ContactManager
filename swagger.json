@@ -237,7 +237,7 @@
       "required" : [ "userId", "firstName", "lastName", "email", "phone" ],
       "properties" : {
         "userId" : {
-          "type" : "number",
+          "type" : "string",
           "example" : 1
         },
         "firstName" : {
