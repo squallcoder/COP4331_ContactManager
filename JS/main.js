@@ -369,7 +369,7 @@ function closeSearchModal() {
 
 function addContact() {
     
-    const cDecoded = decodeURI(document.cookie());
+    const cDecoded = decodeURI(document.cookie);
     const cArray = cDecoded.split("; ");
     let result;
 
