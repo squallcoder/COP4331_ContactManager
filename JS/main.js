@@ -361,12 +361,8 @@ function addContact() {
         phone: newPhone
     };
 
-    if (firstName && lastName && newEmail && newPhone) {
-        // contacts.push({ name, email, phone });
-        contacts.splice(0, 0, newContact);
-
-        let xhr = new XMLHttpRequest();
-        xhr.open("GET", url, true);
+    let xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
         try {
             xhr.onreadystatechange = function () {
@@ -393,6 +389,10 @@ function addContact() {
         catch (err) {
             document.getElementById("loginResult").innerHTML = err.message;
         }
+
+    if (firstName && lastName && newEmail && newPhone) {
+        // contacts.push({ name, email, phone });
+        contacts.splice(0, 0, newContact);
         // populateContacts();
         closeAddContactModal();
     }
