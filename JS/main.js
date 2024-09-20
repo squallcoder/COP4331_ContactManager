@@ -52,7 +52,7 @@ function doLogin() {
                 
 				saveCookie();
                 alert(userId);
-                var holdUserID = userId;
+                saveUserID(userId);
 
 				window.location.href = "contacts.html";
 			}
@@ -64,6 +64,10 @@ function doLogin() {
 		document.getElementById("loginResult").innerHTML = err.message;
 	}
 
+}
+
+function saveUserID(holdUserID){
+    userId = holdUserID;
 }
 
 function saveCookie()
@@ -381,7 +385,8 @@ function addContact() {
         phone: newPhone
     };
 
-    alert(holdUserID);
+    alert(userId);
+
     if (firstName && lastName && newEmail && newPhone) {
         // contacts.push({ name, email, phone });
         contacts.splice(0,0,newContact);
