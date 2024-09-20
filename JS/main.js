@@ -52,7 +52,6 @@ function doLogin() {
                 
 				saveCookie();
                 alert(userId);
-                saveUserID(userId);
 
 				window.location.href = "contacts.html";
 			}
@@ -66,9 +65,6 @@ function doLogin() {
 
 }
 
-function saveUserID(holdUserID){
-    userId = holdUserID;
-}
 
 function saveCookie()
 {
@@ -373,6 +369,19 @@ function closeSearchModal() {
 
 function addContact() {
     
+    const cDecoded = decodeURI(document.cookie());
+    const cArray = cDecoded.split("; ");
+    let result;
+
+    cArray.forEach(element =>{
+    if(element.indexOf("userId") == 0){
+        result = element.substring(6+1);
+    }
+    }
+    )
+
+    alert(result);
+
 
     const firstName = document.getElementById('newContactFirstName').value;
 	const lastName = document.getElementById('newContactLastName').value;
