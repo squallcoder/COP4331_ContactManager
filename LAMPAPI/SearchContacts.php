@@ -1,71 +1,48 @@
 <?php
 
-//requesting info
+// Requesting info
 $inData = getRequestInfo();
+$UserID = $inData["UserID"];
+$FirstName = $inData["FirstName"];
+$LastName = $inData["LastName"];
 
-$output = '';
-// connect to database
+// Connect to database
 $conn = new mysqli("localhost", "Admin", "Team7", "SmallProject");
-mysqli_select_db ($con, "Contacts") or die ("could not find db"); //idk if the db name is right but i guessed that it would be contacts 	
-if($conn->connect_error )
-{
-	returnWithError($conn->connect_error);
-}
-else
-{
-    // defining vars
-    $firstName = $inData["firstName"];
-    $lastName = $inData["lastName"];
-   
-    $searchq = $_POST['search']; //creating a serach query var
-    $searchq = preg_replace("#[^0-9a-z]#i","",$searchq); //only searching for letters and numbers and anything else gets ignored
-
-    //sql query to search
-    $query = mysqli_query($con, "SELECT ALL FROM Contacts WHERE FirstName LIKE '%$searchq%' OR LastName LIKE '%$searchq%'") or die ("could not search!"); //using either first or last name
-
-    //count query
-    $count = mysqli_num_rows($query); //returns rows that are like the search
-    if($count == 0){
-        $output = 'There was no search results!';
-    } else{
-        //this is what searches the table
-        while($row = mysqli_fetch_array($query)){
-            $fname = $row['firstname'];
-            $lname = $row['lastname'];
-            $id = $row['id'];
-
-            //output info we collect
-            $output .= '<div> '.$fname.' '.$lname.' <div>';
-        }
-    }
-
-    //print the info on the page
-    print("$output");
-
+if ($conn->connect_error) {
+    returnWithError($conn->connect_error);
+} else {
+    
+    // SQL query to search
+    $query = "SELECT * FROM Contacts WHERE UserID = '$UserID' AND (FirstName LIKE '$FirstName' OR LastName LIKE '$LastName')"; // Using either first or last name
+    mysqli_query($conn, $query);
+    
     $conn->close();
+
+    // Output info we collect
+    returnWithInfo($FirstName, $LastName);
 }
 
 function getRequestInfo()
-	{
-		return json_decode(file_get_contents('php://input'), true);
-	}
+{
+    return json_decode(file_get_contents('php://input'), true);
+}
 
-	function sendResultInfoAsJson( $obj )
-	{
-		header('Content-type: application/json');
-		echo $obj;
-	}
-	
-	function returnWithError( $err )
-	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+function sendResultInfoAsJson($obj)
+{
+    header('Content-type: application/json');
+    echo $obj;
+}
+
+function returnWithError($err)
+{
+    $retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+    sendResultInfoAsJson($retValue);
+}
+
+function returnWithInfo($firstName, $lastName)
+{
+    $retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 		sendResultInfoAsJson( $retValue );
-	}
-	
-	function returnWithInfo( $firstName, $lastName, $id )
-	{
-		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
-		sendResultInfoAsJson( $retValue );
-	}
+}
 
 ?>
