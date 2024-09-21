@@ -5,7 +5,7 @@
 
         $fName = $inData["firstName"];
 	$lName = $inData["lastName"];
-	$userID= $inData["userID"];
+	$userID= $inData["userId"];
     $conn = new mysqli("localhost", "Admin", "Team7", "SmallProject");
 
     if($conn->connect_error )
