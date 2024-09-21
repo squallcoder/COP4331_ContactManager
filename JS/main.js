@@ -317,9 +317,25 @@ function closeDeleteContactModal() {
     document.getElementById("deleteContactModal").style.display = "none";
 }
 
+function logOut(){
+    document.getElementById()
+}
+
 function deleteContact() {
     const fName = document.getElementById('deleteContactFirstName').value.trim();
     const lName = document.getElementById('deleteContactLastName').value.trim();
+
+    const cDecoded = decodeURI(document.cookie);
+    const cArray = cDecoded.split("; ");
+    let result; //result will store the userID
+
+    cArray.forEach(element => {
+    if(element.indexOf("UserId") == 0){
+        result = element.substring(6+1);
+        }
+    }
+    )
+
 
     if (!fName || !lName) {
         document.getElementById('deleteResult').innerHTML = "Please fill out all fields.";
@@ -330,7 +346,7 @@ function deleteContact() {
     const contactIndex = contacts.findIndex(c => c.name.toLowerCase() === contactName);
 
 
-    let tmp = {firstName:fName, lastName:lName};
+    let tmp = {userId:result, firstName:fName, lastName:lName};
     let jsonPayload = JSON.stringify(tmp);
     let url = urlBase + '/DeleteContacts.' + extension;
 
@@ -360,12 +376,11 @@ function deleteContact() {
                     lastName = jsonObject.lastName;
                     
                     saveCookie();
-                    // alert(userId);
-                    contacts.splice(contactIndex, 1);
+                    // contacts.splice(contactIndex, 1);
                 }
             };
             xhr.send(jsonPayload);
-            alert("program");
+            alert("Done!");
         }
         catch(err)
         {
@@ -374,7 +389,7 @@ function deleteContact() {
 
         populateContacts();
         document.getElementById('deleteResult').innerHTML = "Contact deleted successfully.";
-        // closeDeleteContactModal(); Icommented this out so we can see the message that the Contact was deleted successfully message.
+        // closeDeleteContactModal(); I commented this out so we can see the message that the Contact was deleted successfully message.
 
     } 
     else {
@@ -396,6 +411,10 @@ function deleteContactFromModal() {
 function search() {
     const searchName = document.getElementById('searchBar').value.trim().toLowerCase();
     const contact = contacts.find(c => c.name.toLowerCase() === searchName);
+
+    let nameArray = searchName.split(",");
+    console.log(nameArray);
+
 
     if (contact) {
         const contactIndex = contacts.findIndex(c => c.name.toLowerCase() === searchName.toLowerCase());
@@ -469,7 +488,6 @@ function addContact() {
 		    
 			            alert(jsonPayload);            
                         let jsonObject = JSON.parse( xhr.responseText );
-                        userId = jsonObject.id;
         
                 
                         if( result < 1 )
