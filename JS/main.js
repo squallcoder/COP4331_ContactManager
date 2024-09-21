@@ -54,7 +54,7 @@ function doLogin() {
 				lastName = jsonObject.lastName;
                 
     				saveCookie();
-		                 alert(userId);
+		            alert(userId);
 
 				window.location.href = "contacts.html";
 			}
@@ -331,9 +331,10 @@ function deleteContact() {
 
     if (contactIndex !== -1) {
         contacts.splice(contactIndex, 1);
-        closeDeleteContactModal();
         populateContacts();
         document.getElementById('deleteResult').innerHTML = "Contact deleted successfully.";
+        // closeDeleteContactModal(); Icommented this out so we can see the message that the Contact was deleted successfully message.
+
     } 
     else {
         document.getElementById('deleteResult').innerHTML = "Contact not found.";
@@ -370,11 +371,16 @@ function closeSearchModal() {
     document.getElementById('searchModal').style.display = 'none';
 }
 
+function displayContacts(Id){
+
+
+}
+
 function addContact() {
     
     const cDecoded = decodeURI(document.cookie);
     const cArray = cDecoded.split("; ");
-    let result;
+    let result; //result will store the userID
 
     cArray.forEach(element => {
     if(element.indexOf("UserId") == 0){
@@ -417,10 +423,10 @@ function addContact() {
                 {
                     if (this.readyState == 4 && this.status == 200) 
                     {
-			//alert(xhr.responseText);
-			console.log(jsonPayload);
+			            //alert(xhr.responseText);
+			            console.log(jsonPayload);
 		    
-			alert(jsonPayload);            
+			            alert(jsonPayload);            
                         let jsonObject = JSON.parse( xhr.responseText );
                         userId = jsonObject.id;
         
