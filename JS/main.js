@@ -54,7 +54,7 @@ function doLogin() {
 				lastName = jsonObject.lastName;
                 
     				saveCookie();
-		                 alert(userId);
+		            alert(userId);
 
 				window.location.href = "contacts.html";
 			}
@@ -317,27 +317,78 @@ function closeDeleteContactModal() {
     document.getElementById("deleteContactModal").style.display = "none";
 }
 
-function deleteContact() {
-    const firstName = document.getElementById('deleteContactFirstName').value.trim();
-    const lastName = document.getElementById('deleteContactLastName').value.trim();
+function logOut(){
+    document.getElementById()
+}
 
-    if (!firstName || !lastName) {
+function deleteContact() {
+    const fName = document.getElementById('deleteContactFirstName').value.trim();
+    const lName = document.getElementById('deleteContactLastName').value.trim();
+
+    const cDecoded = decodeURI(document.cookie);
+    const cArray = cDecoded.split("; ");
+    let result; //result will store the userID
+
+    cArray.forEach(element => {
+    if(element.indexOf("UserId") == 0){
+        result = element.substring(6+1);
+        }
+    }
+    )
+
+
+    if (!fName || !lName) {
         document.getElementById('deleteResult').innerHTML = "Please fill out all fields.";
         return;
     }
 
-    const contactName = firstName.concat(" ", lastName).toLowerCase();
+    const contactName = fName.concat(" ", lName).toLowerCase();
     const contactIndex = contacts.findIndex(c => c.name.toLowerCase() === contactName);
 
-    if (contactIndex !== -1) {
-        contacts.splice(contactIndex, 1);
-        closeDeleteContactModal();
+
+    let tmp = {userId:result, firstName:fName, lastName:lName};
+    let jsonPayload = JSON.stringify(tmp);
+    let url = urlBase + '/DeleteContacts.' + extension;
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+        try
+        {
+        xhr.onreadystatechange = function() 
+            {
+                if (this.readyState == 4 && this.status == 200) 
+                {
+                    //alert(xhr.responseText);
+                    console.log(jsonPayload);
+                    let jsonObject = JSON.parse(xhr.responseText);
+                    // userId = jsonObject.id;
+                    // if( result < 1 )
+                    // {		
+                    //     document.getElementById("deleteResult").innerHTML = "Unable to delete Contact";
+                    //     return;
+                    // }
+            
+                    firstName = jsonObject.firstName;
+                    lastName = jsonObject.lastName;
+                    
+                    //saveCookie();
+                    // contacts.splice(contactIndex, 1);
+                }
+            };
+            xhr.send(jsonPayload);
+            alert("Done!");
+        }
+        catch(err)
+        {
+            document.getElementById("deleteResult").innerHTML = err.message;
+        }
+
         populateContacts();
         document.getElementById('deleteResult').innerHTML = "Contact deleted successfully.";
-    } 
-    else {
-        document.getElementById('deleteResult').innerHTML = "Contact not found.";
-    }
+        // closeDeleteContactModal(); I commented this out so we can see the message that the Contact was deleted successfully message.
 }
 
 function deleteContactFromModal() {
@@ -355,6 +406,10 @@ function search() {
     const searchName = document.getElementById('searchBar').value.trim().toLowerCase();
     const contact = contacts.find(c => c.name.toLowerCase() === searchName);
 
+    let nameArray = searchName.split(",");
+    console.log(nameArray);
+
+
     if (contact) {
         const contactIndex = contacts.findIndex(c => c.name.toLowerCase() === searchName.toLowerCase());
         openModal(contactIndex);
@@ -370,11 +425,16 @@ function closeSearchModal() {
     document.getElementById('searchModal').style.display = 'none';
 }
 
+function displayContacts(Id){
+
+
+}
+
 function addContact() {
     
     const cDecoded = decodeURI(document.cookie);
     const cArray = cDecoded.split("; ");
-    let result;
+    let result; //result will store the userID
 
     cArray.forEach(element => {
     if(element.indexOf("UserId") == 0){
@@ -387,8 +447,8 @@ function addContact() {
 
     
 
-     firstName = document.getElementById('newContactFirstName').value;
-	 lastName = document.getElementById('newContactLastName').value;
+    firstName = document.getElementById('newContactFirstName').value;
+	lastName = document.getElementById('newContactLastName').value;
     const email = document.getElementById('newContactEmail').value;
     const phone = document.getElementById('newContactPhone').value;
 	const fullName = firstName.concat(" ", lastName);
@@ -417,12 +477,11 @@ function addContact() {
                 {
                     if (this.readyState == 4 && this.status == 200) 
                     {
-			//alert(xhr.responseText);
-			console.log(jsonPayload);
+			            //alert(xhr.responseText);
+			            console.log(jsonPayload);
 		    
-			alert(jsonPayload);            
+			            alert(jsonPayload);            
                         let jsonObject = JSON.parse( xhr.responseText );
-                        userId = jsonObject.id;
         
                 
                         if( result < 1 )

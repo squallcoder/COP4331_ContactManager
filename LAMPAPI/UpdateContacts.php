@@ -19,11 +19,19 @@
 		mysqli_query($conn,$query);
 
         $conn->close();
+
+        returnWithInfo($id, $fName, $lName,  $phone, $email);
     }
 
     function getRequestInfo()
 	{
 		return json_decode(file_get_contents('php://input'), true);
+	}
+
+    function sendResultInfoAsJson( $obj )
+	{
+		header('Content-type: application/json');
+		echo $obj;
 	}
 
     function returnWithError( $err )
@@ -32,5 +40,10 @@
 		sendResultInfoAsJson( $retValue );
 	}
 
+    function returnWithInfo( $id, $firstName, $lastName, $phone, $email)
+	{
+		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","phone":"' . $phone . '", "email":"' . $email . '""error":""}';
+		sendResultInfoAsJson( $retValue );
+	}
 
 ?>

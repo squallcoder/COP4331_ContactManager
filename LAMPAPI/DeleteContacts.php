@@ -3,6 +3,9 @@
     //requesting info
     $inData = getRequestInfo();
 
+        $fName = $inData["firstName"];
+	$lName = $inData["lastName"];
+	$userID= $inData["userId"];
     $conn = new mysqli("localhost", "Admin", "Team7", "SmallProject");
 
     if($conn->connect_error )
@@ -11,17 +14,14 @@
     } else {
 
         // defining vars
-        $fName = $inData["firstName"];
-        $lName = $inData["lastName"];
 
-        $query = "DELETE FROM Contacts WHERE FirstName='$fName', LastName='$lName'";
+	$query = "DELETE FROM Contacts WHERE UserID='$userID' AND FirstName='$fName' AND LastName='$lName'";
         mysqli_query($conn,$query);
 
-        //$query = $conn->prepare("DELETE FROM Contacts WHERE FirstName='$fName', LastName='$lName'");
-        //$query->execute();
-		//$result = $query->get_result();
-
         $conn->close();
+
+        returnWithInfo( $fName, $lName);
+
     }
 
     function getRequestInfo()
@@ -32,6 +32,18 @@
     function returnWithError( $err )
 	{
 		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		sendResultInfoAsJson( $retValue );
+	}
+
+    function sendResultInfoAsJson( $obj )
+	{
+		header('Content-type: application/json');
+		echo $obj;
+	}
+
+    function returnWithInfo( $firstName, $lastName)
+	{
+		$retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 

@@ -137,6 +137,10 @@ body {
 	align-items: center;
 }
 
+.logout button{
+	
+}
+
 
 .buttons-container button:hover {
     background-color: #7584a5;
