@@ -118,7 +118,7 @@
         "parameters" : [ {
           "in" : "body",
           "name" : "searchItem",
-          "description" : "Contact Search",
+          "description" : "contactItem",
           "schema" : {
             "$ref" : "#/definitions/Search"
           }
