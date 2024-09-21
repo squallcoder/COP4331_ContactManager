@@ -6,8 +6,6 @@ $UserID = $inData["userId"];
 $FirstName = $inData["firstName"];
 $LastName = $inData["lastName"];
 
-$output = '';
-
 // connect to database
 $conn = new mysqli("localhost", "Admin", "Team7", "SmallProject");
 if($conn->connect_error )
@@ -24,9 +22,9 @@ else
 
     //count query
     $count = mysqli_num_rows($query); //returns rows that are like the search
-    if($count == 0){
-        $output = 'There was no search results!';
-    } else{
+    //if($count == 0){
+       // $output = 'There was no search results!';
+   // } else{
         //this is what searches the table
         while($row = mysqli_fetch_array($query)){
             $fname = $row['firstname'];
@@ -34,14 +32,16 @@ else
             $id = $row['id'];
 
             //output info we collect
-            $output .= '<div> '.$fname.' '.$lname.' <div>';
+           // $output .= '<div> '.$fname.' '.$lname.' <div>';
         }
-    }
+   // }
 
     //print the info on the page
-    print("$output");
+    //print("$output");
 
     $conn->close();
+
+    returnWithInfo($fName, $lName);
 }
 
 function getRequestInfo()
@@ -49,22 +49,22 @@ function getRequestInfo()
 		return json_decode(file_get_contents('php://input'), true);
 	}
 
-	function sendResultInfoAsJson( $obj )
-	{
-		header('Content-type: application/json');
-		echo $obj;
-	}
-	
-	function returnWithError( $err )
-	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
-	}
-	
-	function returnWithInfo( $firstName, $lastName, $id )
-	{
-		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
-		sendResultInfoAsJson( $retValue );
-	}
+function sendResultInfoAsJson( $obj )
+{
+	header('Content-type: application/json');
+	echo $obj;
+}
+
+function returnWithError( $err )
+{
+	$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+	sendResultInfoAsJson( $retValue );
+}
+
+function returnWithInfo( $id, $firstName, $lastName, $phone, $email)
+{
+	$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","phone":"' . $phone . '", "email":"' . $email . '""error":""}';
+	sendResultInfoAsJson( $retValue );
+}
 
 ?>
