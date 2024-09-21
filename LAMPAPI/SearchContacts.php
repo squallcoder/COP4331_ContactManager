@@ -2,26 +2,25 @@
 
 //requesting info
 $inData = getRequestInfo();
+$UserID = $inData["userId"];
+$FirstName = $inData["firstName"];
+$LastName = $inData["lastName"];
 
 $output = '';
+
 // connect to database
 $conn = new mysqli("localhost", "Admin", "Team7", "SmallProject");
-mysqli_select_db ($con, "Contacts") or die ("could not find db"); //idk if the db name is right but i guessed that it would be contacts 	
 if($conn->connect_error )
 {
 	returnWithError($conn->connect_error);
 }
 else
 {
-    // defining vars
-    $firstName = $inData["firstName"];
-    $lastName = $inData["lastName"];
-   
     $searchq = $_POST['search']; //creating a serach query var
     $searchq = preg_replace("#[^0-9a-z]#i","",$searchq); //only searching for letters and numbers and anything else gets ignored
 
     //sql query to search
-    $query = mysqli_query($con, "SELECT ALL FROM Contacts WHERE FirstName LIKE '%$searchq%' OR LastName LIKE '%$searchq%'") or die ("could not search!"); //using either first or last name
+    $query = mysqli_query($con, "SELECT ALL FROM Contacts WHERE UserID = '$UserID' AND FirstName LIKE '%$searchq%' OR LastName LIKE '%$searchq%'") or die ("could not search!"); //using either first or last name
 
     //count query
     $count = mysqli_num_rows($query); //returns rows that are like the search
