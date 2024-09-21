@@ -18,6 +18,7 @@ body {
 }
 
 #ContactTitle{
+	position: relative;
 	font-size: 2.5em;
 	color: #24282f;
 	text-align: center;
@@ -100,7 +101,7 @@ body {
 
 #searchBar {
 	margin-right: 10px;
-	width: 800px;
+	width: 1200px;
 	height: 40px;
 	padding: 8px;
 	border: 1px solid #ccc;
@@ -138,7 +139,21 @@ body {
 }
 
 .logout button{
-	
+	color: white;
+	background-color: #24282f;
+	position: fixed;
+	left: 90%;
+	bottom: 90%;
+	transform: translateX(-50%); /* Center horizontally */
+	width: 100px;
+	height: 50px;
+	cursor: pointer;
+	border-radius: 10px;
+}
+
+.logout button:hover{
+	background-color: #7584a5;
+    color: white;
 }
 
 

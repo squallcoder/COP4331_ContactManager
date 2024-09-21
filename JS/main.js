@@ -301,6 +301,16 @@ function openEditContactModalFromView() {
     }
 }
 
+function openLogOutModal(){
+    document.getElementById("logOutModal").style.display = "block";
+    document.getElementById('loginRedirect').style.display = 'inline';
+
+}
+
+function closeLogOutModal() {
+    document.getElementById("logOutModal").style.display = "none";
+}
+
 function openAddContactModal() {
     document.getElementById("addContactModal").style.display = "block";
 }
@@ -320,6 +330,7 @@ function closeDeleteContactModal() {
 function logOut(){
     document.getElementById()
 }
+
 
 function deleteContact() {
     const fName = document.getElementById('deleteContactFirstName').value.trim();
@@ -353,8 +364,8 @@ function deleteContact() {
     let xhr = new XMLHttpRequest();
 
     xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");//setRequestHeader is used to inform the server about
+                                                                            //the content that is being sent.
         try
         {
         xhr.onreadystatechange = function() 
@@ -516,3 +527,5 @@ function addContact() {
 
 
 }
+
+

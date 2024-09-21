@@ -9,6 +9,9 @@
 	<body>
 		<h1 id="ContactTitle">Contact Manager</h1>
 		<div class="main-content">
+			<div class="logout" >
+				<button type="button" id="logoutButton" onclick="openLogOutModal()">Log out</button>
+			</div>
 			<div class="buttons-container">
 				<button type="button" id="addButton" onclick="openAddContactModal()">Add Contact</button>
 				<button type="button" id="deleteButton" onclick="openDeleteContactModal()">Delete Contact</button>
@@ -70,6 +73,21 @@
 				<span id="addResult"></span>
 			</div>
 		</div>
+
+		<div id="logOutModal" class="modal">
+			<div class="modal-content">
+				<span class="close" onclick="closeLogOutModal()">&times</span>
+				<h2>Are you sure you want to log out?</h2>
+				<a href="login.html">
+				<button class="buttons">Yes</button>
+				</a>
+				<a href="contacts.html">
+				<button class="buttons">No</button>
+				</a>
+				<span id="logOutRusult"></span>
+			</div>
+		</div>
+
 		
 		<div id="deleteContactModal" class="modal">
 			<div class="modal-content">
@@ -89,8 +107,5 @@
 			</div>
 		  </div>
 
-		<div class="logout" >
-			<button type="button" id="logoutButton" onclick="window.location.href='login.html'">Log out</button>
-		</div>
 	</body>
 </html>
