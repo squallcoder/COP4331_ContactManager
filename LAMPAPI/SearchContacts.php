@@ -26,11 +26,9 @@ if ($conn->connect_error) {
             $fname = $row['FirstName'];
             $lname = $row['LastName'];
             $id = $row['ID'];
-            $phone = $row['Phone'];
-            $email = $row['Email'];
 
             // Output info we collect
-            returnWithInfo($id, $fname, $lname, $phone, $email);
+            returnWithInfo($fname, $lname);
         }
     }
 
@@ -54,10 +52,10 @@ function returnWithError($err)
     sendResultInfoAsJson($retValue);
 }
 
-function returnWithInfo($id, $firstName, $lastName, $phone, $email)
+function returnWithInfo($firstName, $lastName)
 {
-    $retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","phone":"' . $phone . '","email":"' . $email . '","error":""}';
-    sendResultInfoAsJson($retValue);
+    $retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+		sendResultInfoAsJson( $retValue );
 }
 
 ?>
