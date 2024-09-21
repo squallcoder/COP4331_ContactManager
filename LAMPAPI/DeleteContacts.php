@@ -17,11 +17,10 @@
         $query = "DELETE FROM Contacts WHERE FirstName='$fName', LastName='$lName'";
         mysqli_query($conn,$query);
 
-        //$query = $conn->prepare("DELETE FROM Contacts WHERE FirstName='$fName', LastName='$lName'");
-        //$query->execute();
-		//$result = $query->get_result();
-
         $conn->close();
+
+        returnWithInfo( $fName, $lName);
+
     }
 
     function getRequestInfo()
@@ -32,6 +31,18 @@
     function returnWithError( $err )
 	{
 		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		sendResultInfoAsJson( $retValue );
+	}
+
+    function sendResultInfoAsJson( $obj )
+	{
+		header('Content-type: application/json');
+		echo $obj;
+	}
+
+    function returnWithInfo( $firstName, $lastName)
+	{
+		$retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 
