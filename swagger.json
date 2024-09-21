@@ -260,8 +260,12 @@
     },
     "Search" : {
       "type" : "object",
-      "required" : [ "firstName", "lastName" ],
+      "required" : [ "userId", "firstName", "lastName" ],
       "properties" : {
+        "userId" : {
+          "type" : "number",
+          "example" : 1
+        },
         "firstName" : {
           "type" : "string",
           "example" : "Jon"
