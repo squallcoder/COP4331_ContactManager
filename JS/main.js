@@ -348,8 +348,6 @@ function deleteContact() {
                 {
                     //alert(xhr.responseText);
                     console.log(jsonPayload);
-        
-                    alert(jsonPayload);            
                     let jsonObject = JSON.parse(xhr.responseText);
                     // userId = jsonObject.id;
                     // if( result < 1 )
@@ -367,6 +365,7 @@ function deleteContact() {
                 }
             };
             xhr.send(jsonPayload);
+            alert("program");
         }
         catch(err)
         {
