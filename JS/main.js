@@ -374,7 +374,7 @@ function deleteContact() {
                     firstName = jsonObject.firstName;
                     lastName = jsonObject.lastName;
                     
-                    saveCookie();
+                    //saveCookie();
                     // contacts.splice(contactIndex, 1);
                 }
             };
