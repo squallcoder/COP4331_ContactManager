@@ -11,11 +11,11 @@ $conn = new mysqli("localhost", "Admin", "Team7", "SmallProject");
 if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
-    $searchq = $inData['search']; // Creating a search query var
-    $searchq = preg_replace("#[^0-9a-z]#i", "", $searchq); // Only searching for letters and numbers and anything else gets ignored
+    //$searchq = $inData['search']; // Creating a search query var
+    //$searchq = preg_replace("#[^0-9a-z]#i", "", $searchq); // Only searching for letters and numbers and anything else gets ignored
 
     // SQL query to search
-    $query = mysqli_query($conn, "SELECT FROM Contacts WHERE UserID = '$UserID' AND (FirstName LIKE '%$searchq%' OR LastName LIKE '%$searchq%')"); // Using either first or last name
+    $query = mysqli_query($conn, "SELECT FROM Contacts WHERE UserID = '$UserID' AND (FirstName LIKE '$fname' OR LastName LIKE '$lname')"); // Using either first or last name
 
     // Count query
     //$count = mysqli_num_rows($query); // Returns rows that are like the search
