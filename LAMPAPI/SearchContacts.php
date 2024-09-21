@@ -18,7 +18,7 @@ else
     $searchq = preg_replace("#[^0-9a-z]#i","",$searchq); //only searching for letters and numbers and anything else gets ignored
 
     //sql query to search
-    $query = mysqli_query($con, "SELECT ALL FROM Contacts WHERE UserID = '$UserID' AND FirstName LIKE '%$searchq%' AND LastName LIKE '%$searchq%'"); //using either first or last name
+    $query = mysqli_query($conn, "SELECT ALL FROM Contacts WHERE UserID = '$UserID' AND FirstName LIKE '%$searchq%' OR LastName LIKE '%$searchq%'"); //using either first or last name
 
     //count query
     $count = mysqli_num_rows($query); //returns rows that are like the search
