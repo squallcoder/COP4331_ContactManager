@@ -3,6 +3,9 @@
     //requesting info
     $inData = getRequestInfo();
 
+        $fName = $inData["firstName"];
+	$lName = $inData["lastName"];
+	$userID= $inData["userID"];
     $conn = new mysqli("localhost", "Admin", "Team7", "SmallProject");
 
     if($conn->connect_error )
@@ -11,9 +14,6 @@
     } else {
 
         // defining vars
-        $fName = $inData["firstName"];
-	$lName = $inData["lastName"];
-	$userID= $inData["userID"];
 
 	$query = "DELETE FROM Contacts WHERE UserID='$userID' AND FirstName='$fName' AND LastName='$lName'";
         mysqli_query($conn,$query);
