@@ -118,7 +118,7 @@
         "parameters" : [ {
           "in" : "body",
           "name" : "searchItem",
-          "description" : "Contact Search",
+          "description" : "contactItem",
           "schema" : {
             "$ref" : "#/definitions/Search"
           }
@@ -237,7 +237,7 @@
       "required" : [ "userId", "firstName", "lastName", "email", "phone" ],
       "properties" : {
         "userId" : {
-          "type" : "integer",
+          "type" : "number",
           "example" : 1
         },
         "firstName" : {
