@@ -355,7 +355,6 @@ function deleteContact() {
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    if (contactIndex !== -1) {
         try
         {
         xhr.onreadystatechange = function() 
@@ -390,11 +389,6 @@ function deleteContact() {
         populateContacts();
         document.getElementById('deleteResult').innerHTML = "Contact deleted successfully.";
         // closeDeleteContactModal(); I commented this out so we can see the message that the Contact was deleted successfully message.
-
-    } 
-    else {
-        document.getElementById('deleteResult').innerHTML = "Contact not found.";
-    }
 }
 
 function deleteContactFromModal() {
