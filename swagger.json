@@ -237,7 +237,7 @@
       "required" : [ "userId", "firstName", "lastName", "email", "phone" ],
       "properties" : {
         "userId" : {
-          "type" : "number",
+          "type" : "integer",
           "example" : 1
         },
         "firstName" : {
@@ -274,41 +274,45 @@
     },
     "Delete" : {
       "type" : "object",
-      "required" : [ "userId", "search", "delete" ],
+      "required" : [ "userId", "firstName", "lastName" ],
       "properties" : {
         "userId" : {
-          "type" : "integer",
+          "type" : "number",
           "example" : 1
         },
-        "search" : {
+        "firstName" : {
           "type" : "string",
-          "example" : "bl"
+          "example" : "Jon"
         },
-        "delete" : {
+        "lastName" : {
           "type" : "string",
-          "example" : "emily"
+          "example" : "Doe"
         }
       }
     },
     "Update" : {
       "type" : "object",
-      "required" : [ "userId", "search", "delete", "update" ],
+      "required" : [ "userId", "firstName", "lastName", "phone", "email" ],
       "properties" : {
         "userId" : {
           "type" : "integer",
           "example" : 1
         },
-        "search" : {
+        "firstName" : {
           "type" : "string",
-          "example" : "bl"
+          "example" : "John"
         },
-        "delete" : {
+        "lastName" : {
           "type" : "string",
-          "example" : "emily"
+          "example" : "Doe"
         },
-        "update" : {
+        "email" : {
           "type" : "string",
-          "example" : "email"
+          "example" : "example@gmail.com"
+        },
+        "phone" : {
+          "type" : "string",
+          "example" : "333-333-3333"
         }
       }
     }
