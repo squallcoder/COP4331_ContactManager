@@ -15,7 +15,7 @@ if ($conn->connect_error) {
     //$searchq = preg_replace("#[^0-9a-z]#i", "", $searchq); // Only searching for letters and numbers and anything else gets ignored
 
     // SQL query to search
-    $query = "SELECT * FROM Contacts WHERE UserID = '$UserID' AND (FirstName LIKE '$fname' OR LastName LIKE '$lname')"; // Using either first or last name
+    $query = "SELECT * FROM Contacts WHERE UserID = '$UserID' AND (FirstName LIKE '$FirstName' OR LastName LIKE '$LastName')"; // Using either first or last name
     mysqli_query($conn, $query);
     // Count query
     //$count = mysqli_num_rows($query); // Returns rows that are like the search
@@ -32,7 +32,7 @@ if ($conn->connect_error) {
     $conn->close();
 
     // Output info we collect
-    returnWithInfo($fname, $lname);
+    returnWithInfo($FirstName, $LastName);
 }
 
 function getRequestInfo()
