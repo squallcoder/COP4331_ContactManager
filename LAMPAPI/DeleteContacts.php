@@ -15,7 +15,7 @@
 
         // defining vars
 
-	$query = "DELETE FROM Contacts WHERE UserID:userID AND FirstName:fName AND LastName:lName;";
+	$query = "DELETE FROM Contacts WHERE UserID=$userID AND FirstName=$fName AND LastName=$lName";
         mysqli_query($conn,$query);
 
         $conn->close();
