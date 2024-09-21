@@ -327,10 +327,6 @@ function closeDeleteContactModal() {
     document.getElementById("deleteContactModal").style.display = "none";
 }
 
-function logOut(){
-    document.getElementById()
-}
-
 
 function deleteContact() {
     const fName = document.getElementById('deleteContactFirstName').value.trim();
