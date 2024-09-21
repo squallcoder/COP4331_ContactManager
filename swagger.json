@@ -277,7 +277,7 @@
       "required" : [ "userId", "firstName", "lastName" ],
       "properties" : {
         "userId" : {
-          "type" : "integer",
+          "type" : "number",
           "example" : 1
         },
         "firstName" : {
