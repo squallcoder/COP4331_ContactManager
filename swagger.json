@@ -274,7 +274,7 @@
     },
     "Delete" : {
       "type" : "object",
-      "required" : [ "userId", "search", "delete" ],
+      "required" : [ "userId", "firstName", "lastName" ],
       "properties" : {
         "userId" : {
           "type" : "number",
