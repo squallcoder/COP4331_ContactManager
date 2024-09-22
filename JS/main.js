@@ -273,14 +273,23 @@ function showContactToEdit() {
 
 function saveContactEdits() {
     const contactName = document.getElementById("editContactName").textContent;
+    const newFname    = document.getElementById("editFirstName").value;
+    const newLname    = document.getElementById("editLastName").value;
     const newemail = document.getElementById("editContactEmail").value;
     const phone = document.getElementById("editContactPhone").value;
 
+    let textFname = newFname;
+    let textLname = newLname;
+
+    newName = textFname.concat(" ", newLname);
+
     const contact = contacts.find(c => c.name === contactName);
     if (contact) {
+        contact.name = newName;
         contact.email = newemail;
         contact.phone = phone;
         closeEditContactModal();
+        populateContacts();
     }
 }
 
@@ -290,9 +299,13 @@ function openEditContactModalFromView() {
     const contactPhone = document.getElementById('contactPhone').innerText;
 
     const contact = contacts.find(c => c.name === contactName);
-    
+    let textName = contact.name;
+    const nameArray = textName.split(" ");
+
     if (contact) {
         document.getElementById("editContactName").textContent = contact.name;
+        document.getElementById("editFirstName").value = nameArray[0];
+        document.getElementById("editLastName").value = nameArray[1];
         document.getElementById("editContactEmail").value = contact.email;
         document.getElementById("editContactPhone").value = contact.phone;
         

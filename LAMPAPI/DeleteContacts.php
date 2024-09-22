@@ -3,7 +3,7 @@
     //requesting info
     $inData = getRequestInfo();
 
-        $fName = $inData["firstName"];
+    $fName = $inData["firstName"];
 	$lName = $inData["lastName"];
 	$userID= $inData["userId"];
     $conn = new mysqli("localhost", "Admin", "Team7", "SmallProject");
