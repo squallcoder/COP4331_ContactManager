@@ -246,7 +246,7 @@ function showContactToEdit() {
     const Lname = document.getElementById('updateContactLastName').value;
     contact = firstName.concat(" ", lastName);
 
-    let tmp = {oldFname:Fname, oldLname:Lname};
+    let tmp = {oldFirstName:Fname, oldLastName:Lname};
 
     let jsonPayload = JSON.stringify(tmp);
     let url = urlBase + '/UpdateContacts.' + extension;
@@ -261,9 +261,14 @@ function showContactToEdit() {
             if (this.readyState == 4 && this.status == 200) {
                 
                 console.log(jsonPayload);
+
+                try{
                 let jsonObject = JSON.parse(xhr.responseText);
                 console.log(jsonObject)
-              
+                }
+                catch(error){
+                    console.error("Failed to parse JSON", error);
+                }
                 //saveCookie();
 
             }
