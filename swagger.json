@@ -306,7 +306,7 @@
           "type" : "string",
           "example" : "John"
         },
-        "oldlastName" : {
+        "oldLastName" : {
           "type" : "string",
           "example" : "Doe"
         },
