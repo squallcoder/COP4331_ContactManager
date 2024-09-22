@@ -440,7 +440,6 @@ function updateContact() {
                 //alert(xhr.responseText);
                 console.log(jsonPayload);
                 let jsonObject = JSON.parse(xhr.responseText);
-                document.getElementById("updateResult").innerHTML = "You have successfully updated your contact!";
             }
         };
         xhr.send(jsonPayload);
@@ -448,6 +447,8 @@ function updateContact() {
     catch (err) {
         document.getElementById("updateResult").innerHTML = err.message;
     }
+
+    document.getElementById("updateResult").innerHML = "You have successfully updated your contact!";
 
 }
 
