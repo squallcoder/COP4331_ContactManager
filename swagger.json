@@ -296,17 +296,17 @@
     },
     "Update" : {
       "type" : "object",
-      "required" : [ "userId", "firstName", "lastName", "phone", "email" ],
+      "required" : [ "userId", "oldFirstName", "oldLastName", "phone", "email", "newFirstName", "newLastName" ],
       "properties" : {
         "userId" : {
           "type" : "number",
           "example" : 1
         },
-        "firstName" : {
+        "oldFirstName" : {
           "type" : "string",
           "example" : "John"
         },
-        "lastName" : {
+        "oldlastName" : {
           "type" : "string",
           "example" : "Doe"
         },
@@ -317,6 +317,14 @@
         "phone" : {
           "type" : "string",
           "example" : "333-333-3333"
+        },
+        "newFirstName" : {
+          "type" : "string",
+          "example" : "Jonny"
+        },
+        "newLastName" : {
+          "type" : "string",
+          "example" : "Appleseed"
         }
       }
     }
