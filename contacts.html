@@ -15,7 +15,7 @@
 			<div class="buttons-container">
 				<button type="button" id="addButton" onclick="openAddContactModal()">Add Contact</button>
 				<button type="button" id="deleteButton" onclick="openDeleteContactModal()">Delete Contact</button>
-				<button type="button" id="updateButton" onclick="openSelectContactModal()">Update Contact</button>
+				<button type="button" id="updateButton" onclick="openUpdateContactModal()">Update Contact</button>
 			</div>
 
 			<div class="contact-container">
@@ -35,13 +35,13 @@
 				<h2 id="contactName"></h2>
 				<p><strong>Email:</strong> <span id="contactEmail"></span></p>
 				<p><strong>Phone:</strong> <span id="contactPhone"></span></p>
-				<button class="buttons" onclick="openEditContactModalFromView()">Update Contact</button>
+				<button class="buttons" onclick="openUpdateContactModal()">Update Contact</button>
 				<button class="buttons" onclick="deleteContactFromModal()">Delete Contact</button>
 			</div>
 		</div>
 
 		<!-- //This is for the update button on the contact page -->
-		<div id="selectContactModal" class="modal">
+		<!-- <div id="selectContactModal" class="modal">
 			<div class="modal-content">
 				<span class="close" onclick="closeSelectContactModal()">&times;</span>
 				<h2>Enter the Contact you want to update</h2>
@@ -50,19 +50,21 @@
 				<button class="buttons" onclick="showContactToEdit()">Show Contact</button>
 				<span id="contactResult"></span>
 			</div>
-		</div>
+		</div> -->
 
 		<!-- //This is a page where you can edit the contact  -->
 		<div id="editContactModal" class="modal">
 			<div class="modal-content">
 				<span class="close" onclick="closeEditContactModal()">&times;</span>
 				<h2>Edit Contact Information</h2>
-				<p><strong>Name:</strong> <span id="editContactName"></span></p>
-				<p><strong>First Name::</strong> <input type="text" id="editFirstName"></p>
+				<p><strong>First Name:</strong> <input type="text" id="editFirstName"></p>
 				<p><strong>Last Name:</strong> <input type="text" id="editLastName"></p>
+				<p><strong>New FirstName:</strong> <input type="text" id="editNewFirstName"></p>
+				<p><strong>New LastName:</strong> <input type="text" id="editNewLastName"></p>
 				<p><strong>Email:</strong> <input type="text" id="editContactEmail"></p>
 				<p><strong>Phone:</strong> <input type="text" id="editContactPhone"></p>
-				<button class="buttons"onclick="saveContactEdits()">Save Changes</button>
+				<button class="buttons"onclick="updateContact()">Save Changes</button>
+				<span id="updateResult"></span>
 			</div>
 		</div>
 
