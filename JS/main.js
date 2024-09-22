@@ -403,7 +403,7 @@ function openUpdateContactModal() {
 
 function updateContact() {
     fName = document.getElementById("editFirstName").value;
-    lname = document.getElementById("editLastName").value;
+    lName = document.getElementById("editLastName").value;
     newFirstName = document.getElementById("editNewFirstName").value;
     newLastName = document.getElementById("editNewLastName").value;
     email = document.getElementById("editContactEmail").value;
@@ -422,8 +422,8 @@ function updateContact() {
 
     let tmp = {
         userId: result, oldFirstName: fName,
-        oldLastName: lName, phone: phone,
-        newFirstName: newFirstName, newLastName: newLastName
+        oldLastName:lName, phone:phone,
+        newFirstName:newFirstName, newLastName:newLastName
     };
 
     let jsonPayload = JSON.stringify(tmp);
