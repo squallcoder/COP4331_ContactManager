@@ -262,7 +262,7 @@ function showContactToEdit() {
                 
                 console.log(jsonPayload);
                 let jsonObject = JSON.parse(xhr.responseText);
-                console.log(jsonObject.id, jsonObject.currentFname)
+                console.log(jsonObject)
               
                 //saveCookie();
 
