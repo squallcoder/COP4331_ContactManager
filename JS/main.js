@@ -267,8 +267,6 @@ function showContactToEdit() {
 
                 let jsonObject = JSON.parse(xhr.responseText);
                 // console.log(jsonObject)
-                
-
             }
         };
         xhr.send(jsonPayload);
@@ -280,7 +278,7 @@ function showContactToEdit() {
    
 
     closeSelectContactModal();
-    openEditContactModal(firstName, lastName);
+    openEditContactModal(fName, lName);
     // } 
     // else {
     //     document.getElementById('contactResult').innerHTML = "Contact not found.";
