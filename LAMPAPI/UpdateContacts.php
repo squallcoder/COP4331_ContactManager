@@ -17,6 +17,23 @@
         $newFname = $inData["newFirstName"];
         $newLname = $inData["newLastName"];
 
+        // fetch current contact info before updating
+        $selectQuery = "SELECT * FROM Contacts WHERE FirstName='$oldFname' AND LastName='$oldLname'";
+        $result = $conn->query($selectQuery);
+
+        if($result->num_rows > 0) {
+            // fetch info
+            $row = $result->fetch_assoc();
+            $currentFname = $row["FirstName"];
+            $currentLname = $row["LastName"];
+            $currentPhone = $row["Phone"];
+            $currentEmail = $row["Email"];
+
+            returnWithInfo($id, $currentFname, $currentLname, $currentPhone, $currentEmail);
+        } else {
+            returnWithError("Contact with current info not found");
+        }
+
         //old query
         //$query = "UPDATE Contacts SET FirstName='$oldFname', LastName='$oldLname', Phone='$phone', Email='$email' WHERE ID='$id'";
 
@@ -31,7 +48,7 @@
         //returnWithInfo($id, $oldFname, $oldLname,  $phone, $email);
 
         //new
-        returnWithInfo($id, $newFname, $newLname,  $phone, $email);
+        returnWithInfo($id, $newFname, $newLname, $phone, $email);
 
     }
 
