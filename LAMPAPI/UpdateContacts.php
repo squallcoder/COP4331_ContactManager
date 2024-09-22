@@ -9,11 +9,11 @@
     {
 	    returnWithError($conn->connect_error);
     } else {
-        $id = $inData["userId"];
+        // $id = $inData["userId"];
         $oldFname = $inData["oldFirstName"];
         $oldLname = $inData["oldLastName"];
-        $phone = $inData["phone"];
         $email = $inData["email"];
+        $phone = $inData["phone"];
         $newFname = $inData["newFirstName"];
         $newLname = $inData["newLastName"];
 
@@ -24,6 +24,7 @@
         if($result->num_rows > 0) {
             // fetch info
             $row = $result->fetch_assoc();
+            $id = $row["ID"];
             $currentFname = $row["FirstName"];
             $currentLname = $row["LastName"];
             $currentPhone = $row["Phone"];
