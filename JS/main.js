@@ -278,7 +278,7 @@ function showContactToEdit() {
    
 
     closeSelectContactModal();
-    openEditContactModal(Fname, lname);
+    openEditContactModal(Fname, Lname);
     // } 
     // else {
     //     document.getElementById('contactResult').innerHTML = "Contact not found.";
