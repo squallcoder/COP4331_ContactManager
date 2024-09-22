@@ -219,19 +219,19 @@ function closeModal() {
 
 window.onload = populateContacts; //This populates the default array of contents to the contact
 
-function openSelectContactModal() {
-    document.getElementById("selectContactModal").style.display = "block";
-}
+// function openSelectContactModal() {
+//     document.getElementById("selectContactModal").style.display = "block";
+// }
 
-function closeSelectContactModal() {
-    document.getElementById("selectContactModal").style.display = "none";
-}
+// function closeSelectContactModal() {
+//     document.getElementById("selectContactModal").style.display = "none";
+// }
 
 //This opens the block with all the users information
 function openEditContactModal(firstName, lastName) {
     document.getElementById("editContactModal").style.display = "block";
 
-   
+
     // saveContactEdits();
     // document.getElementById("editContactEmail").value = contact.email;
     // document.getElementById("editContactPhone").value = contact.phone;
@@ -241,141 +241,138 @@ function closeEditContactModal() {
     document.getElementById("editContactModal").style.display = "none";
 }
 
-function showContactToEdit() {
-    const Fname = document.getElementById('updateContactFirstName').value;
-    const Lname = document.getElementById('updateContactLastName').value;
-    contact = firstName.concat(" ", lastName);
+// function showContactToEdit() {
+//     const Fname = document.getElementById('updateContactFirstName').value;
+//     const Lname = document.getElementById('updateContactLastName').value;
+//     contact = firstName.concat(" ", lastName);
 
-    let tmp = {oldFirstName:Fname, oldLastName:Lname};
+//     let tmp = {oldFirstName:Fname, oldLastName:Lname};
 
-    let jsonPayload = JSON.stringify(tmp);
-    let url = urlBase + '/UpdateContacts.' + extension;
+//     let jsonPayload = JSON.stringify(tmp);
+//     let url = urlBase + '/UpdateContacts.' + extension;
 
-    let xhr = new XMLHttpRequest();
+//     let xhr = new XMLHttpRequest();
 
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");//setRequestHeader is used to inform the server about
-                                                                            //the content that is being sent.
-    try {
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                
-                console.log(jsonPayload);
+//     xhr.open("POST", url, true);
+//     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");//setRequestHeader is used to inform the server about
+//                                                                             //the content that is being sent.
+//     try {
+//         xhr.onreadystatechange = function () {
+//             if (this.readyState == 4 && this.status == 200) {
 
-                let jsonObject = JSON.parse(xhr.responseText);
-                // console.log(jsonObject)
-            }
-        };
-        xhr.send(jsonPayload);
-        alert("Done!");
-    }
-    catch (err) {
-        document.getElementById("contactResult").innerHTML = err.message;
-    }
-   
+//                 console.log(jsonPayload);
 
-    closeSelectContactModal();
-    openEditContactModal(fName, lName);
-    // } 
-    // else {
-    //     document.getElementById('contactResult').innerHTML = "Contact not found.";
-    // }
-}
+//                 let jsonObject = JSON.parse(xhr.responseText);
+//                 // console.log(jsonObject)
+//             }
+//         };
+//         xhr.send(jsonPayload);
+//         alert("Done!");
+//     }
+//     catch (err) {
+//         document.getElementById("contactResult").innerHTML = err.message;
+//     }
 
-function saveContactEdits() {
-    const cDecoded = decodeURI(document.cookie);
-    const cArray = cDecoded.split("; ");
-    let result; //result will store the userID
 
-    cArray.forEach(element => {
-        if (element.indexOf("UserId") == 0) {
-            result = element.substring(6 + 1);
-        }
-    }
-    )
+//     closeSelectContactModal();
+//     openEditContactModal(fName, lName);
+//     // } 
+//     // else {
+//     //     document.getElementById('contactResult').innerHTML = "Contact not found.";
+//     // }
+// }
 
-    // document.getElementById("editContactName").textContent = contact;
-    let oldFname = firstName;
-    let oldLname = lastName;
-    let newFname = document.getElementById("editFirstName").value;
-    let newLname = document.getElementById("editLastName").value;
-    let email = document.getElementById("editContactEmail").value;
-    let phone = document.getElementById("editContactPhone").value;
+// function saveContactEdits() {
+//     const cDecoded = decodeURI(document.cookie);
+//     const cArray = cDecoded.split("; ");
+//     let result; //result will store the userID
 
-    let tmp = {
-        userId: result, oldFirstName: oldFname, oldLastName: oldLname,
-        phone: phone, email: email, newFirstName: newFname, newLastName: newLname
-    };
+//     cArray.forEach(element => {
+//         if (element.indexOf("UserId") == 0) {
+//             result = element.substring(6 + 1);
+//         }
+//     }
+//     )
 
-    let jsonPayload = JSON.stringify(tmp);
-    let url = urlBase + '/UpdateContacts.' + extension;
+//     // document.getElementById("editContactName").textContent = contact;
+//     let oldFname = firstName;
+//     let oldLname = lastName;
+//     let newFname = document.getElementById("editFirstName").value;
+//     let newLname = document.getElementById("editLastName").value;
+//     let email = document.getElementById("editContactEmail").value;
+//     let phone = document.getElementById("editContactPhone").value;
 
-    let xhr = new XMLHttpRequest();
+//     let tmp = {
+//         userId: result, oldFirstName: oldFname, oldLastName: oldLname,
+//         phone: phone, email: email, newFirstName: newFname, newLastName: newLname
+//     };
 
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");//setRequestHeader is used to inform the server about
-                                                                            //the content that is being sent.
-    try {
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                
-                console.log(jsonPayload);
-                let jsonObject = JSON.parse(xhr.responseText);
-            
-                //saveCookie();
+//     let jsonPayload = JSON.stringify(tmp);
+//     let url = urlBase + '/UpdateContacts.' + extension;
 
-            }
-        };
-        xhr.send(jsonPayload);
-        alert("Done!");
-    }
-    catch (err) {
-        document.getElementById("contactResult").innerHTML = err.message;
-    }
+//     let xhr = new XMLHttpRequest();
 
-    closeEditContactModal();
-}
+//     xhr.open("POST", url, true);
+//     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");//setRequestHeader is used to inform the server about
+//                                                                             //the content that is being sent.
+//     try {
+//         xhr.onreadystatechange = function () {
+//             if (this.readyState == 4 && this.status == 200) {
+
+//                 console.log(jsonPayload);
+//                 let jsonObject = JSON.parse(xhr.responseText);
+
+//                 //saveCookie();
+
+//             }
+//         };
+//         xhr.send(jsonPayload);
+//         alert("Done!");
+//     }
+//     catch (err) {
+//         document.getElementById("contactResult").innerHTML = err.message;
+//     }
+
+//     closeEditContactModal();
+// }
 
 //This function is used when we select a contact from the list of contacts
-function openEditContactModalFromView() {
+// function openEditContactModalFromView() {
 
-    const cDecoded = decodeURI(document.cookie);
-    const cArray = cDecoded.split("; ");
-    let result; //result will store the userID
+//     const cDecoded = decodeURI(document.cookie);
+//     const cArray = cDecoded.split("; ");
+//     let result; //result will store the userID
 
-    cArray.forEach(element => {
-        if (element.indexOf("UserId") == 0) {
-            result = element.substring(6 + 1);
-        }
-    }
-    )
+//     cArray.forEach(element => {
+//         if (element.indexOf("UserId") == 0) {
+//             result = element.substring(6 + 1);
+//         }
+//     }
+//     )
 
-    const contactName = document.getElementById('contactName').innerText;
-    const contactEmail = document.getElementById('contactEmail').innerText;
-    const contactPhone = document.getElementById('contactPhone').innerText;
+//     const contactName = document.getElementById('contactName').innerText;
+//     const contactEmail = document.getElementById('contactEmail').innerText;
+//     const contactPhone = document.getElementById('contactPhone').innerText;
 
-    //Commented this out since we aren't looking for the name in our local contacts.
-    // const contact = contacts.find(c => c.name === contactName); 
+//     //Commented this out since we aren't looking for the name in our local contacts.
+//     // const contact = contacts.find(c => c.name === contactName); 
 
-    let textName = contact.name;
-    const nameArray = textName.split(" ");
+//     let textName = contact.name;
+//     const nameArray = textName.split(" ");
 
 
-    if (contact) {
-        document.getElementById("editContactName").textContent = contact.name;
-        document.getElementById("editFirstName").value = nameArray[0];
-        document.getElementById("editLastName").value = nameArray[1];
-        document.getElementById("editContactEmail").value = contact.email;
-        document.getElementById("editContactPhone").value = contact.phone;
+//     if (contact) {
+//         document.getElementById("editContactName").textContent = contact.name;
+//         document.getElementById("editFirstName").value = nameArray[0];
+//         document.getElementById("editLastName").value = nameArray[1];
+//         document.getElementById("editContactEmail").value = contact.email;
+//         document.getElementById("editContactPhone").value = contact.phone;
 
-        closeModal();
-        document.getElementById("editContactModal").style.display = "block";
-    }
-}
-
-// function updateContact() {
-
+//         closeModal();
+//         document.getElementById("editContactModal").style.display = "block";
+//     }
 // }
+
 
 function openLogOutModal() {
     document.getElementById("logOutModal").style.display = "block";
@@ -395,8 +392,63 @@ function closeAddContactModal() {
     document.getElementById("addContactModal").style.display = "none";
 }
 
+
 function openDeleteContactModal() {
     document.getElementById("deleteContactModal").style.display = "block";
+}
+
+function openUpdateContactModal() {
+    document.getElementById("editContactModal").style.display = "block";
+}
+
+function updateContact() {
+    fName = document.getElementById("editFirstName").value;
+    lname = document.getElementById("editLastName").value;
+    newFirstName = document.getElementById("editNewFirstName").value;
+    newLastName = document.getElementById("editNewLastName").value;
+    email = document.getElementById("editContactEmail").value;
+    phone = document.getElementById("editContactPhone").value;
+
+    const cDecoded = decodeURI(document.cookie);
+    const cArray = cDecoded.split("; ");
+    let result; //result will store the userID
+
+    cArray.forEach(element => {
+        if (element.indexOf("UserId") == 0) {
+            result = element.substring(6 + 1);
+        }
+    }
+    )
+
+    let tmp = {
+        userId: result, oldFirstName: fName,
+        oldLastName: lName, phone: phone,
+        newFirstName: newFirstName, newLastName: newLastName
+    };
+
+    let jsonPayload = JSON.stringify(tmp);
+    let url = urlBase + '/updateContacts.' + extension;
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");//setRequestHeader is used to inform the server about
+    //the content that is being sent.
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                //alert(xhr.responseText);
+                console.log(jsonPayload);
+                let jsonObject = JSON.parse(xhr.responseText);
+                document.getElementById("updateResult").innerHTML = "You have successfully updated your contact!";
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch (err) {
+        document.getElementById("updateResult").innerHTML = err.message;
+    }
+
 }
 
 function closeDeleteContactModal() {
@@ -481,6 +533,7 @@ function deleteContactFromModal() {
     }
 }
 
+
 function search() {
     const searchName = document.getElementById('searchBar').value.trim().toLowerCase();
     const matchingContacts = contacts.filter(c => c.name.toLowerCase().startsWith(searchName));
@@ -489,7 +542,7 @@ function search() {
     contactList.innerHTML = '';
 
     if (matchingContacts.length > 0) {
-            matchingContacts.forEach(contact => {
+        matchingContacts.forEach(contact => {
             const contactElement = document.createElement('div');
             contactElement.classList.add('contact-item');
             contactElement.innerText = contact.name;
