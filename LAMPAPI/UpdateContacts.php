@@ -30,7 +30,7 @@
             $currentPhone = $row["Phone"];
             $currentEmail = $row["Email"];
 
-            returnWithInfo($id, $currentFname, $currentLname, $currentPhone, $currentEmail);
+            returnWithOldInfo($id, $currentFname, $currentLname, $currentPhone, $currentEmail);
         } else {
             returnWithError("Contact with current info not found");
         }
@@ -49,7 +49,7 @@
         //returnWithInfo($id, $oldFname, $oldLname,  $phone, $email);
 
         //new
-        returnWithInfo($id, $newFname, $newLname, $phone, $email);
+        returnWithNewInfo($id, $newFname, $newLname, $phone, $email);
 
     }
 
@@ -70,10 +70,22 @@
 		sendResultInfoAsJson( $retValue );
 	}
 
-    function returnWithInfo( $id, $oldFirstName, $oldLastName, $phone, $email)
-	{
-		$retValue = '{"id":' . $id . ',"oldFirstName":"' . $oldFirstName . '","oldLastName":"' . $oldLastName . '","phone":"' . $phone . '", "email":"' . $email . '""error":""}';
-		sendResultInfoAsJson( $retValue );
-	}
+    // function returnWithInfo( $id, $oldFirstName, $oldLastName, $phone, $email)
+	// {
+	// 	$retValue = '{"id":' . $id . ',"oldFirstName":"' . $oldFirstName . '","oldLastName":"' . $oldLastName . '","phone":"' . $phone . '", "email":"' . $email . '""error":""}';
+	// 	sendResultInfoAsJson( $retValue );
+	// }
+
+    function returnWithOldInfo( $id, $oldFirstName, $oldLastName, $phone, $email)
+    {
+        $retValue = '{"id":' . $id . ',"oldFirstName":"' . $oldFirstName . '","oldLastName":"' . $oldLastName . '","phone":"' . $phone . '", "email":"' . $email . '""error":""}';
+        sendResultInfoAsJson( $retValue );
+    }
+
+    function returnWithNewInfo( $id, $newFirstName, $newLastName, $phone, $email)
+    {
+        $retValue = '{"id":' . $id . ',"newFirstName":"' . $newFirstName . '","newLastName":"' . $newLastName . '","phone":"' . $phone . '", "email":"' . $email . '""error":""}';
+        sendResultInfoAsJson( $retValue );
+    }
 
 ?>
