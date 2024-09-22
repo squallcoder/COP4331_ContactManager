@@ -249,8 +249,8 @@ function openEditContactModal(firstName, lastName) {
     let phone = document.getElementById("editContactPhone").value;
 
     let tmp = {
-        userId: result, oldFirstName: oldFname, oldLastName: newFname,
-        phone: phone, email: email, newFirstName: newFname, oldLastName: oldFname
+        userId: result, oldFirstName: oldFname, oldLastName: oldLname,
+        phone: phone, email: email, newFirstName: newFname, newLastName: newLname
     };
 
     let jsonPayload = JSON.stringify(tmp);
