@@ -230,7 +230,7 @@ function openEditContactModal(firstName, lastName) {
     document.getElementById("editContactModal").style.display = "block";
 
    
-    saveContactEdits();
+    // saveContactEdits();
     // document.getElementById("editContactEmail").value = contact.email;
     // document.getElementById("editContactPhone").value = contact.phone;
 }
@@ -240,12 +240,39 @@ function closeEditContactModal() {
 }
 
 function showContactToEdit() {
-    const firstName = document.getElementById('updateContactFirstName').value;
-    const lastName = document.getElementById('updateContactLastName').value;
+    const Fname = document.getElementById('updateContactFirstName').value;
+    const Lname = document.getElementById('updateContactLastName').value;
     contact = firstName.concat(" ", lastName);
-    // const contactName = firstName.concat(" ", lastName);
-    // const contact = contacts.find(c => c.name.toLowerCase() === contactName.toLowerCase());
-    // if (contact) {
+
+    let tmp = {oldFname:Fname, oldLname:Lname};
+
+    let jsonPayload = JSON.stringify(tmp);
+    let url = urlBase + '/UpdateContacts.' + extension;
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");//setRequestHeader is used to inform the server about
+                                                                            //the content that is being sent.
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                
+                console.log(jsonPayload);
+                let jsonObject = JSON.parse(xhr.responseText);
+                console.log(jsonObject.id, jsonObject.currentFname)
+              
+                //saveCookie();
+
+            }
+        };
+        xhr.send(jsonPayload);
+        alert("Done!");
+    }
+    catch (err) {
+        document.getElementById("contactResult").innerHTML = err.message;
+    }
+   
 
     closeSelectContactModal();
     openEditContactModal(firstName, lastName);
@@ -255,7 +282,7 @@ function showContactToEdit() {
     // }
 }
 
-function saveContactEdits() {
+function saveChanges() {
     const cDecoded = decodeURI(document.cookie);
     const cArray = cDecoded.split("; ");
     let result; //result will store the userID
