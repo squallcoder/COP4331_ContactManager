@@ -402,12 +402,12 @@ function openUpdateContactModal() {
 }
 
 function updateContact() {
-    fName = document.getElementById("editFirstName").value;
-    lName = document.getElementById("editLastName").value;
-    newFirstName = document.getElementById("editNewFirstName").value;
-    newLastName = document.getElementById("editNewLastName").value;
-    email = document.getElementById("editContactEmail").value;
-    phone = document.getElementById("editContactPhone").value;
+    fName = document.getElementById('editFirstName').value;
+    lName = document.getElementById('editLastName').value;
+    newFirstName = document.getElementById('editNewFirstName').value;
+    newLastName = document.getElementById('editNewLastName').value;
+    email = document.getElementById('editContactEmail').value;
+    phone = document.getElementById('editContactPhone').value;
 
     const cDecoded = decodeURI(document.cookie);
     const cArray = cDecoded.split("; ");
@@ -422,7 +422,7 @@ function updateContact() {
 
     let tmp = {
         userId: result, oldFirstName: fName,
-        oldLastName:lName, phone:phone,
+        oldLastName:lName, phone:phone, email:email,
         newFirstName:newFirstName, newLastName:newLastName
     };
 
@@ -448,7 +448,7 @@ function updateContact() {
         document.getElementById("updateResult").innerHTML = err.message;
     }
 
-    document.getElementById("updateResult").innerHML = "You have successfully updated your contact!";
+    document.getElementById('updateResult').innerHML = "You have successfully updated your contact!";
 
 }
 
