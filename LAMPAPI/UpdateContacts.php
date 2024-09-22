@@ -10,17 +10,29 @@
 	    returnWithError($conn->connect_error);
     } else {
         $id = $inData["Id"];
-        $fName = $inData["firstName"];
-        $lName = $inData["lastName"];
+        $oldFname = $inData["oldFirstName"];
+        $oldLname = $inData["oldLastName"];
         $phone = $inData["phone"];
         $email = $inData["email"];
+        $newFname = $inData["newFirstName"];
+        $newLname = $inData["newLastName"];
 
-        $query = "UPDATE Contacts SET FirstName='$fName', LastName='$lName', Phone='$phone', Email='$email' WHERE ID='$id'";
+        //old query
+        //$query = "UPDATE Contacts SET FirstName='$oldFname', LastName='$oldLname', Phone='$phone', Email='$email' WHERE ID='$id'";
+
+        //new query after meeting
+        $query = "UPDATE Contacts SET FirstName='$newFname', LastName='$newLname', Phone='$phone', Email='$email' WHERE FirstName='$oldFname' AND LastName='$oldLname'";
+
 		mysqli_query($conn,$query);
 
         $conn->close();
 
-        returnWithInfo($id, $fName, $lName,  $phone, $email);
+        //old
+        //returnWithInfo($id, $oldFname, $oldLname,  $phone, $email);
+
+        //new
+        returnWithInfo($id, $newFname, $newLname,  $phone, $email);
+
     }
 
     function getRequestInfo()
@@ -36,13 +48,13 @@
 
     function returnWithError( $err )
 	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		$retValue = '{"id":0,"oldFirstName":"","oldLastName":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 
-    function returnWithInfo( $id, $firstName, $lastName, $phone, $email)
+    function returnWithInfo( $id, $oldFirstName, $oldLastName, $phone, $email)
 	{
-		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","phone":"' . $phone . '", "email":"' . $email . '""error":""}';
+		$retValue = '{"id":' . $id . ',"oldFirstName":"' . $oldFirstName . '","oldLastName":"' . $oldLastName . '","phone":"' . $phone . '", "email":"' . $email . '""error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 
