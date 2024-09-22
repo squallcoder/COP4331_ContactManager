@@ -230,7 +230,7 @@ function openEditContactModal(firstName, lastName) {
     document.getElementById("editContactModal").style.display = "block";
 
    
-    saveContactEdits(firstName, lastName);
+    saveContactEdits();
     // document.getElementById("editContactEmail").value = contact.email;
     // document.getElementById("editContactPhone").value = contact.phone;
 }
@@ -255,7 +255,7 @@ function showContactToEdit() {
     // }
 }
 
-function saveContactEdits(firstName, lastName) {
+function saveContactEdits() {
     const cDecoded = decodeURI(document.cookie);
     const cArray = cDecoded.split("; ");
     let result; //result will store the userID
