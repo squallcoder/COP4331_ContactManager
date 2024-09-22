@@ -12,25 +12,19 @@
         // $id = $inData["userId"];
         $oldFname = $inData["oldFirstName"];
         $oldLname = $inData["oldLastName"];
-        $email = $inData["email"];
-        $phone = $inData["phone"];
         $newFname = $inData["newFirstName"];
         $newLname = $inData["newLastName"];
+        $email = $inData["email"];
+        $phone = $inData["phone"];
 
         // fetch current contact info before updating
         $selectQuery = "SELECT * FROM Contacts WHERE FirstName='$oldFname' AND LastName='$oldLname'";
         $result = $conn->query($selectQuery);
 
         if($result->num_rows > 0) {
-            // fetch info
+            // fetch id of contact to update
             $row = $result->fetch_assoc();
             $id = $row["ID"];
-            $currentFname = $row["FirstName"];
-            $currentLname = $row["LastName"];
-            $currentPhone = $row["Phone"];
-            $currentEmail = $row["Email"];
-
-            returnWithOldInfo($id, $currentFname, $currentLname, $currentPhone, $currentEmail);
         } else {
             returnWithError("Contact with current info not found");
         }
@@ -49,7 +43,7 @@
         //returnWithInfo($id, $oldFname, $oldLname,  $phone, $email);
 
         //new
-        returnWithNewInfo($id, $newFname, $newLname, $phone, $email);
+        returnWithInfo($id, $newFname, $newLname, $phone, $email);
 
     }
 
@@ -70,22 +64,10 @@
 		sendResultInfoAsJson( $retValue );
 	}
 
-    // function returnWithInfo( $id, $oldFirstName, $oldLastName, $phone, $email)
-	// {
-	// 	$retValue = '{"id":' . $id . ',"oldFirstName":"' . $oldFirstName . '","oldLastName":"' . $oldLastName . '","phone":"' . $phone . '", "email":"' . $email . '""error":""}';
-	// 	sendResultInfoAsJson( $retValue );
-	// }
-
-    function returnWithOldInfo( $id, $oldFirstName, $oldLastName, $phone, $email)
-    {
-        $retValue = '{"id":' . $id . ',"oldFirstName":"' . $oldFirstName . '","oldLastName":"' . $oldLastName . '","phone":"' . $phone . '", "email":"' . $email . '""error":""}';
-        sendResultInfoAsJson( $retValue );
-    }
-
-    function returnWithNewInfo( $id, $newFirstName, $newLastName, $phone, $email)
-    {
-        $retValue = '{"id":' . $id . ',"newFirstName":"' . $newFirstName . '","newLastName":"' . $newLastName . '","phone":"' . $phone . '", "email":"' . $email . '""error":""}';
-        sendResultInfoAsJson( $retValue );
-    }
+    function returnWithInfo( $id, $oldFirstName, $oldLastName, $phone, $email)
+	{
+		$retValue = '{"id":' . $id . ',"FirstName":"' . $oldFirstName . '","LastName":"' . $oldLastName . '","phone":"' . $phone . '", "email":"' . $email . '""error":""}';
+		sendResultInfoAsJson( $retValue );
+	}
 
 ?>
