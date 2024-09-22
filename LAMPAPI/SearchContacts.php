@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 } else {
     
     // SQL query to search
-    $query = "SELECT * FROM Contacts WHERE UserID = '$UserID' AND (FirstName LIKE '$FirstName' OR LastName LIKE '$LastName')"; // Using either first or last name
+    $query = "SELECT * FROM Contacts WHERE UserID = '$UserID' AND (FirstName LIKE '%$FirstName%' OR LastName LIKE '%$LastName%')"; // Using either first or last name
     mysqli_query($conn, $query);
     
     $conn->close();
