@@ -11,7 +11,7 @@
     {
         returnWithError($conn->connect_error);
     } else { // if connection is good, fetch UserID and contacts
-        $idQuery = "SELECT ID FROM Users WHERE Login = '$Login' AND Password = '$Password'";
+        $idQuery = "SELECT * FROM Users WHERE Login = '$Login' AND Password = '$Password'";
         $result = $conn->query($idQuery);
 
         // if user is found, fetch ID
