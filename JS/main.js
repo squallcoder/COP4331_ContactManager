@@ -261,9 +261,9 @@ function showContactToEdit() {
             if (this.readyState == 4 && this.status == 200) {
                 
                 console.log(jsonPayload);
-                
+
                 let jsonObject = JSON.parse(xhr.responseText);
-                console.log(jsonObject)
+                // console.log(jsonObject)
                 
 
             }
