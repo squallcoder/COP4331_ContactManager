@@ -427,7 +427,7 @@ function updateContact() {
     };
 
     let jsonPayload = JSON.stringify(tmp);
-    let url = urlBase + '/updateContacts.' + extension;
+    let url = urlBase + '/UpdateContacts.' + extension;
 
     let xhr = new XMLHttpRequest();
 
