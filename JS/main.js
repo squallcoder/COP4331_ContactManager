@@ -229,6 +229,33 @@ function closeSelectContactModal() {
 function openEditContactModal(firstName, lastName) {
     document.getElementById("editContactModal").style.display = "block";
 
+   
+    saveContactEdits(firstName, lastName);
+    // document.getElementById("editContactEmail").value = contact.email;
+    // document.getElementById("editContactPhone").value = contact.phone;
+}
+
+function closeEditContactModal() {
+    document.getElementById("editContactModal").style.display = "none";
+}
+
+function showContactToEdit() {
+    const firstName = document.getElementById('updateContactFirstName').value;
+    const lastName = document.getElementById('updateContactLastName').value;
+    contact = firstName.concat(" ", lastName);
+    // const contactName = firstName.concat(" ", lastName);
+    // const contact = contacts.find(c => c.name.toLowerCase() === contactName.toLowerCase());
+    // if (contact) {
+
+    closeSelectContactModal();
+    openEditContactModal(firstName, lastName);
+    // } 
+    // else {
+    //     document.getElementById('contactResult').innerHTML = "Contact not found.";
+    // }
+}
+
+function saveContactEdits(firstName, lastName) {
     const cDecoded = decodeURI(document.cookie);
     const cArray = cDecoded.split("; ");
     let result; //result will store the userID
@@ -279,50 +306,6 @@ function openEditContactModal(firstName, lastName) {
         document.getElementById("contactResult").innerHTML = err.message;
     }
 
-
-    // document.getElementById("editContactEmail").value = contact.email;
-    // document.getElementById("editContactPhone").value = contact.phone;
-}
-
-function closeEditContactModal() {
-    document.getElementById("editContactModal").style.display = "none";
-}
-
-function showContactToEdit() {
-    const firstName = document.getElementById('updateContactFirstName').value;
-    const lastName = document.getElementById('updateContactLastName').value;
-    contact = firstName.concat(" ", lastName);
-    // const contactName = firstName.concat(" ", lastName);
-    // const contact = contacts.find(c => c.name.toLowerCase() === contactName.toLowerCase());
-    // if (contact) {
-
-    closeSelectContactModal();
-    openEditContactModal(firstName, lastName);
-    // } 
-    // else {
-    //     document.getElementById('contactResult').innerHTML = "Contact not found.";
-    // }
-}
-
-function saveContactEdits() {
-    // const contactName = document.getElementById("editContactName").textContent;
-    // const newFname = document.getElementById("editFirstName").value;
-    // const newLname = document.getElementById("editLastName").value;
-    // const newemail = document.getElementById("editContactEmail").value;
-    // const phone = document.getElementById("editContactPhone").value;
-
-    // // let textFname = newFname;
-    // // let textLname = newLname;
-
-    // newName = textFname.concat(" ", newLname);
-
-    // const contact = contacts.find(c => c.name === contactName);
-    // if (contact) {
-    //     contact.name = newName;
-    //     contact.email = newemail;
-    //     contact.phone = phone;
-    //     populateContacts();
-    // }
     closeEditContactModal();
 }
 
@@ -363,9 +346,9 @@ function openEditContactModalFromView() {
     }
 }
 
-function updateContact() {
+// function updateContact() {
 
-}
+// }
 
 function openLogOutModal() {
     document.getElementById("logOutModal").style.display = "block";
