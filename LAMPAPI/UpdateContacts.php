@@ -64,9 +64,9 @@
 		sendResultInfoAsJson( $retValue );
 	}
 
-    function returnWithInfo( $id, $oldFirstName, $oldLastName, $phone, $email)
+    function returnWithInfo( $id, $newFirstName, $newLastName, $phone, $email)
 	{
-		$retValue = '{"id":' . $id . ',"FirstName":"' . $oldFirstName . '","LastName":"' . $oldLastName . '","phone":"' . $phone . '", "email":"' . $email . '""error":""}';
+		$retValue = '{"id":' . $id . ',"FirstName":"' . $newFirstName . '","LastName":"' . $newLastName . '","phone":"' . $phone . '", "email":"' . $email . '""error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 
