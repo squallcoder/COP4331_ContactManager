@@ -241,10 +241,13 @@ function closeEditContactModal() {
     document.getElementById("editContactModal").style.display = "none";
 }
 
+//This function is called when we press update contact from the main contact manager
 function showContactToEdit() {
     const Fname = document.getElementById('updateContactFirstName').value;
     const Lname = document.getElementById('updateContactLastName').value;
-    contact = firstName.concat(" ", lastName);
+    contact = Fname.concat(" ", Lname);
+
+    console.log(contact);
 
     let tmp = {oldFirstName:Fname, oldLastName:Lname};
 
