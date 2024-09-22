@@ -15,7 +15,7 @@
         $phone = $inData["phone"];
         $email = $inData["email"];
 
-        $query = "UPDATE Contacts SET FirstName='$fName', LastName='$lName', Phone='$phone', Email='$email' WHERE ID='$id'";
+        $query = "UPDATE Contacts SET FirstName='$fName', LastName='$lName', Phone='$phone', Email='$email' WHERE ID='$id';";
 		mysqli_query($conn,$query);
 
         $conn->close();
