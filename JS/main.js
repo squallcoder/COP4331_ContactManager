@@ -293,6 +293,7 @@ function saveContactEdits() {
     }
 }
 
+//This function is used when we select a contact from the list of contacts
 function openEditContactModalFromView() {
     const contactName = document.getElementById('contactName').innerText;
     const contactEmail = document.getElementById('contactEmail').innerText;
@@ -436,7 +437,7 @@ function search() {
             
     }
     else {
-        document.getElementById('searchModal').style.display = 'block';
+        // document.getElementById('searchModal').style.display = 'block';
         document.getElementById('searchResult').innerHTML = "Contact not found.";
     }
 }
