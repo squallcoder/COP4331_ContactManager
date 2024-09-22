@@ -9,7 +9,7 @@
     {
 	    returnWithError($conn->connect_error);
     } else {
-        $id = $inData["Id"];
+        $id = $inData["userId"];
         $oldFname = $inData["oldFirstName"];
         $oldLname = $inData["oldLastName"];
         $phone = $inData["phone"];
