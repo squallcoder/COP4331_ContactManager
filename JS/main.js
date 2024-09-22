@@ -191,7 +191,7 @@ const contacts = [
 
 function populateContacts() {
     const contactList = document.getElementById('contactList');
-    contactList.innerHTML = '';
+    // contactList.innerHTML = '';//Commented this out because i was getting a error on the console
 
     contacts.forEach((contact, index) => {
         const contactItem = document.createElement('div');
