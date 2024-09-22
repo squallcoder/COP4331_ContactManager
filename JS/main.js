@@ -245,7 +245,7 @@ function closeEditContactModal() {
 function showContactToEdit() {
     const Fname = document.getElementById('updateContactFirstName').value;
     const Lname = document.getElementById('updateContactLastName').value;
-    contact = firstName.concat(" ", lastName);
+    contact = Fname.concat(" ", Lname);
 
     console.log(contact);
 
