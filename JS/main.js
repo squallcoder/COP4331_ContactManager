@@ -214,6 +214,7 @@ function openModal(index) {
 
 function closeModal() {
     document.getElementById('contactModal').style.display = 'none';
+    populateContacts();
 }
 
 window.onload = populateContacts; //This populates the default array of contents to the contact
@@ -226,6 +227,7 @@ function closeSelectContactModal() {
     document.getElementById("selectContactModal").style.display = "none";
 }
 
+//This opens the block with all the users information
 function openEditContactModal(firstName, lastName) {
     document.getElementById("editContactModal").style.display = "block";
 
@@ -282,7 +284,7 @@ function showContactToEdit() {
     // }
 }
 
-function saveChanges() {
+function saveContactEdits() {
     const cDecoded = decodeURI(document.cookie);
     const cArray = cDecoded.split("; ");
     let result; //result will store the userID
@@ -483,31 +485,30 @@ function deleteContactFromModal() {
 
 function search() {
     const searchName = document.getElementById('searchBar').value.trim().toLowerCase();
-    const contact = contacts.find(c => c.name.toLowerCase() === searchName);
+    const matchingContacts = contacts.filter(c => c.name.toLowerCase().startsWith(searchName));
 
-    let nameArray = searchName.split(",");
-    console.log(nameArray);
+    const contactList = document.getElementById('contactList');
+    contactList.innerHTML = '';
 
+    if (matchingContacts.length > 0) {
+            matchingContacts.forEach(contact => {
+            const contactElement = document.createElement('div');
+            contactElement.classList.add('contact-item');
+            contactElement.innerText = contact.name;
 
-    if (contact) {
-        const contactIndex = contacts.findIndex(c => c.name.toLowerCase() === searchName.toLowerCase());
-        openModal(contactIndex);
+            contactElement.addEventListener('click', () => {
+                const contactIndex = contacts.findIndex(c => c.name.toLowerCase() === contact.name.toLowerCase());
+                openModal(contactIndex);
+            });
 
+            contactList.appendChild(contactElement);
+        });
     }
     else {
-        // document.getElementById('searchModal').style.display = 'block';
-        document.getElementById('searchResult').innerHTML = "Contact not found.";
+        contactList.innerHTML = '<div>No contacts found.</div>';
     }
 }
 
-function closeSearchModal() {
-    document.getElementById('searchModal').style.display = 'none';
-}
-
-function displayContacts(Id) {
-
-
-}
 
 function addContact() {
 
