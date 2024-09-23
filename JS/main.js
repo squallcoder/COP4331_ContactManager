@@ -447,7 +447,7 @@ function updateContact() {
     catch (err) {
         document.getElementById("updateResult").innerHTML = err.message;
     }
-    document.getElementById('updateResult').innerHML = "You have successfully updated your contact!"
+    document.getElementById('updateResult').innerHTML = "You have successfully updated your contact!"
 
 
 }
