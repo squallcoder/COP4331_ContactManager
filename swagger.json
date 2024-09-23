@@ -118,7 +118,7 @@
         "parameters" : [ {
           "in" : "body",
           "name" : "searchItem",
-          "description" : "contactItem",
+          "description" : "Contact Search",
           "schema" : {
             "$ref" : "#/definitions/Search"
           }
@@ -237,7 +237,7 @@
       "required" : [ "userId", "firstName", "lastName", "email", "phone" ],
       "properties" : {
         "userId" : {
-          "type" : "number",
+          "type" : "integer",
           "example" : 1
         },
         "firstName" : {
@@ -260,19 +260,11 @@
     },
     "Search" : {
       "type" : "object",
-      "required" : [ "userId", "firstName", "lastName" ],
+      "required" : [ "search" ],
       "properties" : {
-        "userId" : {
-          "type" : "number",
-          "example" : 1
-        },
-        "firstName" : {
+        "search" : {
           "type" : "string",
           "example" : "Jon"
-        },
-        "lastName" : {
-          "type" : "string",
-          "example" : "Doe"
         }
       }
     },
@@ -281,7 +273,7 @@
       "required" : [ "userId", "firstName", "lastName" ],
       "properties" : {
         "userId" : {
-          "type" : "number",
+          "type" : "integer",
           "example" : 1
         },
         "firstName" : {
@@ -296,17 +288,17 @@
     },
     "Update" : {
       "type" : "object",
-      "required" : [ "userId", "oldFirstName", "oldLastName", "phone", "email", "newFirstName", "newLastName" ],
+      "required" : [ "userId", "firstName", "lastName", "phone", "email" ],
       "properties" : {
         "userId" : {
-          "type" : "number",
+          "type" : "integer",
           "example" : 1
         },
-        "oldFirstName" : {
+        "firstName" : {
           "type" : "string",
           "example" : "John"
         },
-        "oldLastName" : {
+        "lastName" : {
           "type" : "string",
           "example" : "Doe"
         },
@@ -317,14 +309,6 @@
         "phone" : {
           "type" : "string",
           "example" : "333-333-3333"
-        },
-        "newFirstName" : {
-          "type" : "string",
-          "example" : "Jonny"
-        },
-        "newLastName" : {
-          "type" : "string",
-          "example" : "Appleseed"
         }
       }
     }
