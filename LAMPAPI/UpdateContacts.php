@@ -29,18 +29,12 @@
             returnWithError("Contact with current info not found");
         }
 
-        //old query
-        //$query = "UPDATE Contacts SET FirstName='$oldFname', LastName='$oldLname', Phone='$phone', Email='$email' WHERE ID='$id'";
-
         //new query after meeting
         $query = "UPDATE Contacts SET FirstName='$newFname', LastName='$newLname', Phone='$phone', Email='$email' WHERE FirstName='$oldFname' AND LastName='$oldLname'";
 
 		mysqli_query($conn,$query);
 
         $conn->close();
-
-        //old
-        //returnWithInfo($id, $oldFname, $oldLname,  $phone, $email);
 
         //new
         returnWithInfo($id, $newFname, $newLname, $phone, $email);
