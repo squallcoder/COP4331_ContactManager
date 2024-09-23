@@ -1,7 +1,11 @@
 <?php
 	
 	$inData = getRequestInfo();
-	
+
+	// store userID on login
+	session_start();
+	$_SESSION['UserID'] = $userID;
+
 	$id = 0;
 	$firstName = "";
 	$lastName = "";

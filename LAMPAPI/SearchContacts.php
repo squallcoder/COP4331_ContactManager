@@ -2,9 +2,13 @@
 
 // Requesting info
 $inData = getRequestInfo();
-$UserID = $inData["UserID"];
+// $UserID = $inData["UserID"];
 $FirstName = $inData["FirstName"];
 $LastName = $inData["LastName"];
+
+// storing userID from login
+session_start();
+$UserID = $_SESSION['UserID'];
 
 // Connect to database
 $conn = new mysqli("localhost", "Admin", "Team7", "SmallProject");
