@@ -1,8 +1,6 @@
 <?php
-    // get request info (UserID)
-    $inData = getRequestInfo();
-    $Login = $inData["Login"];
-    $Password = $inData["Password"];
+    // start session and connect to database
+    session_start();
 
     $conn = new mysqli("localhost", "Admin", "Team7", "SmallProject");
 
@@ -10,17 +8,20 @@
     if($conn->connect_error )
     {
         returnWithError($conn->connect_error);
-    } else { // if connection is good, fetch UserID and contacts
-        $idQuery = "SELECT * FROM Users WHERE Login = '$Login' AND Password = '$Password'";
-        $result = $conn->query($idQuery);
+    } else { // if connection is good fetch contacts
 
-        // if user is found, fetch ID
-        if($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $UserID = $row["ID"];
-        } else {
-            returnWithError("No user found");
-        }
+        // $idQuery = "SELECT * FROM Users WHERE Login = '$Login' AND Password = '$Password'";
+        // $result = $conn->query($idQuery);
+
+        // // if user is found, fetch ID
+        // if($result->num_rows > 0) {
+        //     $row = $result->fetch_assoc();
+        //     $UserID = $row["ID"];
+        // } else {
+        //     returnWithError("No user found");
+        // }
+
+        $UserID = $_SESSION['UserID'];
 
         $query = "SELECT * FROM Contacts WHERE UserID = '$UserID'";
         $result = $conn->query($query);
