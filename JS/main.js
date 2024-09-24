@@ -267,7 +267,7 @@ function displayContacts() {
 //     });
 // }
 
-function openModal(name) {
+function openModal(index) {
     const contact = contactArray[index];
 
     document.getElementById('contactName').innerText = contact.name;
