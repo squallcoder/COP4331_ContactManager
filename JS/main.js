@@ -203,7 +203,7 @@ function displayContacts() {
     }
     )
 
-    let tmp = { UserID: result };
+    let tmp = { UserId: result };
 
     let jsonPayload = JSON.stringify(tmp);
     let url = urlBase + '/DisplayContacts.' + extension;
@@ -221,24 +221,24 @@ function displayContacts() {
                 console.log(jsonPayload);
                 contactArray = JSON.parse(xhr.responseText);
 
-                for (let contact of contactsArray) {
-                    console.log(contact);
-                }
-                
+                // for (let contact of contactsArray) {
+                //     console.log(contact);
+                // }
+
                 // console.log(contactArray);
 
                 const contactList = document.getElementById('contactList');
                 // contactList.innerHTML = '';//Commented this out because i was getting a error on the console
 
-                // contactArray.forEach((contact, index) => {
-                //     const contactItem = document.createElement('div');
-                //     contactItem.className = 'contact-item';
-                //     contactItem.innerText = contact.name;
-                //     contactItem.onclick = function () {
-                //         openModal(index);
-                //     };
-                //     contactList.appendChild(contactItem);
-                // });
+                contactArray.forEach((contact, index) => {
+                    const contactItem = document.createElement('div');
+                    contactItem.className = 'contact-item';
+                    contactItem.innerText = contact.name;
+                    contactItem.onclick = function () {
+                        openModal(index);
+                    };
+                    contactList.appendChild(contactItem);
+                });
             }
         };
         xhr.send(jsonPayload);
