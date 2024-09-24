@@ -5,6 +5,7 @@ var userId = 0;
 var holdUserID;
 let firstName = "";
 let lastName = "";
+let contactArray = [];
 function doLogin() {
 
     userId = 0;
@@ -165,47 +166,103 @@ function createAccount() {
 }
 
 
-const contacts = [
-    { name: 'Alice Johnson', email: 'alice.johnson@example.com', phone: '555-123-4567' },
-    { name: 'Bob Smith', email: 'bob.smith@example.com', phone: '555-987-6543' },
-    { name: 'Charlie Brown', email: 'charlie.brown@example.com', phone: '555-876-5432' },
-    { name: 'David Wilson', email: 'david.wilson@example.com', phone: '555-432-1098' },
-    { name: 'Eva Martinez', email: 'eva.martinez@example.com', phone: '555-246-8102' },
-    { name: 'Fiona Davis', email: 'fiona.davis@example.com', phone: '555-135-7913' },
-    { name: 'George Harris', email: 'george.harris@example.com', phone: '555-864-2097' },
-    { name: 'Hannah Lee', email: 'hannah.lee@example.com', phone: '555-753-1482' },
-    { name: 'Isaac Clark', email: 'isaac.clark@example.com', phone: '555-951-2364' },
-    { name: 'Jessica Adams', email: 'jessica.adams@example.com', phone: '555-852-4671' },
-    { name: 'Kyle Foster', email: 'kyle.foster@example.com', phone: '555-963-5284' },
-    { name: 'Laura Bennett', email: 'laura.bennett@example.com', phone: '555-654-7389' },
-    { name: 'Mark Evans', email: 'mark.evans@example.com', phone: '555-753-1845' },
-    { name: 'Nina Gomez', email: 'nina.gomez@example.com', phone: '555-951-7823' },
-    { name: 'Oliver White', email: 'oliver.white@example.com', phone: '555-852-3917' },
-    { name: 'Paula Reed', email: 'paula.reed@example.com', phone: '555-963-5872' },
-    { name: 'Quinn Scott', email: 'quinn.scott@example.com', phone: '555-654-2934' },
-    { name: 'Rachel Green', email: 'rachel.green@example.com', phone: '555-753-4891' },
-    { name: 'Sam Walker', email: 'sam.walker@example.com', phone: '555-951-8245' },
-    { name: 'Tina Carter', email: 'tina.carter@example.com', phone: '555-852-3789' }
-];
+// const contacts = [
+//     { name: 'Alice Johnson', email: 'alice.johnson@example.com', phone: '555-123-4567' },
+//     { name: 'Bob Smith', email: 'bob.smith@example.com', phone: '555-987-6543' },
+//     { name: 'Charlie Brown', email: 'charlie.brown@example.com', phone: '555-876-5432' },
+//     { name: 'David Wilson', email: 'david.wilson@example.com', phone: '555-432-1098' },
+//     { name: 'Eva Martinez', email: 'eva.martinez@example.com', phone: '555-246-8102' },
+//     { name: 'Fiona Davis', email: 'fiona.davis@example.com', phone: '555-135-7913' },
+//     { name: 'George Harris', email: 'george.harris@example.com', phone: '555-864-2097' },
+//     { name: 'Hannah Lee', email: 'hannah.lee@example.com', phone: '555-753-1482' },
+//     { name: 'Isaac Clark', email: 'isaac.clark@example.com', phone: '555-951-2364' },
+//     { name: 'Jessica Adams', email: 'jessica.adams@example.com', phone: '555-852-4671' },
+//     { name: 'Kyle Foster', email: 'kyle.foster@example.com', phone: '555-963-5284' },
+//     { name: 'Laura Bennett', email: 'laura.bennett@example.com', phone: '555-654-7389' },
+//     { name: 'Mark Evans', email: 'mark.evans@example.com', phone: '555-753-1845' },
+//     { name: 'Nina Gomez', email: 'nina.gomez@example.com', phone: '555-951-7823' },
+//     { name: 'Oliver White', email: 'oliver.white@example.com', phone: '555-852-3917' },
+//     { name: 'Paula Reed', email: 'paula.reed@example.com', phone: '555-963-5872' },
+//     { name: 'Quinn Scott', email: 'quinn.scott@example.com', phone: '555-654-2934' },
+//     { name: 'Rachel Green', email: 'rachel.green@example.com', phone: '555-753-4891' },
+//     { name: 'Sam Walker', email: 'sam.walker@example.com', phone: '555-951-8245' },
+//     { name: 'Tina Carter', email: 'tina.carter@example.com', phone: '555-852-3789' }
+// ];
 
 
-function populateContacts() {
-    const contactList = document.getElementById('contactList');
-    // contactList.innerHTML = '';//Commented this out because i was getting a error on the console
+function displayContacts() {
 
-    contacts.forEach((contact, index) => {
-        const contactItem = document.createElement('div');
-        contactItem.className = 'contact-item';
-        contactItem.innerText = contact.name;
-        contactItem.onclick = function () {
-            openModal(index);
+    const cDecoded = decodeURI(document.cookie);
+    const cArray = cDecoded.split("; ");
+    let result; //result will store the userID
+
+    cArray.forEach(element => {
+        if (element.indexOf("UserId") == 0) {
+            result = element.substring(6 + 1);
+        }
+    }
+    )
+
+    let tmp = { UserID: result };
+
+    let jsonPayload = JSON.stringify(tmp);
+    let url = urlBase + '/DisplayContacts.' + extension;
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");//setRequestHeader is used to inform the server about
+    //the content that is being sent.
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                //alert(xhr.responseText);
+
+                console.log(jsonPayload);
+                contactArray = JSON.parse(xhr.responseText);
+
+                const contactList = document.getElementById('contactList');
+                // contactList.innerHTML = '';//Commented this out because i was getting a error on the console
+
+                contactArray.forEach((contact, index) => {
+                    const contactItem = document.createElement('div');
+                    contactItem.className = 'contact-item';
+                    contactItem.innerText = contact.name;
+                    contactItem.onclick = function () {
+                        openModal(index);
+                    };
+                    contactList.appendChild(contactItem);
+                });
+            }
         };
-        contactList.appendChild(contactItem);
-    });
+        xhr.send(jsonPayload);
+    }
+    catch (err) {
+        document.getElementById("updateResult").innerHTML = err.message;
+    }
+    document.getElementById('updateResult').innerHTML = "You have successfully updated your contact!"
+
+
+
 }
 
+// function populateContacts() {
+//     const contactList = document.getElementById('contactList');
+//     // contactList.innerHTML = '';//Commented this out because i was getting a error on the console
+
+//     contacts.forEach((contact, index) => {
+//         const contactItem = document.createElement('div');
+//         contactItem.className = 'contact-item';
+//         contactItem.innerText = contact.name;
+//         contactItem.onclick = function () {
+//             openModal(index);
+//         };
+//         contactList.appendChild(contactItem);
+//     });
+// }
+
 function openModal(name) {
-    const contact = contacts[index];
+    const contact = contactArray[index];
 
     document.getElementById('contactName').innerText = contact.name;
     document.getElementById('contactEmail').innerText = contact.email;
@@ -218,7 +275,8 @@ function closeModal() {
     populateContacts();
 }
 
-window.onload = populateContacts; //This populates the default array of contents to the contact
+// window.onload = populateContacts; //This populates the default array of contents to the contact
+window.onload = displayContacts;
 
 
 
@@ -285,8 +343,8 @@ function updateContact() {
 
     let tmp = {
         userId: result, oldFirstName: fName,
-        oldLastName:lName, phone:phone, email:email,
-        newFirstName:newFirstName, newLastName:newLastName
+        oldLastName: lName, phone: phone, email: email,
+        newFirstName: newFirstName, newLastName: newLastName
     };
 
     let jsonPayload = JSON.stringify(tmp);
@@ -420,7 +478,7 @@ function deleteContactFromModal() {
                 console.log(jsonPayload);
                 let jsonObject = JSON.parse(xhr.responseText);
 
-                
+
             }
         };
         xhr.send(jsonPayload);
@@ -431,7 +489,7 @@ function deleteContactFromModal() {
     // if (contactIndex !== -1) {
     //     contacts.splice(contactIndex, 1);
     //     closeModal();
-        // populateContacts();
+    // populateContacts();
     // }
 }
 
@@ -439,7 +497,7 @@ function deleteContactFromModal() {
 function search() {
     const searchName = document.getElementById('searchBar').value.trim().toLowerCase();
     const matchingContacts = contacts.filter(c => c.name.toLowerCase().startsWith(searchName));
-    let tmp = {search:searchName};
+    let tmp = { search: searchName };
 
     const contactList = document.getElementById('contactList');
     contactList.innerHTML = '';
@@ -583,7 +641,7 @@ function addContact() {
 
 //     closeSelectContactModal();
 //     openEditContactModal(fName, lName);
-//     // } 
+//     // }
 //     // else {
 //     //     document.getElementById('contactResult').innerHTML = "Contact not found.";
 //     // }
@@ -662,7 +720,7 @@ function addContact() {
 //     const contactPhone = document.getElementById('contactPhone').innerText;
 
 //     //Commented this out since we aren't looking for the name in our local contacts.
-//     // const contact = contacts.find(c => c.name === contactName); 
+//     // const contact = contacts.find(c => c.name === contactName);
 
 //     let textName = contact.name;
 //     const nameArray = textName.split(" ");
