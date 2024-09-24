@@ -438,7 +438,7 @@ function deleteContactFromModal() {
 
 function search() {
     const searchName = document.getElementById('searchBar').value.trim().toLowerCase();
-    // const matchingContacts = contacts.filter(c => c.name.toLowerCase().startsWith(searchName));
+    const matchingContacts = contacts.filter(c => c.name.toLowerCase().startsWith(searchName));
     let tmp = {search:searchName};
 
     const contactList = document.getElementById('contactList');
