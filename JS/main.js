@@ -16,13 +16,6 @@ function doLogin() {
     const login = document.getElementById('loginName').value;
     const password = document.getElementById('loginPassword').value;
 
-    // if (username && password) {
-    //     window.location.href = 'contacts.html';
-    // } 
-    // else {
-    //     document.getElementById('loginResult').innerHTML = "Please enter a valid username and password.";
-    // }
-
     document.getElementById("loginResult").innerHTML = "";
 
     let tmp = { login: login, password: password };
@@ -36,7 +29,8 @@ function doLogin() {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    alert(xhr.responseText);
+    // alert(xhr.responseText);
+
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
@@ -312,6 +306,7 @@ function openAddContactModal() {
 
 function closeAddContactModal() {
     document.getElementById("addContactModal").style.display = "none";
+    location.reload();
 }
 
 
