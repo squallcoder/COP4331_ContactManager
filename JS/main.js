@@ -220,6 +220,7 @@ function displayContacts() {
 
                 console.log(jsonPayload);
                 contactArray = JSON.parse(xhr.responseText);
+                console.log(jsonPayload);
 
                 const contactList = document.getElementById('contactList');
                 // contactList.innerHTML = '';//Commented this out because i was getting a error on the console
