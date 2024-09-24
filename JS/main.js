@@ -240,11 +240,8 @@ function displayContacts() {
         xhr.send(jsonPayload);
     }
     catch (err) {
-        document.getElementById("updateResult").innerHTML = err.message;
+        window.onload = err.message; //Prints message on the window
     }
-    document.getElementById('updateResult').innerHTML = "You have successfully updated your contact!"
-
-
 
 }
 
@@ -441,8 +438,9 @@ function deleteContact() {
         document.getElementById("deleteResult").innerHTML = err.message;
     }
 
-    // populateContacts();
+    
     document.getElementById('deleteResult').innerHTML = "Contact deleted successfully.";
+    displayContacts();
     // closeDeleteContactModal(); I commented this out so we can see the message that the Contact was deleted successfully message.
 }
 
