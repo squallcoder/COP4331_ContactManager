@@ -221,11 +221,10 @@ function displayContacts() {
                 console.log(jsonPayload);
                 contactArray = JSON.parse(xhr.responseText);
 
-                // for (let contact of contactsArray) {
-                //     console.log(contact);
-                // }
+                for (let contact of contactsArray) {
+                    console.log(contact);
+                }
 
-                console.log(contactArray[0]);
 
                 const contactList = document.getElementById('contactList');
                 // contactList.innerHTML = '';//Commented this out because i was getting a error on the console
