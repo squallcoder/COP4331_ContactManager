@@ -203,7 +203,7 @@ function displayContacts() {
     }
     )
 
-    let tmp = { UserId: result };
+    let tmp = { UserID: result };
 
     let jsonPayload = JSON.stringify(tmp);
     let url = urlBase + '/DisplayContacts.' + extension;
