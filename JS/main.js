@@ -5,7 +5,7 @@ var userId = 0;
 var holdUserID;
 let firstName = "";
 let lastName = "";
-let contactArray = [];
+// let contactArray = [];
 let displayFunctionCall;
 
 function doLogin() {
