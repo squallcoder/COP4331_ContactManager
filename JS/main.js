@@ -220,20 +220,25 @@ function displayContacts() {
 
                 console.log(jsonPayload);
                 contactArray = JSON.parse(xhr.responseText);
-                console.log(contactArray);
+
+                for (let contact of contactsArray) {
+                    console.log(contact);
+                }
+                
+                // console.log(contactArray);
 
                 const contactList = document.getElementById('contactList');
                 // contactList.innerHTML = '';//Commented this out because i was getting a error on the console
 
-                contactArray.forEach((contact, index) => {
-                    const contactItem = document.createElement('div');
-                    contactItem.className = 'contact-item';
-                    contactItem.innerText = contact.name;
-                    contactItem.onclick = function () {
-                        openModal(index);
-                    };
-                    contactList.appendChild(contactItem);
-                });
+                // contactArray.forEach((contact, index) => {
+                //     const contactItem = document.createElement('div');
+                //     contactItem.className = 'contact-item';
+                //     contactItem.innerText = contact.name;
+                //     contactItem.onclick = function () {
+                //         openModal(index);
+                //     };
+                //     contactList.appendChild(contactItem);
+                // });
             }
         };
         xhr.send(jsonPayload);
