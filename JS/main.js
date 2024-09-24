@@ -372,6 +372,7 @@ function updateContact() {
 
 function closeDeleteContactModal() {
     document.getElementById("deleteContactModal").style.display = "none";
+    location.reload();
 }
 
 
