@@ -220,13 +220,7 @@ function closeModal() {
 
 window.onload = populateContacts; //This populates the default array of contents to the contact
 
-// function openSelectContactModal() {
-//     document.getElementById("selectContactModal").style.display = "block";
-// }
 
-// function closeSelectContactModal() {
-//     document.getElementById("selectContactModal").style.display = "none";
-// }
 
 //This opens the block with all the users information
 function openEditContactModal(firstName, lastName) {
@@ -241,138 +235,6 @@ function openEditContactModal(firstName, lastName) {
 function closeEditContactModal() {
     document.getElementById("editContactModal").style.display = "none";
 }
-
-// function showContactToEdit() {
-//     const Fname = document.getElementById('updateContactFirstName').value;
-//     const Lname = document.getElementById('updateContactLastName').value;
-//     contact = firstName.concat(" ", lastName);
-
-//     let tmp = {oldFirstName:Fname, oldLastName:Lname};
-
-//     let jsonPayload = JSON.stringify(tmp);
-//     let url = urlBase + '/UpdateContacts.' + extension;
-
-//     let xhr = new XMLHttpRequest();
-
-//     xhr.open("POST", url, true);
-//     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");//setRequestHeader is used to inform the server about
-//                                                                             //the content that is being sent.
-//     try {
-//         xhr.onreadystatechange = function () {
-//             if (this.readyState == 4 && this.status == 200) {
-
-//                 console.log(jsonPayload);
-
-//                 let jsonObject = JSON.parse(xhr.responseText);
-//                 // console.log(jsonObject)
-//             }
-//         };
-//         xhr.send(jsonPayload);
-//         alert("Done!");
-//     }
-//     catch (err) {
-//         document.getElementById("contactResult").innerHTML = err.message;
-//     }
-
-
-//     closeSelectContactModal();
-//     openEditContactModal(fName, lName);
-//     // } 
-//     // else {
-//     //     document.getElementById('contactResult').innerHTML = "Contact not found.";
-//     // }
-// }
-
-// function saveContactEdits() {
-//     const cDecoded = decodeURI(document.cookie);
-//     const cArray = cDecoded.split("; ");
-//     let result; //result will store the userID
-
-//     cArray.forEach(element => {
-//         if (element.indexOf("UserId") == 0) {
-//             result = element.substring(6 + 1);
-//         }
-//     }
-//     )
-
-//     // document.getElementById("editContactName").textContent = contact;
-//     let oldFname = firstName;
-//     let oldLname = lastName;
-//     let newFname = document.getElementById("editFirstName").value;
-//     let newLname = document.getElementById("editLastName").value;
-//     let email = document.getElementById("editContactEmail").value;
-//     let phone = document.getElementById("editContactPhone").value;
-
-//     let tmp = {
-//         userId: result, oldFirstName: oldFname, oldLastName: oldLname,
-//         phone: phone, email: email, newFirstName: newFname, newLastName: newLname
-//     };
-
-//     let jsonPayload = JSON.stringify(tmp);
-//     let url = urlBase + '/UpdateContacts.' + extension;
-
-//     let xhr = new XMLHttpRequest();
-
-//     xhr.open("POST", url, true);
-//     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");//setRequestHeader is used to inform the server about
-//                                                                             //the content that is being sent.
-//     try {
-//         xhr.onreadystatechange = function () {
-//             if (this.readyState == 4 && this.status == 200) {
-
-//                 console.log(jsonPayload);
-//                 let jsonObject = JSON.parse(xhr.responseText);
-
-//                 //saveCookie();
-
-//             }
-//         };
-//         xhr.send(jsonPayload);
-//         alert("Done!");
-//     }
-//     catch (err) {
-//         document.getElementById("contactResult").innerHTML = err.message;
-//     }
-
-//     closeEditContactModal();
-// }
-
-//This function is used when we select a contact from the list of contacts
-// function openEditContactModalFromView() {
-
-//     const cDecoded = decodeURI(document.cookie);
-//     const cArray = cDecoded.split("; ");
-//     let result; //result will store the userID
-
-//     cArray.forEach(element => {
-//         if (element.indexOf("UserId") == 0) {
-//             result = element.substring(6 + 1);
-//         }
-//     }
-//     )
-
-//     const contactName = document.getElementById('contactName').innerText;
-//     const contactEmail = document.getElementById('contactEmail').innerText;
-//     const contactPhone = document.getElementById('contactPhone').innerText;
-
-//     //Commented this out since we aren't looking for the name in our local contacts.
-//     // const contact = contacts.find(c => c.name === contactName); 
-
-//     let textName = contact.name;
-//     const nameArray = textName.split(" ");
-
-
-//     if (contact) {
-//         document.getElementById("editContactName").textContent = contact.name;
-//         document.getElementById("editFirstName").value = nameArray[0];
-//         document.getElementById("editLastName").value = nameArray[1];
-//         document.getElementById("editContactEmail").value = contact.email;
-//         document.getElementById("editContactPhone").value = contact.phone;
-
-//         closeModal();
-//         document.getElementById("editContactModal").style.display = "block";
-//     }
-// }
 
 
 function openLogOutModal() {
@@ -686,3 +548,143 @@ function addContact() {
 }
 
 
+// function showContactToEdit() {
+//     const Fname = document.getElementById('updateContactFirstName').value;
+//     const Lname = document.getElementById('updateContactLastName').value;
+//     contact = firstName.concat(" ", lastName);
+
+//     let tmp = {oldFirstName:Fname, oldLastName:Lname};
+
+//     let jsonPayload = JSON.stringify(tmp);
+//     let url = urlBase + '/UpdateContacts.' + extension;
+
+//     let xhr = new XMLHttpRequest();
+
+//     xhr.open("POST", url, true);
+//     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");//setRequestHeader is used to inform the server about
+//                                                                             //the content that is being sent.
+//     try {
+//         xhr.onreadystatechange = function () {
+//             if (this.readyState == 4 && this.status == 200) {
+
+//                 console.log(jsonPayload);
+
+//                 let jsonObject = JSON.parse(xhr.responseText);
+//                 // console.log(jsonObject)
+//             }
+//         };
+//         xhr.send(jsonPayload);
+//         alert("Done!");
+//     }
+//     catch (err) {
+//         document.getElementById("contactResult").innerHTML = err.message;
+//     }
+
+
+//     closeSelectContactModal();
+//     openEditContactModal(fName, lName);
+//     // } 
+//     // else {
+//     //     document.getElementById('contactResult').innerHTML = "Contact not found.";
+//     // }
+// }
+
+// function saveContactEdits() {
+//     const cDecoded = decodeURI(document.cookie);
+//     const cArray = cDecoded.split("; ");
+//     let result; //result will store the userID
+
+//     cArray.forEach(element => {
+//         if (element.indexOf("UserId") == 0) {
+//             result = element.substring(6 + 1);
+//         }
+//     }
+//     )
+
+//     // document.getElementById("editContactName").textContent = contact;
+//     let oldFname = firstName;
+//     let oldLname = lastName;
+//     let newFname = document.getElementById("editFirstName").value;
+//     let newLname = document.getElementById("editLastName").value;
+//     let email = document.getElementById("editContactEmail").value;
+//     let phone = document.getElementById("editContactPhone").value;
+
+//     let tmp = {
+//         userId: result, oldFirstName: oldFname, oldLastName: oldLname,
+//         phone: phone, email: email, newFirstName: newFname, newLastName: newLname
+//     };
+
+//     let jsonPayload = JSON.stringify(tmp);
+//     let url = urlBase + '/UpdateContacts.' + extension;
+
+//     let xhr = new XMLHttpRequest();
+
+//     xhr.open("POST", url, true);
+//     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");//setRequestHeader is used to inform the server about
+//                                                                             //the content that is being sent.
+//     try {
+//         xhr.onreadystatechange = function () {
+//             if (this.readyState == 4 && this.status == 200) {
+
+//                 console.log(jsonPayload);
+//                 let jsonObject = JSON.parse(xhr.responseText);
+
+//                 //saveCookie();
+
+//             }
+//         };
+//         xhr.send(jsonPayload);
+//         alert("Done!");
+//     }
+//     catch (err) {
+//         document.getElementById("contactResult").innerHTML = err.message;
+//     }
+
+//     closeEditContactModal();
+// }
+
+//This function is used when we select a contact from the list of contacts
+// function openEditContactModalFromView() {
+
+//     const cDecoded = decodeURI(document.cookie);
+//     const cArray = cDecoded.split("; ");
+//     let result; //result will store the userID
+
+//     cArray.forEach(element => {
+//         if (element.indexOf("UserId") == 0) {
+//             result = element.substring(6 + 1);
+//         }
+//     }
+//     )
+
+//     const contactName = document.getElementById('contactName').innerText;
+//     const contactEmail = document.getElementById('contactEmail').innerText;
+//     const contactPhone = document.getElementById('contactPhone').innerText;
+
+//     //Commented this out since we aren't looking for the name in our local contacts.
+//     // const contact = contacts.find(c => c.name === contactName); 
+
+//     let textName = contact.name;
+//     const nameArray = textName.split(" ");
+
+
+//     if (contact) {
+//         document.getElementById("editContactName").textContent = contact.name;
+//         document.getElementById("editFirstName").value = nameArray[0];
+//         document.getElementById("editLastName").value = nameArray[1];
+//         document.getElementById("editContactEmail").value = contact.email;
+//         document.getElementById("editContactPhone").value = contact.phone;
+
+//         closeModal();
+//         document.getElementById("editContactModal").style.display = "block";
+//     }
+// }
+
+
+// function openSelectContactModal() {
+//     document.getElementById("selectContactModal").style.display = "block";
+// }
+
+// function closeSelectContactModal() {
+//     document.getElementById("selectContactModal").style.display = "none";
+// }
