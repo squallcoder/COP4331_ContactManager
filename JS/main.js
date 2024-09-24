@@ -5,7 +5,7 @@ var userId = 0;
 var holdUserID;
 let firstName = "";
 let lastName = "";
-// let contactArray = [];
+let contactArray = [];
 let displayFunctionCall;
 
 function doLogin() {
@@ -143,7 +143,7 @@ function createAccount() {
                         firstName = jsonObject.firstName;
                         lastName = jsonObject.lastName;
 
-                        window.location.href = "login.html";
+                        // window.location.href = "login.html";
 
                         saveCookie();
                     }
@@ -194,7 +194,6 @@ function createAccount() {
 
 function displayContacts() {
 
-    let contactArray = [];
     const cDecoded = decodeURI(document.cookie);
     const cArray = cDecoded.split("; ");
     let result; //result will store the userID
@@ -581,10 +580,7 @@ function addContact() {
                         document.getElementById("addResult").innerHTML = "Unable to Add Contact";
                         return;
                     }
-
-                    firstName = jsonObject.firstName;
-                    lastName = jsonObject.lastName;
-
+        
                     saveCookie();
                     // alert(userId);
 
@@ -599,7 +595,6 @@ function addContact() {
         // contactArray.splice(0, 0, newContact);
         document.getElementById("addResult").innerHTML = "Successfully Added Contact!"
         
-        displayContacts();
         
     }
     else {
