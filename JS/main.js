@@ -6,6 +6,8 @@ var holdUserID;
 let firstName = "";
 let lastName = "";
 let contactArray = [];
+let displayFunctionCall;
+
 function doLogin() {
 
     userId = 0;
@@ -192,6 +194,7 @@ function createAccount() {
 
 function displayContacts() {
 
+    let contactArray = [];
     const cDecoded = decodeURI(document.cookie);
     const cArray = cDecoded.split("; ");
     let result; //result will store the userID
@@ -593,8 +596,9 @@ function addContact() {
             document.getElementById("addResult").innerHTML = err.message;
         }
 
-        contactArray.splice(0, 0, newContact);
+        // contactArray.splice(0, 0, newContact);
         document.getElementById("addResult").innerHTML = "Successfully Added Contact!"
+        
         displayContacts();
         
     }
