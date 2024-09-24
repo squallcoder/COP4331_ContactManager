@@ -1,10 +1,7 @@
 <?php
 	
 	$inData = getRequestInfo();
-
-	// store userID on login
 	session_start();
-	$_SESSION['UserID'] = $userID;
 
 	$id = 0;
 	$firstName = "";
@@ -24,6 +21,7 @@
 
 		if( $row = $result->fetch_assoc()  )
 		{
+			$_SESSION['UserID'] = $row['ID'];
 			returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
 		}
 		else
