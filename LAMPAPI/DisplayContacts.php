@@ -21,9 +21,9 @@
         //     returnWithError("No user found");
         // }
 
-        $UserID = $_SESSION['UserId'];
+        $UserID = $_SESSION['UserID'];
 
-        $query = "SELECT * FROM Contacts WHERE UserID = '$UserId'";
+        $query = "SELECT * FROM Contacts WHERE UserID = '$UserID'";
         $result = $conn->query($query);
 
         // fill contacts array with contacts
