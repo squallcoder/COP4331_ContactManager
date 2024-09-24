@@ -274,7 +274,7 @@ function openModal(index) {
 
 function closeModal() {
     document.getElementById('contactModal').style.display = 'none';
-    displayContacts();
+    // displayContacts();
 }
 
 // window.onload = populateContacts; //This populates the default array of contents to the contact
