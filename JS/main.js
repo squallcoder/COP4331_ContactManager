@@ -402,7 +402,7 @@ function deleteContact() {
     }
 
     const contactName = fName.concat(" ", lName).toLowerCase();
-    const contactIndex = contacts.findIndex(c => c.name.toLowerCase() === contactName);
+    const contactIndex = contactArray.findIndex(c => c.name.toLowerCase() === contactName);
 
 
     let tmp = { userId: result, firstName: fName, lastName: lName };
@@ -431,7 +431,7 @@ function deleteContact() {
                 lastName = jsonObject.lastName;
 
                 //saveCookie();
-                // contacts.splice(contactIndex, 1);
+                contactArray.splice(contactIndex, 1);
             }
         };
         xhr.send(jsonPayload);
@@ -596,8 +596,8 @@ function addContact() {
             document.getElementById("addResult").innerHTML = err.message;
         }
 
-        contacts.splice(0, 0, newContact);
-        // populateContacts();
+        contactArray.splice(0, 0, newContact);
+        // displayContacts();
         closeAddContactModal();
     }
     else {
