@@ -594,7 +594,7 @@ function addContact() {
         }
 
         contactArray.splice(0, 0, newContact);
-        document.getElementById("addResult".innerHTML) = "Successfully Added Contact!"
+        document.getElementById("addResult").innerHTML = "Successfully Added Contact!"
         displayContacts();
         
     }
