@@ -205,7 +205,7 @@ function populateContacts() {
 }
 
 function openModal(name) {
-    // const contact = contacts[index];
+    const contact = contacts[index];
 
     document.getElementById('contactName').innerText = contact.name;
     document.getElementById('contactEmail').innerText = contact.email;
