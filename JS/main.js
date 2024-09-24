@@ -266,9 +266,9 @@ function displayContacts() {
 function openModal(index) {
     const contact = contactArray[index];
 
-    document.getElementById('contactName').innerText = contact.name;
-    document.getElementById('contactEmail').innerText = contact.email;
-    document.getElementById('contactPhone').innerText = contact.phone;
+    document.getElementById('contactName').innerText = contact.FirstName.concat(" ", contact.LastName);
+    document.getElementById('contactEmail').innerText = contact.Email;
+    document.getElementById('contactPhone').innerText = contact.Phone;
     document.getElementById('contactModal').style.display = 'block';
 }
 
