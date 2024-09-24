@@ -218,7 +218,7 @@ function closeModal() {
     populateContacts();
 }
 
-window.onload = populateContacts; //This populates the default array of contents to the contact
+window.onload = populateContacts(); //This populates the default array of contents to the contact
 
 
 
