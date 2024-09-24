@@ -221,7 +221,7 @@ function displayContacts() {
                 console.log(jsonPayload);
                 contactArray = JSON.parse(xhr.responseText);
 
-                for (let contact of contactsArray) {
+                for (let contact of contactArray) {
                     console.log(contact);
                 }
 
