@@ -225,7 +225,7 @@ function displayContacts() {
                 //     console.log(contact);
                 // }
 
-                // console.log(contactArray);
+                console.log(contactArray);
 
                 const contactList = document.getElementById('contactList');
                 // contactList.innerHTML = '';//Commented this out because i was getting a error on the console
