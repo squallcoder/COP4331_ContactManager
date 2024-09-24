@@ -583,9 +583,8 @@ function addContact() {
                     lastName = jsonObject.lastName;
 
                     saveCookie();
-                    alert(userId);
+                    // alert(userId);
 
-                    // window.location.href = "contacts.html";
                 }
             };
             xhr.send(jsonPayload);
@@ -595,8 +594,9 @@ function addContact() {
         }
 
         contactArray.splice(0, 0, newContact);
-        // displayContacts();
-        closeAddContactModal();
+        document.getElementById("addResult".innerHTML) = "Successfully Added Contact!"
+        displayContacts();
+        
     }
     else {
         document.getElementById('addResult').innerHTML = "Please fill out all fields.";
