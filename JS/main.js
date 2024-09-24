@@ -397,7 +397,7 @@ function deleteContact() {
     }
 
     const contactName = fName.concat(" ", lName).toLowerCase();
-    const contactIndex = contactArray.findIndex(c => c.name.toLowerCase() === contactName);
+    const contactIndex = contactArray.findIndex(c => c.FirstName.concat(" ", c.LastName) === contactName);
 
 
     let tmp = { userId: result, firstName: fName, lastName: lName };
