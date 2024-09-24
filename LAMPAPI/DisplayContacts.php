@@ -59,7 +59,7 @@
 
     function returnWithInfo($contacts)
     {
-        $retValue = '{"contacts":' . json_encode($contacts) . ',"}';
+        $retValue = '{"contacts":' . json_encode($contacts) . ',"error":""}';
         sendResultInfoAsJson($retValue);
     }
 ?>
