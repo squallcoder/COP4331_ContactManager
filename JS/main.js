@@ -197,7 +197,7 @@ function displayContacts() {
     let result; //result will store the userID
 
     cArray.forEach(element => {
-        if (element.indexOf("UserId") == 0) {
+        if (element.indexOf("UserID") == 0) {
             result = element.substring(6 + 1);
         }
     }
