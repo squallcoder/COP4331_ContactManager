@@ -517,7 +517,7 @@ function search() {
 
                 let jsonObject = JSON.parse(xhr.responseText);
                 console.log(jsonObject);
-                
+
                 let contactName = jsonObject.firstName.concat(" ",  jsonObject.lastName); 
                 console.log(contactName);
 
@@ -529,7 +529,7 @@ function search() {
                     matchingContacts.forEach(contact => {
                         const contactElement = document.createElement('div');
                         contactElement.classList.add('contact-item');
-                        contactElement.innerText = contact.name;
+                        contactElement.innerText = contactName.name;
 
                         contactElement.addEventListener('click', () => {
                             // const contactIndex = contacts.findIndex(c => c.name.toLowerCase() === contact.name.toLowerCase());
