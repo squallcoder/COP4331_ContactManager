@@ -618,7 +618,7 @@ function addContact() {
                         return;
                     }
         
-                    saveCookie();
+                    // saveCookie();
                     // alert(userId);
 
                 }
