@@ -9,18 +9,36 @@
     {
 	    returnWithError($conn->connect_error);
     } else {
-        $id = $inData["Id"];
-        $fName = $inData["firstName"];
-        $lName = $inData["lastName"];
-        $phone = $inData["phone"];
+        // $id = $inData["userId"];
+        $oldFname = $inData["oldFirstName"];
+        $oldLname = $inData["oldLastName"];
+        $newFname = $inData["newFirstName"];
+        $newLname = $inData["newLastName"];
         $email = $inData["email"];
+        $phone = $inData["phone"];
 
-        $query = "UPDATE Contacts SET FirstName='$fName', LastName='$lName', Phone='$phone', Email='$email' WHERE ID='$id';";
+        // fetch current contact info before updating
+        $selectQuery = "SELECT * FROM Contacts WHERE FirstName='$oldFname' AND LastName='$oldLname'";
+        $result = $conn->query($selectQuery);
+
+        if($result->num_rows > 0) {
+            // fetch id of contact to update
+            $row = $result->fetch_assoc();
+            $id = $row["ID"];
+        } else {
+            returnWithError("Contact with current info not found");
+        }
+
+        //new query after meeting
+        $query = "UPDATE Contacts SET FirstName='$newFname', LastName='$newLname', Phone='$phone', Email='$email' WHERE FirstName='$oldFname' AND LastName='$oldLname'";
+
 		mysqli_query($conn,$query);
 
         $conn->close();
 
-        returnWithInfo($id, $fName, $lName,  $phone, $email);
+        //new
+        returnWithInfo($id, $newFname, $newLname, $phone, $email);
+
     }
 
     function getRequestInfo()
@@ -36,13 +54,13 @@
 
     function returnWithError( $err )
 	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		$retValue = '{"id":0,"FirstName":"","LastName":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 
-    function returnWithInfo( $id, $firstName, $lastName, $phone, $email)
+    function returnWithInfo( $id, $newFirstName, $newLastName, $phone, $email)
 	{
-		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","phone":"' . $phone . '", "email":"' . $email . '""error":""}';
+		$retValue = '{"id":' . $id . ',"FirstName":"' . $newFirstName . '","LastName":"' . $newLastName . '","phone":"' . $phone . '", "email":"' . $email . '""error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 

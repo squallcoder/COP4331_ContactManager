@@ -2,10 +2,12 @@
 
     //requesting info
     $inData = getRequestInfo();
+	session_start();
 
     $fName = $inData["firstName"];
 	$lName = $inData["lastName"];
-	$userID= $inData["userId"];
+	$userID = $_SESSION['UserID'];
+	
     $conn = new mysqli("localhost", "Admin", "Team7", "SmallProject");
 
     if($conn->connect_error )
