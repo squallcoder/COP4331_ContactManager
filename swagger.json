@@ -118,7 +118,7 @@
         "parameters" : [ {
           "in" : "body",
           "name" : "searchItem",
-          "description" : "contactItem",
+          "description" : "Contact Search",
           "schema" : {
             "$ref" : "#/definitions/Search"
           }
@@ -260,19 +260,11 @@
     },
     "Search" : {
       "type" : "object",
-      "required" : [ "userId", "firstName", "lastName" ],
+      "required" : [ "search" ],
       "properties" : {
-        "userId" : {
-          "type" : "number",
-          "example" : 1
-        },
-        "firstName" : {
+        "search" : {
           "type" : "string",
           "example" : "Jon"
-        },
-        "lastName" : {
-          "type" : "string",
-          "example" : "Doe"
         }
       }
     },
@@ -286,7 +278,7 @@
         },
         "firstName" : {
           "type" : "string",
-          "example" : "Jon"
+          "example" : "John"
         },
         "lastName" : {
           "type" : "string",
@@ -296,7 +288,7 @@
     },
     "Update" : {
       "type" : "object",
-      "required" : [ "userId", "oldFirstName", "oldLastName", "phone", "email", "newFirstName", "newLastName" ],
+      "required" : [ "userId", "oldFirstName", "oldLastName", "newFirstName", "newLastName", "phone", "email" ],
       "properties" : {
         "userId" : {
           "type" : "number",
@@ -310,6 +302,14 @@
           "type" : "string",
           "example" : "Doe"
         },
+        "newFirstName" : {
+          "type" : "string",
+          "example" : "Joe"
+        },
+        "newLastName" : {
+          "type" : "string",
+          "example" : "Smith"
+        },
         "email" : {
           "type" : "string",
           "example" : "example@gmail.com"
@@ -317,14 +317,6 @@
         "phone" : {
           "type" : "string",
           "example" : "333-333-3333"
-        },
-        "newFirstName" : {
-          "type" : "string",
-          "example" : "Jonny"
-        },
-        "newLastName" : {
-          "type" : "string",
-          "example" : "Appleseed"
         }
       }
     }
