@@ -288,19 +288,27 @@
     },
     "Update" : {
       "type" : "object",
-      "required" : [ "userId", "firstName", "lastName", "phone", "email" ],
+      "required" : [ "userId", "oldFirstName", "oldLastName", "newFirstName", "newLastName", "phone", "email" ],
       "properties" : {
         "userId" : {
           "type" : "number",
           "example" : 1
         },
-        "firstName" : {
+        "oldFirstName" : {
           "type" : "string",
           "example" : "John"
         },
-        "lastName" : {
+        "oldLastName" : {
           "type" : "string",
           "example" : "Doe"
+        },
+        "newFirstName" : {
+          "type" : "string",
+          "example" : "Joe"
+        },
+        "newLastName" : {
+          "type" : "string",
+          "example" : "Smith"
         },
         "email" : {
           "type" : "string",
