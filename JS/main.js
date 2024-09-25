@@ -569,7 +569,7 @@ function deleteContactFromModal() {
 
                 if(contactIndex != -1){
                 contactArray.splice(contactIndex, 1);
-                document.getElementById("deleteResult").innerHTML = "Successfully Deleted the Contact!"
+                document.getElementById("contactResult").innerHTML = "Successfully Deleted the Contact!"
                 }
 
             }
@@ -577,7 +577,7 @@ function deleteContactFromModal() {
         xhr.send(jsonPayload);
     }
     catch (err) {
-        document.getElementById("deleteResult").innerHTML = err.message;
+        document.getElementById("contactResult").innerHTML = err.message;
     }
 
     document.getElementById('contactResult').innerHTML = "Contact deleted successfully.";
