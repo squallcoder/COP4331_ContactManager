@@ -199,6 +199,10 @@ function displayContacts() {
     }
     )
 
+    const contacts = document.getElementsByClassName("contactList");
+    contactList.innerHTML = ' ';
+    contactArray.length = 0;
+
     let tmp = { UserID: result };
 
     let jsonPayload = JSON.stringify(tmp);
