@@ -516,7 +516,8 @@ function search() {
             if (this.readyState == 4 && this.status == 200) {
 
                 let jsonObject = JSON.parse(xhr.responseText);
-
+                console.log(jsonObject);
+                
                 let contactName = jsonObject.firstName.concat(" ",  jsonObject.lastName); 
                 console.log(contactName);
 

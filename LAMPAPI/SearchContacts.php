@@ -54,7 +54,7 @@ function returnWithError($err)
 function returnWithInfo($firstName, $lastName)
 {
     $retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
-		sendResultInfoAsJson( $retValue );
+	sendResultInfoAsJson( $retValue );
 }
 
 ?>
