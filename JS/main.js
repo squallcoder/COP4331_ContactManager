@@ -293,7 +293,7 @@ function showContactToEdit() {
 
     //const contact = contactArray.find(c => (c.FirstName.toLowerCase() === firstName.toLowerCase()) && (c.LastName.toLowerCase() === lastName.toLowerCase()));
     const contactIndex = contactArray.findIndex(c => (c.FirstName.toLowerCase() === firstName.toLowerCase()) && (c.LastName.toLowerCase() === lastName.toLowerCase()));
-    console.log(contactArray[contactIndex].FirstName);
+    contact = contactArray[contactIndex];
 
     if (contact) {
         closeSelectContactModal();
