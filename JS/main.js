@@ -580,6 +580,8 @@ function deleteContactFromModal() {
         document.getElementById("deleteResult").innerHTML = err.message;
     }
 
+    document.getElementById('contactResult').innerHTML = "Contact deleted successfully.";
+
     // if (contactIndex !== -1) {
     //     contacts.splice(contactIndex, 1);
     //     closeModal();
