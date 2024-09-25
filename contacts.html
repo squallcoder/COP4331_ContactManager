@@ -15,7 +15,7 @@
 			<div class="buttons-container">
 				<button type="button" id="addButton" onclick="openAddContactModal()">Add Contact</button>
 				<button type="button" id="deleteButton" onclick="openDeleteContactModal()">Delete Contact</button>
-				<button type="button" id="updateButton" onclick="openUpdateContactModal()">Update Contact</button>
+				<button type="button" id="updateButton" onclick="openSelectContactModal()">Update Contact</button>
 			</div>
 
 			<div class="contact-container">
@@ -40,8 +40,18 @@
 			</div>
 		</div>
 
-
 		<!-- //This is a page where you can edit the contact  -->
+		<div id="selectContactModal" class="modal">
+			<div class="modal-content">
+				<span class="close" onclick="closeSelectContactModal()">&times;</span>
+				<h2>Enter the Contact You want to update</h2>
+				<p><strong>First Name:</strong> <input type="text" id="oldFirstName"></p>
+				<p><strong>Last Name:</strong> <input type="text" id="oldLastName"></p>
+				<button class="buttons"onclick="showContactToEdit()">Show Contact</button>
+				<span id="contactResult"></span>
+			</div>
+		</div>
+
 		<div id="editContactModal" class="modal">
 			<div class="modal-content">
 				<span class="close" onclick="closeEditContactModal()">&times;</span>
@@ -83,7 +93,6 @@
 				<span id="logOutRusult"></span>
 			</div>
 		</div>
-
 		
 		<div id="deleteContactModal" class="modal">
 			<div class="modal-content">
@@ -95,7 +104,6 @@
 			<span id="deleteResult"></span>
 			</div>
 		</div>
-
 
 	</body>
 </html>

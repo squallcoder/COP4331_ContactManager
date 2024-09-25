@@ -276,13 +276,29 @@ window.onload = displayContacts;
 
 
 //This opens the block with all the users information
-function openEditContactModal(firstName, lastName) {
+function openEditContactModal(contact) {
+    document.getElementById("editFirstName").textContent = contact.FirstName;
+    document.getElementById("editLastName").textContent = contact.LastName;
+    document.getElementById("editNewFirstName").textContent = contact.FirstName;
+    document.getElementById("editNewLastName").textContent = contact.LastName;
+    document.getElementById("editContactEmail").value = contact.email;
+    document.getElementById("editContactPhone").value = contact.phone;
     document.getElementById("editContactModal").style.display = "block";
+}
 
+function showContactToEdit() {
+    const firstName = document.getElementById('oldFirstName').value;
+	const lastName = document.getElementById('oldLastName').value;
 
-    // saveContactEdits();
-    // document.getElementById("editContactEmail").value = contact.email;
-    // document.getElementById("editContactPhone").value = contact.phone;
+    const contact = contactArray.find(c => (c.FirstName.toLowerCase() === firstName.toLowerCase()) && (c.LastName.toLowerCase() === lastName.toLowerCase()));
+
+    if (contact) {
+        closeSelectContactModal();
+        openEditContactModal(contact);
+    } 
+	else {
+        document.getElementById('contactResult').innerHTML = "Contact not found.";
+    }
 }
 
 function closeEditContactModal() {
@@ -317,6 +333,14 @@ function openDeleteContactModal() {
 
 function openUpdateContactModal() {
     document.getElementById("editContactModal").style.display = "block";
+}
+
+function openSelectContactModal() {
+    document.getElementById("selectContactModal").style.display = "block";
+}
+
+function closeSelectContactModal() {
+    document.getElementById("selectContactModal").style.display = "none";
 }
 
 function updateContact() {
