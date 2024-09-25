@@ -372,6 +372,7 @@ function updateContact() {
 
 function closeDeleteContactModal() {
     document.getElementById("deleteContactModal").style.display = "none";
+    location.reload();
 }
 
 
@@ -438,7 +439,6 @@ function deleteContact() {
 
     
     document.getElementById('deleteResult').innerHTML = "Contact deleted successfully.";
-    displayContacts();
     // closeDeleteContactModal(); I commented this out so we can see the message that the Contact was deleted successfully message.
 }
 
