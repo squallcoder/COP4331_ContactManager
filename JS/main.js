@@ -535,8 +535,8 @@ function deleteContact() {
 function deleteContactFromModal() {
     const name = document.getElementById('contactName').innerText;
     const words = name.split(" ");
-    const firstName = words[0];
-	const lastName = words[1];
+    const fName = words[0];
+	const lName = words[1];
 
     //const contactIndex = contactArray.findIndex(c => (c.FirstName.toLowerCase() === firstName.toLowerCase()) && (c.LastName.toLowerCase() === lastName.toLowerCase()));
 
