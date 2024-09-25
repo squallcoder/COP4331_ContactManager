@@ -304,7 +304,6 @@ function showContactToEdit() {
 
 function updateContactModal() {
     const name = document.getElementById('contactName').innerText;
-    alert(name);
     const words = name.split(" ");
     const firstName = words[0];
 	const lastName = words[1];
