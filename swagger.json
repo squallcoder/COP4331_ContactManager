@@ -237,7 +237,7 @@
       "required" : [ "userId", "firstName", "lastName", "email", "phone" ],
       "properties" : {
         "userId" : {
-          "type" : "integer",
+          "type" : "number",
           "example" : 1
         },
         "firstName" : {
@@ -273,7 +273,7 @@
       "required" : [ "userId", "firstName", "lastName" ],
       "properties" : {
         "userId" : {
-          "type" : "integer",
+          "type" : "number",
           "example" : 1
         },
         "firstName" : {
@@ -291,7 +291,7 @@
       "required" : [ "userId", "firstName", "lastName", "phone", "email" ],
       "properties" : {
         "userId" : {
-          "type" : "integer",
+          "type" : "number",
           "example" : 1
         },
         "firstName" : {
