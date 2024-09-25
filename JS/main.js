@@ -311,7 +311,7 @@ function openAddContactModal() {
 
 function closeAddContactModal() {
     document.getElementById("addContactModal").style.display = "none";
-    location.reload();
+    // location.reload();
 }
 
 
@@ -595,7 +595,7 @@ function addContact() {
         // contactArray.splice(0, 0, newContact);
         document.getElementById("addResult").innerHTML = "Successfully Added Contact!"
         
-        
+        displayContacts();
     }
     else {
         document.getElementById('addResult').innerHTML = "Please fill out all fields.";
