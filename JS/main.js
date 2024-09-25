@@ -476,14 +476,69 @@ function deleteContact() {
     // closeDeleteContactModal(); I commented this out so we can see the message that the Contact was deleted successfully message.
 }
 
-function deleteContactFromModal() {
-    const contactName = document.getElementById('contactName').innerText;
-    const contactIndex = contactArray.findIndex(c => c.FirstName.concat(" ", c.LastName).toLowerCase() === contactName.toLowerCase());
-    console.log(contactIndex);
-    console.log(contactName.toLowerCase());
+// function deleteContactFromModal() {
+//     const contactName = document.getElementById('contactName').innerText;
+//     const contactIndex = contactArray.findIndex(c => c.FirstName.concat(" ", c.LastName).toLowerCase() === contactName.toLowerCase());
+//     console.log(contactIndex);
+//     console.log(contactName.toLowerCase());
 
-    const fName = document.getElementById('deleteContactFirstName').value.trim();
-    const lName = document.getElementById('deleteContactLastName').value.trim();
+//     const fName = document.getElementById('deleteContactFirstName').value.trim();
+//     const lName = document.getElementById('deleteContactLastName').value.trim();
+
+//     const cDecoded = decodeURI(document.cookie);
+//     const cArray = cDecoded.split("; ");
+//     let result; //result will store the userID
+
+//     cArray.forEach(element => {
+//         if (element.indexOf("UserId") == 0) {
+//             result = element.substring(6 + 1);
+//         }
+//     }
+//     )
+
+//     let tmp = { userId: result, firstName: fName, lastName: lName };
+//     let jsonPayload = JSON.stringify(tmp);
+//     let url = urlBase + '/DeleteContacts.' + extension;
+
+//     let xhr = new XMLHttpRequest();
+
+//     xhr.open("POST", url, true);
+//     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");//setRequestHeader is used to inform the server about
+//     //the content that is being sent.
+//     try {
+//         xhr.onreadystatechange = function () {
+//             if (this.readyState == 4 && this.status == 200) {
+//                 //alert(xhr.responseText);
+//                 console.log(jsonPayload);
+//                 let jsonObject = JSON.parse(xhr.responseText);
+
+//                 if(contactIndex != -1){
+//                 contactArray.splice(contactIndex, 1);
+//                 document.getElementById("deleteResult").innerHTML = "Successfully Deleted the Contact!"
+//                 }
+
+//             }
+//         };
+//         xhr.send(jsonPayload);
+//     }
+//     catch (err) {
+//         document.getElementById("deleteResult").innerHTML = err.message;
+//     }
+
+//     // if (contactIndex !== -1) {
+//     //     contacts.splice(contactIndex, 1);
+//     //     closeModal();
+//     // populateContacts();
+//     // }
+// }
+
+function deleteContactFromModal() {
+    const name = document.getElementById('contactName').innerText;
+    const words = name.split(" ");
+    const firstName = words[0];
+	const lastName = words[1];
+
+    //const contactIndex = contactArray.findIndex(c => (c.FirstName.toLowerCase() === firstName.toLowerCase()) && (c.LastName.toLowerCase() === lastName.toLowerCase()));
 
     const cDecoded = decodeURI(document.cookie);
     const cArray = cDecoded.split("; ");
@@ -618,7 +673,7 @@ function addContact() {
                         return;
                     }
         
-                    // saveCookie();
+                    //saveCookie();
                     // alert(userId);
 
                 }
