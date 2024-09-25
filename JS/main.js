@@ -199,10 +199,6 @@ function displayContacts() {
     }
     )
 
-    // const contacts = document.getElementsByClassName("contactList");
-    // contactList.innerHTML = ' ';
-    // contactArray.length = 0;
-
     let tmp = { UserID: result };
 
     let jsonPayload = JSON.stringify(tmp);
@@ -291,7 +287,6 @@ function openEditContactModal(firstName, lastName) {
 
 function closeEditContactModal() {
     document.getElementById("editContactModal").style.display = "none";
-    location.reload();
 }
 
 
@@ -376,7 +371,6 @@ function updateContact() {
 
 function closeDeleteContactModal() {
     document.getElementById("deleteContactModal").style.display = "none";
-    location.reload();
 }
 
 
@@ -402,7 +396,7 @@ function deleteContact() {
     }
 
     const contactName = fName.concat(" ", lName).toLowerCase();
-    const contactIndex = contactArray.findIndex(c => c.FirstName.concat(" ", c.LastName) === contactName);
+    const contactIndex = contactArray.findIndex(c => c.name.toLowerCase() === contactName);
 
 
     let tmp = { userId: result, firstName: fName, lastName: lName };
@@ -441,8 +435,9 @@ function deleteContact() {
         document.getElementById("deleteResult").innerHTML = err.message;
     }
 
-
+    
     document.getElementById('deleteResult').innerHTML = "Contact deleted successfully.";
+    displayContacts();
     // closeDeleteContactModal(); I commented this out so we can see the message that the Contact was deleted successfully message.
 }
 
@@ -498,59 +493,29 @@ function deleteContactFromModal() {
 
 function search() {
     const searchName = document.getElementById('searchBar').value.trim().toLowerCase();
-    // const matchingContacts = contact.filter(c => c.name.toLowerCase().startsWith(searchName));
-    const matchingContacts = contactArray.filter(c => c.FirstName.concat(" ", c.LastName).toLowerCase().startsWith(searchName));
-
+    const matchingContacts = contacts.filter(c => c.name.toLowerCase().startsWith(searchName));
     let tmp = { search: searchName };
 
-    let jsonPayload = JSON.stringify(tmp);
-    let url = urlBase + '/SearchContacts.' + extension;
+    const contactList = document.getElementById('contactList');
+    contactList.innerHTML = '';
 
-    let xhr = new XMLHttpRequest();
+    if (matchingContacts.length > 0) {
+        matchingContacts.forEach(contact => {
+            const contactElement = document.createElement('div');
+            contactElement.classList.add('contact-item');
+            contactElement.innerText = contact.name;
 
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");//setRequestHeader is used to inform the server about
-                                                                            //the content that is being sent.
-    try {
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
+            contactElement.addEventListener('click', () => {
+                // const contactIndex = contacts.findIndex(c => c.name.toLowerCase() === contact.name.toLowerCase());
+                // openModal(contactIndex);//Pass in name , phone number , email 
+                openModal(searchName);
+            });
 
-                let jsonObject = JSON.parse(xhr.responseText);
-                console.log(jsonObject);
-
-                let contactName = jsonObject.firstName.concat(" ",  jsonObject.lastName); 
-                console.log(contactName);
-
-
-                const contactList = document.getElementById('contactList');
-                contactList.innerHTML = '';
-
-                if (matchingContacts.length > 0) {
-                    matchingContacts.forEach(contact => {
-                        const contactElement = document.createElement('div');
-                        contactElement.classList.add('contact-item');
-                        contactElement.innerText = contactName.name;
-
-                        contactElement.addEventListener('click', () => {
-                            // const contactIndex = contacts.findIndex(c => c.name.toLowerCase() === contact.name.toLowerCase());
-                            // openModal(contactIndex);//Pass in name , phone number , email 
-                            openModal(searchName);
-                        });
-
-                        contactList.appendChild(contactElement);
-                    });
-                }
-                else {
-                    contactList.innerHTML = '<div>No contacts found.</div>';
-                }
-
-            }
-        };
-        xhr.send(jsonPayload);
-        alert("Done!");
+            contactList.appendChild(contactElement);
+        });
     }
-    catch (err) {
-        document.getElementById("deleteResult").innerHTML = err.message;
+    else {
+        contactList.innerHTML = '<div>No contacts found.</div>';
     }
 }
 
@@ -610,7 +575,8 @@ function addContact() {
                         document.getElementById("addResult").innerHTML = "Unable to Add Contact";
                         return;
                     }
-
+        
+                    saveCookie();
                     // alert(userId);
 
                 }
@@ -623,7 +589,8 @@ function addContact() {
 
         // contactArray.splice(0, 0, newContact);
         document.getElementById("addResult").innerHTML = "Successfully Added Contact!"
-
+        
+        
     }
     else {
         document.getElementById('addResult').innerHTML = "Please fill out all fields.";
