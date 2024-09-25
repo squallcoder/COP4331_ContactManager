@@ -538,7 +538,7 @@ function deleteContactFromModal() {
     const fName = words[0];
 	const lName = words[1];
 
-    //const contactIndex = contactArray.findIndex(c => (c.FirstName.toLowerCase() === firstName.toLowerCase()) && (c.LastName.toLowerCase() === lastName.toLowerCase()));
+    const contactIndex = contactArray.findIndex(c => (c.FirstName.toLowerCase() === firstName.toLowerCase()) && (c.LastName.toLowerCase() === lastName.toLowerCase()));
 
     const cDecoded = decodeURI(document.cookie);
     const cArray = cDecoded.split("; ");
