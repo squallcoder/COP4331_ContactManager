@@ -278,7 +278,7 @@
         },
         "firstName" : {
           "type" : "string",
-          "example" : "Jon"
+          "example" : "John"
         },
         "lastName" : {
           "type" : "string",
