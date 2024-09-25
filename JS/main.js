@@ -445,6 +445,8 @@ function deleteContact() {
 function deleteContactFromModal() {
     const contactName = document.getElementById('contactName').innerText;
     const contactIndex = contactArray.findIndex(c => c.FirstName.concat(" ", c.LastName).toLowerCase() === contactName.toLowerCase());
+    console.log(contactIndex);
+    console.log(contact.name.toLowerCase());
 
     const fName = document.getElementById('deleteContactFirstName').value.trim();
     const lName = document.getElementById('deleteContactLastName').value.trim();
@@ -476,7 +478,10 @@ function deleteContactFromModal() {
                 console.log(jsonPayload);
                 let jsonObject = JSON.parse(xhr.responseText);
 
+                if(contactIndex != -1){
                 contactArray.splice(contactIndex, 1);
+                document.getElementById("deleteResult").innerHTML = "Successfully Deleted the Contact!"
+                }
 
             }
         };
@@ -486,7 +491,6 @@ function deleteContactFromModal() {
         document.getElementById("deleteResult").innerHTML = err.message;
     }
 
-    closeModal();
     // if (contactIndex !== -1) {
     //     contacts.splice(contactIndex, 1);
     //     closeModal();
