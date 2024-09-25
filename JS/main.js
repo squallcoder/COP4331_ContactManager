@@ -277,12 +277,10 @@ window.onload = displayContacts;
 
 //This opens the block with all the users information
 function openEditContactModal(contact) {
-    alert(contact.FirstName);
-    console.log(contact);
-    document.getElementById("editFirstName").textContent = contact.FirstName;
-    document.getElementById("editLastName").textContent = contact.LastName;
-    document.getElementById("editNewFirstName").textContent = contact.FirstName;
-    document.getElementById("editNewLastName").textContent = contact.LastName;
+    document.getElementById("editFirstName").value = contact.FirstName;
+    document.getElementById("editLastName").value = contact.LastName;
+    document.getElementById("editNewFirstName").value = contact.FirstName;
+    document.getElementById("editNewLastName").value = contact.LastName;
     document.getElementById("editContactEmail").value = contact.email;
     document.getElementById("editContactPhone").value = contact.phone;
     document.getElementById("editContactModal").style.display = "block";
