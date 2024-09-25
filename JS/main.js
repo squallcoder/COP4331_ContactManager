@@ -581,7 +581,6 @@ function addContact() {
                         return;
                     }
         
-                    saveCookie();
                     // alert(userId);
 
                 }
