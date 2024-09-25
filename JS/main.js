@@ -277,7 +277,8 @@ window.onload = displayContacts;
 
 //This opens the block with all the users information
 function openEditContactModal(contact) {
-    alert(contactArray);
+    alert(contact.FirstName);
+    console.log(contact);
     document.getElementById("editFirstName").textContent = contact.FirstName;
     document.getElementById("editLastName").textContent = contact.LastName;
     document.getElementById("editNewFirstName").textContent = contact.FirstName;
