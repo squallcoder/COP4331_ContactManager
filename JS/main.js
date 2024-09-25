@@ -287,6 +287,7 @@ function openEditContactModal(firstName, lastName) {
 
 function closeEditContactModal() {
     document.getElementById("editContactModal").style.display = "none";
+    location.reload();
 }
 
 
