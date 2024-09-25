@@ -267,7 +267,7 @@ function openModal(index) {
 
 function closeModal() {
     document.getElementById('contactModal').style.display = 'none';
-    // displayContacts();
+    location.reload();
 }
 
 // window.onload = populateContacts; //This populates the default array of contents to the contact
@@ -444,7 +444,7 @@ function deleteContact() {
 
 function deleteContactFromModal() {
     const contactName = document.getElementById('contactName').innerText;
-    // const contactIndex = contacts.findIndex(c => c.name === contactName);
+    const contactIndex = contactArray.findIndex(c => c.FirstName(" ", c.LastName).toLowerCase() === contactName.toLowerCase());
 
     const fName = document.getElementById('deleteContactFirstName').value.trim();
     const lName = document.getElementById('deleteContactLastName').value.trim();
@@ -476,6 +476,7 @@ function deleteContactFromModal() {
                 console.log(jsonPayload);
                 let jsonObject = JSON.parse(xhr.responseText);
 
+                contactArray.splice(contactIndex, 1);
 
             }
         };
@@ -484,6 +485,8 @@ function deleteContactFromModal() {
     catch (err) {
         document.getElementById("deleteResult").innerHTML = err.message;
     }
+
+    closeModal();
     // if (contactIndex !== -1) {
     //     contacts.splice(contactIndex, 1);
     //     closeModal();
