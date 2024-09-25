@@ -569,7 +569,7 @@ function deleteContactFromModal() {
 
                 if(contactIndex != -1){
                 contactArray.splice(contactIndex, 1);
-                document.getElementById("contactResult").innerHTML = "Successfully Deleted the Contact!"
+                document.getElementById("modalResult").innerHTML = "Successfully Deleted the Contact!"
                 }
 
             }
@@ -577,10 +577,10 @@ function deleteContactFromModal() {
         xhr.send(jsonPayload);
     }
     catch (err) {
-        document.getElementById("contactResult").innerHTML = err.message;
+        document.getElementById("modalResult").innerHTML = err.message;
     }
 
-    document.getElementById('contactResult').innerHTML = "Contact deleted successfully.";
+    document.getElementById('modalResult').innerHTML = "Contact deleted successfully.";
 
     // if (contactIndex !== -1) {
     //     contacts.splice(contactIndex, 1);
