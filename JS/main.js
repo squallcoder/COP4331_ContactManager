@@ -199,9 +199,9 @@ function displayContacts() {
     }
     )
 
-    const contacts = document.getElementsByClassName("contactList");
-    contactList.innerHTML = ' ';
-    contactArray.length = 0;
+    // const contacts = document.getElementsByClassName("contactList");
+    // contactList.innerHTML = ' ';
+    // contactArray.length = 0;
 
     let tmp = { UserID: result };
 
@@ -311,7 +311,7 @@ function openAddContactModal() {
 
 function closeAddContactModal() {
     document.getElementById("addContactModal").style.display = "none";
-    // location.reload();
+    location.reload();
 }
 
 
@@ -595,7 +595,6 @@ function addContact() {
         // contactArray.splice(0, 0, newContact);
         document.getElementById("addResult").innerHTML = "Successfully Added Contact!"
         
-        displayContacts();
     }
     else {
         document.getElementById('addResult').innerHTML = "Please fill out all fields.";
