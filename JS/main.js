@@ -302,6 +302,18 @@ function showContactToEdit() {
     }
 }
 
+function updateContactModal() {
+    const name = document.getElementById('contactName').value;
+    const words = name.split(" ");
+    const firstName = words[0];
+	const lastName = words[1];
+
+    const contactIndex = contactArray.findIndex(c => (c.FirstName.toLowerCase() === firstName.toLowerCase()) && (c.LastName.toLowerCase() === lastName.toLowerCase()));
+    contact = contactArray[contactIndex];
+
+    openEditContactModal(contact);
+}
+
 function closeEditContactModal() {
     document.getElementById("editContactModal").style.display = "none";
     location.reload();
@@ -327,13 +339,8 @@ function closeAddContactModal() {
     location.reload();
 }
 
-
 function openDeleteContactModal() {
     document.getElementById("deleteContactModal").style.display = "block";
-}
-
-function openUpdateContactModal() {
-    document.getElementById("editContactModal").style.display = "block";
 }
 
 function openSelectContactModal() {
@@ -343,6 +350,8 @@ function openSelectContactModal() {
 function closeSelectContactModal() {
     document.getElementById("selectContactModal").style.display = "none";
 }
+
+
 
 function updateContact() {
     fName = document.getElementById('editFirstName').value;
