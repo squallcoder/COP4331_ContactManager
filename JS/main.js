@@ -281,8 +281,8 @@ function openEditContactModal(contact) {
     document.getElementById("editLastName").value = contact.LastName;
     document.getElementById("editNewFirstName").value = contact.FirstName;
     document.getElementById("editNewLastName").value = contact.LastName;
-    document.getElementById("editContactEmail").value = contact.email;
-    document.getElementById("editContactPhone").value = contact.phone;
+    document.getElementById("editContactEmail").value = contact.Email;
+    document.getElementById("editContactPhone").value = contact.Phone;
     document.getElementById("editContactModal").style.display = "block";
 }
 
