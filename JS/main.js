@@ -291,7 +291,9 @@ function showContactToEdit() {
     const firstName = document.getElementById('oldFirstName').value;
 	const lastName = document.getElementById('oldLastName').value;
 
-    const contact = contactArray.find(c => c.FirstName.toLowerCase() === firstName.toLowerCase());
+    //const contact = contactArray.find(c => (c.FirstName.toLowerCase() === firstName.toLowerCase()) && (c.LastName.toLowerCase() === lastName.toLowerCase()));
+    const contactIndex = contactArray.findIndex(c => (c.FirstName.toLowerCase() === firstName.toLowerCase()) && (c.LastName.toLowerCase() === lastName.toLowerCase()));
+    alert(contactArray(contactIndex));
 
     if (contact) {
         closeSelectContactModal();
