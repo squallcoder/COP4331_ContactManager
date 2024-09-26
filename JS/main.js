@@ -643,7 +643,7 @@ function search() {
             contactElement.addEventListener('click', () => {
                 const contactIndex = contactArray.findIndex(c => (c.FirstName.toLowerCase() === fName.toLowerCase()) && (c.LastName.toLowerCase() === lName.toLowerCase()));
                 // openModal(contactIndex);//Pass in name , phone number , email 
-                openModal(searchName);
+                openModal(contactIndex);
             });
 
             contactList.appendChild(contactElement);
