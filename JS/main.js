@@ -538,7 +538,7 @@ function deleteContactFromModal() {
     const fName = words[0];
 	const lName = words[1];
 
-    const contactIndex = contactArray.findIndex(c => (c.FirstName.toLowerCase() === firstName.toLowerCase()) && (c.LastName.toLowerCase() === lastName.toLowerCase()));
+    const contactIndex = contactArray.findIndex(c => (c.FirstName.toLowerCase() === fName.toLowerCase()) && (c.LastName.toLowerCase() === lName.toLowerCase()));
 
     const cDecoded = decodeURI(document.cookie);
     const cArray = cDecoded.split("; ");
@@ -591,21 +591,57 @@ function deleteContactFromModal() {
 
 
 function search() {
+
+    //This gets the string that the user inputted in the search bar
     const searchName = document.getElementById('searchBar').value.trim().toLowerCase();
-    const matchingContacts = contacts.filter(c => c.name.toLowerCase().startsWith(searchName));
-    let tmp = { search: searchName };
 
-    const contactList = document.getElementById('contactList');
-    contactList.innerHTML = '';
+    //This variable stores all the names in a array called matchingContacts
+    const matchingContacts = contactArray.filter(c => c.FirstName.concat(" ", c.LastName).toLowerCase().startsWith(searchName));
 
+    let tmp = {search: searchName}; // This is the object we are going to send to the server
+
+    let jsonPayload = JSON.stringify(tmp);
+    let url = urlBase + '/SearchContacts.' + extension;
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");//setRequestHeader is used to inform the server about
+                                                                            //the content that is being sent.
+                                                                          
+    const contactList = document.getElementById('contactList'); //This retrieves the contactList Id
+    contactList.innerHTML = ''; // This clears all the contents inside the div that has a Id = contactList
+    
+    //This checks if the search bar is empty 
+    if(searchName.length === 0){
+        contactArray.forEach(contact => {
+            const contactElement = document.createElement('div');
+            contactElement.classList.add('contact-item');
+            contactElement.innerText = contact.FirstName.concat(" ", contact.LastName);
+            let fName = contact.FirstName;
+            let lName = contact.LastName;
+
+            contactElement.addEventListener('click', () => {
+                const contactIndex = contactArray.findIndex(c => (c.FirstName.toLowerCase() === fName.toLowerCase()) && (c.LastName.toLowerCase() === lName.toLowerCase()));
+                // openModal(contactIndex);//Pass in name , phone number , email 
+                openModal(searchName);
+            });
+
+            contactList.appendChild(contactElement);
+        });
+    }
+
+    //This displays all the contacts that match with the string in the search bar
     if (matchingContacts.length > 0) {
         matchingContacts.forEach(contact => {
             const contactElement = document.createElement('div');
             contactElement.classList.add('contact-item');
-            contactElement.innerText = contact.name;
+            contactElement.innerText = contact.FirstName.concat(" ", contact.LastName);
+            let fName = contact.FirstName;
+            let lName = contact.LastName;
 
             contactElement.addEventListener('click', () => {
-                // const contactIndex = contacts.findIndex(c => c.name.toLowerCase() === contact.name.toLowerCase());
+                const contactIndex = contactArray.findIndex(c => (c.FirstName.toLowerCase() === fName.toLowerCase()) && (c.LastName.toLowerCase() === lName.toLowerCase()));
                 // openModal(contactIndex);//Pass in name , phone number , email 
                 openModal(searchName);
             });
