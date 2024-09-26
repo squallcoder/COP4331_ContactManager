@@ -288,7 +288,7 @@ function openEditContactModal(contact) {
 
 function showContactToEdit() {
     const firstName = document.getElementById('oldFirstName').value;
-	const lastName = document.getElementById('oldLastName').value;
+    const lastName = document.getElementById('oldLastName').value;
 
     const contactIndex = contactArray.findIndex(c => (c.FirstName.toLowerCase() === firstName.toLowerCase()) && (c.LastName.toLowerCase() === lastName.toLowerCase()));
     contact = contactArray[contactIndex];
@@ -296,8 +296,8 @@ function showContactToEdit() {
     if (contact) {
         closeSelectContactModal();
         openEditContactModal(contact);
-    } 
-	else {
+    }
+    else {
         document.getElementById('contactResult').innerHTML = "Contact not found.";
     }
 }
@@ -306,7 +306,7 @@ function updateContactModal() {
     const name = document.getElementById('contactName').innerText;
     const words = name.split(" ");
     const firstName = words[0];
-	const lastName = words[1];
+    const lastName = words[1];
 
     const contactIndex = contactArray.findIndex(c => (c.FirstName.toLowerCase() === firstName.toLowerCase()) && (c.LastName.toLowerCase() === lastName.toLowerCase()));
     contact = contactArray[contactIndex];
@@ -432,7 +432,7 @@ function deleteContact() {
     }
 
     const contactName = fName.concat(" ", lName).toLowerCase();
-    const contactIndex = contactArray.findIndex(c => c.FirstName.concat(" " , c.LastName).toLowerCase() === contactName);
+    const contactIndex = contactArray.findIndex(c => c.FirstName.concat(" ", c.LastName).toLowerCase() === contactName);
 
 
     let tmp = { userId: result, firstName: fName, lastName: lName };
@@ -471,7 +471,7 @@ function deleteContact() {
         document.getElementById("deleteResult").innerHTML = err.message;
     }
 
-    
+
     document.getElementById('deleteResult').innerHTML = "Contact deleted successfully.";
     // closeDeleteContactModal(); I commented this out so we can see the message that the Contact was deleted successfully message.
 }
@@ -536,7 +536,7 @@ function deleteContactFromModal() {
     const name = document.getElementById('contactName').innerText;
     const words = name.split(" ");
     const fName = words[0];
-	const lName = words[1];
+    const lName = words[1];
 
     const contactIndex = contactArray.findIndex(c => (c.FirstName.toLowerCase() === fName.toLowerCase()) && (c.LastName.toLowerCase() === lName.toLowerCase()));
 
@@ -567,9 +567,9 @@ function deleteContactFromModal() {
                 console.log(jsonPayload);
                 let jsonObject = JSON.parse(xhr.responseText);
 
-                if(contactIndex != -1){
-                contactArray.splice(contactIndex, 1);
-                document.getElementById("modalResult").innerHTML = "Successfully Deleted the Contact!"
+                if (contactIndex != -1) {
+                    contactArray.splice(contactIndex, 1);
+                    document.getElementById("modalResult").innerHTML = "Successfully Deleted the Contact!"
                 }
 
             }
@@ -598,7 +598,7 @@ function search() {
     //This variable stores all the names in a array called matchingContacts
     const matchingContacts = contactArray.filter(c => c.FirstName.concat(" ", c.LastName).toLowerCase().startsWith(searchName));
 
-    let tmp = {search: searchName}; // This is the object we are going to send to the server
+    let tmp = { search: searchName }; // This is the object we are going to send to the server
 
     let jsonPayload = JSON.stringify(tmp);
     let url = urlBase + '/SearchContacts.' + extension;
@@ -607,51 +607,55 @@ function search() {
 
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");//setRequestHeader is used to inform the server about
-                                                                            //the content that is being sent.
-                                                                          
+    //the content that is being sent.
+
     const contactList = document.getElementById('contactList'); //This retrieves the contactList Id
     contactList.innerHTML = ''; // This clears all the contents inside the div that has a Id = contactList
-    
-    //This checks if the search bar is empty 
-    if(searchName.length === 0){
-        contactArray.forEach(contact => {
-            const contactElement = document.createElement('div');
-            contactElement.classList.add('contact-item');
-            contactElement.innerText = contact.FirstName.concat(" ", contact.LastName);
-            let fName = contact.FirstName;
-            let lName = contact.LastName;
 
-            contactElement.addEventListener('click', () => {
-                const contactIndex = contactArray.findIndex(c => (c.FirstName.toLowerCase() === fName.toLowerCase()) && (c.LastName.toLowerCase() === lName.toLowerCase()));
-                // openModal(contactIndex);//Pass in name , phone number , email 
-                openModal(searchName);
-            });
 
-            contactList.appendChild(contactElement);
-        });
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+                console.log(jsonPayload);
+                let jsonObject = JSON.parse(xhr.responseText);
+
+                //This checks if the search bar is empty 
+                if (searchName.length === 0) {
+                    location.reload();
+                }
+
+                //This displays all the contacts that match with the string in the search bar
+                if (matchingContacts.length > 0) {
+                    matchingContacts.forEach(contact => {
+                        const contactElement = document.createElement('div');
+                        contactElement.classList.add('contact-item');
+                        contactElement.innerText = contact.FirstName.concat(" ", contact.LastName);
+                        let fName = contact.FirstName;
+                        let lName = contact.LastName;
+
+                        contactElement.addEventListener('click', () => {
+                            const contactIndex = contactArray.findIndex(c => (c.FirstName.toLowerCase() === fName.toLowerCase()) && (c.LastName.toLowerCase() === lName.toLowerCase()));
+                            // openModal(contactIndex);//Pass in name , phone number , email 
+                            openModal(contactIndex);
+                        });
+
+                        contactList.appendChild(contactElement);
+                    });
+                }
+                else {
+                    contactList.innerHTML = '<div>No contacts found.</div>';
+                }
+
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch (err) {
+        document.getElementById("modalResult").innerHTML = err.message;
     }
 
-    //This displays all the contacts that match with the string in the search bar
-    if (matchingContacts.length > 0) {
-        matchingContacts.forEach(contact => {
-            const contactElement = document.createElement('div');
-            contactElement.classList.add('contact-item');
-            contactElement.innerText = contact.FirstName.concat(" ", contact.LastName);
-            let fName = contact.FirstName;
-            let lName = contact.LastName;
 
-            contactElement.addEventListener('click', () => {
-                const contactIndex = contactArray.findIndex(c => (c.FirstName.toLowerCase() === fName.toLowerCase()) && (c.LastName.toLowerCase() === lName.toLowerCase()));
-                // openModal(contactIndex);//Pass in name , phone number , email 
-                openModal(contactIndex);
-            });
-
-            contactList.appendChild(contactElement);
-        });
-    }
-    else {
-        contactList.innerHTML = '<div>No contacts found.</div>';
-    }
 }
 
 
@@ -710,7 +714,7 @@ function addContact() {
                         document.getElementById("addResult").innerHTML = "Unable to Add Contact";
                         return;
                     }
-        
+
                     //saveCookie();
                     // alert(userId);
 
@@ -724,8 +728,8 @@ function addContact() {
 
         // contactArray.splice(0, 0, newContact);
         document.getElementById("addResult").innerHTML = "Successfully Added Contact!"
-        
-        
+
+
     }
     else {
         document.getElementById('addResult').innerHTML = "Please fill out all fields.";
