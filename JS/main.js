@@ -589,6 +589,15 @@ function deleteContactFromModal() {
     // }
 }
 
+const searchBar = document.getElementById('searchBar');
+
+searchBar.addEventListener('input' , function(){
+
+    if(searchBar.value == ''){
+        displayContacts();
+    }
+
+});
 
 function search() {
 
