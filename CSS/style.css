@@ -200,6 +200,18 @@ body {
 	text-align: center;
 }
 
+#clearButton{
+	position: absolute;
+    right: 370px;
+    top: 40%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: black;  /* Style as needed */
+}
+
 .close {
 	color: #aaa;
 	float: right;

@@ -590,6 +590,7 @@ function deleteContactFromModal() {
 }
 
 function clearAndPopulate(){
+
     document.getElementById('searchBar').value = '';
     displayContacts();
 }
@@ -625,9 +626,9 @@ function search() {
                 let jsonObject = JSON.parse(xhr.responseText);
 
                 //This checks if the search bar is empty 
-                // if (searchName.length === 0) {
-                //     location.reload();
-                // }
+                if (searchName.length === 0) {
+                    displayContacts();
+                }
 
                 //This displays all the contacts that match with the string in the search bar
                 if (matchingContacts.length > 0) {

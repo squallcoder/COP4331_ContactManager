@@ -23,7 +23,9 @@
 					<!-- <span class="closeSearchContact" onclick="displayContacts()">&times;</span> -->
 					<input type="search" id="searchBar" placeholder="Search contact here...">
 					<button type="button" id="searchButton" class="buttons" onclick="search()">Search</button>
-					<button id="clearButton" onclick="clearAndPopulate()">X</button>
+					<!-- <button id="clearButton" onclick="clearAndPopulate()">X</button> -->
+					<input type="search" id="searchBar" placeholder="Search contact here..." oninput="search()">
+
 				</div>
 
 				<div class="contact-list" id="contactList"></div>
