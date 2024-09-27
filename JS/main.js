@@ -589,29 +589,12 @@ function deleteContactFromModal() {
     // }
 }
 
-// const searchBar = document.getElementById('searchBar');
+const clearButton = document.getElementById('clearButton');
 
-// searchBar.addEventListener('input' , function(){
-
-//     if(searchBar.value === ''){
-//         console.log("Search bar cleared, repopulating contacts");
-//         displayContacts();
-//     }
-
-// });
-
-document.addEventListener('DOMContentLoaded', function() {
-    const searchBar = document.getElementById('searchBar');
-
-    if (searchBar) {
-        searchBar.addEventListener('input', function() {
-            if (searchBar.value === '') {
-                displayContacts();
-            }
-        });
-    } else {
-        console.error("Search bar element not found");
-    }
+// Event listener for the clear button to reset the search bar and display all contacts
+clearButton.addEventListener('click', function() {
+    searchBar.value = '';  // Clear the search bar
+    displayContacts();     // Call the function to display all contacts again
 });
 
 function search() {
