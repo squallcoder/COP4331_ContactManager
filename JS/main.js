@@ -594,6 +594,7 @@ const searchBar = document.getElementById('searchBar');
 searchBar.addEventListener('input' , function(){
 
     if(searchBar.value === ''){
+        console.log("Search bar cleared, repopulating contacts");
         displayContacts();
     }
 
