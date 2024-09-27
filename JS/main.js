@@ -589,13 +589,10 @@ function deleteContactFromModal() {
     // }
 }
 
-const clearButton = document.getElementById('clearButton');
-
-// Event listener for the clear button to reset the search bar and display all contacts
-clearButton.addEventListener('click', function() {
-    searchBar.value = '';  // Clear the search bar
-    displayContacts();     // Call the function to display all contacts again
-});
+function clearAndPopulate(){
+    document.getElementById('searchBar') = '';
+    displayContacts();
+}
 
 function search() {
 
