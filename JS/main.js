@@ -590,7 +590,7 @@ function deleteContactFromModal() {
 }
 
 function clearAndPopulate(){
-    document.getElementById('searchBar') = '';
+    document.getElementById('searchBar').value = '';
     displayContacts();
 }
 
