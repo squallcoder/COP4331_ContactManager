@@ -593,7 +593,7 @@ const searchBar = document.getElementById('searchBar');
 
 searchBar.addEventListener('input' , function(){
 
-    if(searchBar.value == ''){
+    if(searchBar.value === ''){
         displayContacts();
     }
 
