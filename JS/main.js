@@ -589,16 +589,30 @@ function deleteContactFromModal() {
     // }
 }
 
-const searchBar = document.getElementById('searchBar');
+// const searchBar = document.getElementById('searchBar');
 
-searchBar.addEventListener('input' , function(){
+// searchBar.addEventListener('input' , function(){
 
-    if(searchBar.value === ''){
-        console.log("Search bar cleared, repopulating contacts");
-        displayContacts();
+//     if(searchBar.value === ''){
+//         console.log("Search bar cleared, repopulating contacts");
+//         displayContacts();
+//     }
+
+// });
+
+window.onload = function() {
+    const searchBar = document.getElementById('searchBar');
+
+    if (searchBar) { // Ensure the element exists
+        searchBar.addEventListener('input', function() {
+            if (searchBar.value === '') {
+                displayContacts();
+            }
+        });
+    } else {
+        console.error("Search bar element not found");
     }
-
-});
+};
 
 function search() {
 
