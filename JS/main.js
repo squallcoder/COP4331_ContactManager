@@ -218,7 +218,7 @@ function displayContacts() {
                 let jsonObject = JSON.parse(xhr.responseText);
 
                 const contactList = document.getElementById('contactList');
-                // contactList.innerHTML = '';//Commented this out because i was getting a error on the console
+                contactList.innerHTML = '';//This clears the contact list
                 contactArray = jsonObject.contacts;
                 console.log(contactArray);
 
@@ -630,7 +630,7 @@ function search() {
                     matchingContacts.forEach(contact => {
                         const contactElement = document.createElement('div');
                         contactElement.classList.add('contact-item');
-                        contactElement.innerText = contact.FirstName.concat(" ", contact.LastName);
+                        contactElement.innerText = contact.FirstName.concat(" ",  contact.LastName);
                         let fName = contact.FirstName;
                         let lName = contact.LastName;
 
