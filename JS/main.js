@@ -600,10 +600,10 @@ function deleteContactFromModal() {
 
 // });
 
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
     const searchBar = document.getElementById('searchBar');
 
-    if (searchBar) { // Ensure the element exists
+    if (searchBar) {
         searchBar.addEventListener('input', function() {
             if (searchBar.value === '') {
                 displayContacts();
@@ -612,7 +612,7 @@ window.onload = function() {
     } else {
         console.error("Search bar element not found");
     }
-};
+});
 
 function search() {
 
