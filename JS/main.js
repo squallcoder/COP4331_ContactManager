@@ -487,7 +487,7 @@ function deleteContact() {
                 lastName = jsonObject.lastName;
 
                 //If contact index is -1 then we could not find the contact in our array which indicates there was no contact found
-                if(contactIndex == -1){
+                if (contactIndex == -1) {
                     document.getElementById('deleteResult').innerHTML = "Contact not found!";
                 }
 
@@ -501,8 +501,8 @@ function deleteContact() {
     }
 
     //If contactIndex is not -1 we print out a message indicating that the contact was deleted successfully since we have a valid index
-    if(contactIndex != -1){
-    document.getElementById('deleteResult').innerHTML = "Contact deleted successfully.";
+    if (contactIndex != -1) {
+        document.getElementById('deleteResult').innerHTML = "Contact deleted successfully.";
     }
 
 }
@@ -559,17 +559,28 @@ function deleteContactFromModal() {
 }
 
 // Clears search bar
-function clearAndPopulate(){
+function clearAndPopulate() {
     document.getElementById('searchBar').value = '';
     displayContacts();
 }
 
 // Searches for a contact in the contact list
 function search() {
+
+    // This is the name the user inputs into the search bar
     const searchName = document.getElementById('searchBar').value.trim().toLowerCase();
 
     // Filter contacts by first and last name
-    const matchingContacts = contactArray.filter(c => c.FirstName.concat(" ", c.LastName).toLowerCase().startsWith(searchName));
+    // const matchingContactsByFirstName = contactArray.filter(c => 
+    //     c.FirstName.concat(" ", c.LastName).toLowerCase().startsWith(searchName));
+
+    //matchingContacts is a array that contains all the names that match the search bar. Both by first name and last name.
+    const matchingContacts = contactArray.filter(checkName);
+
+    //This is the function we call for each element in our array.
+    function checkName(contact) {
+        return contact.FirstName.startsWith(document.getElementById('searchBar').value.trim().toLowerCase()) || contact.LastName.startsWith(document.getElementById('searchBar').value.trim().toLowerCase());
+    }
 
     let tmp = { search: searchName };
 
@@ -604,7 +615,7 @@ function search() {
                     matchingContacts.forEach(contact => {
                         const contactElement = document.createElement('div');
                         contactElement.classList.add('contact-item');
-                        contactElement.innerText = contact.FirstName.concat(" ",  contact.LastName);
+                        contactElement.innerText = contact.FirstName.concat(" ", contact.LastName);
                         let fName = contact.FirstName;
                         let lName = contact.LastName;
 
