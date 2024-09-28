@@ -99,8 +99,11 @@ function readCookie() {
     }
 }
 
+
 // Handles account creation
 function createAccount() {
+
+    let symbol = '*';
 
     // Retrieve input fields values
     firstName = document.getElementById('FirstName').value;
@@ -109,25 +112,38 @@ function createAccount() {
     const password = document.getElementById('createPassword').value;
     const confpassword = document.getElementById('confirmPassword').value;
 
+    const errorSymbol = document.getElementById("errorSymbol");
+    // errorSymbol.style.visibility = "hidden";
+
     // All these if statements check if the user has missed any of the input fields when submitting their form to create a account
     if (password != confpassword) {
-        document.getElementById('loginResult').innerHTML = "Your passwords do not match!";
+        document.getElementById('loginResult').innerHTML = "Your passwords don't match!";
+      
     }
-
     if(firstName == ''){
         document.getElementById('loginResult').innerHTML = "First name field is missing!";
+        // document.getElementById('FirstName').style.borderColor = "red";
     }
 
     if(lastName == ''){
         document.getElementById('loginResult').innerHTML = "Last name field is missing!";
+        // document.getElementById('LastName').style.borderColor = "red";
     }
 
     if(login == ''){
-        document.getElementById('loginResult').innerHTML = "Username field is missing!";
+        document.getElementById('loginResult').innerHTML = "User name field is missing!";
+        // document.getElementById('createUsername').style.borderColor = "red";
     }
 
     if(password == ''){
         document.getElementById('loginResult').innerHTML = "Password field is missing!";
+        // document.getElementById('createPassword').style.borderColor = "red";
+    }
+
+    if(confpassword == ''){
+        document.getElementById('loginResult').innerHTML = "Confirmation Password is missing!";
+        // document.getElementById('loginResult').innerHTML = "Required fields are in red and marked with *";
+        // document.getElementById('confirmPassword').style.borderColor = "red";
     }
 
 
@@ -162,7 +178,7 @@ function createAccount() {
                         firstName = jsonObject.firstName;
                         lastName = jsonObject.lastName;
 
-                        saveCookie();
+                        // saveCookie();
                     }
                 };
                 // Send account creation request
