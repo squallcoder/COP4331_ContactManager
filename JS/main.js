@@ -119,16 +119,13 @@ function createAccount() {
     }
 
     if(lastName == ''){
-        document.getElementById('loginResult').innerHTML = "First name field is missing!";
+        document.getElementById('loginResult').innerHTML = "Last name field is missing!";
     }
 
     if(login == ''){
         document.getElementById('loginResult').innerHTML = "Username field is missing!";
     }
 
-    if(password == ''){
-        document.getElementById('loginResult').innerHTML = "Password field is missing!";
-    }
 
     else {
         if (login && password && confpassword && firstName && lastName) {
@@ -173,9 +170,9 @@ function createAccount() {
             document.getElementById('loginResult').innerHTML = "Account Created!";
             document.getElementById('loginRedirect').style.display = 'inline';
         }
-        else {
-            document.getElementById('loginResult').innerHTML = "Please enter a valid username and password.";
-        }
+        // else {
+        //     document.getElementById('loginResult').innerHTML = "Please enter a valid username and password.";
+        // }
     }
 
     // document.getElementById("loginResult").innerHTML = "";
