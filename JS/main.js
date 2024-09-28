@@ -486,6 +486,11 @@ function deleteContact() {
                 firstName = jsonObject.firstName;
                 lastName = jsonObject.lastName;
 
+                //If contact index is -1 then we could not find the contact in our array which indicates there was no contact found
+                if(contactIndex == -1){
+                    document.getElementById('deleteResult').innerHTML = "Contact not found!";
+                }
+
                 contactArray.splice(contactIndex, 1);
             }
         };
@@ -495,7 +500,11 @@ function deleteContact() {
         document.getElementById("deleteResult").innerHTML = err.message;
     }
 
+    //If contactIndex is not -1 we print out a message indicating that the contact was deleted successfully since we have a valid index
+    if(contactIndex != -1){
     document.getElementById('deleteResult').innerHTML = "Contact deleted successfully.";
+    }
+
 }
 
 // Deletes a contact from the database using contact card button
