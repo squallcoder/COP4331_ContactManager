@@ -579,7 +579,7 @@ function search() {
 
     //This is the function we call for each element in our array.
     function checkName(contact) {
-        return contact.FirstName.startsWith(document.getElementById('searchBar').value.trim().toLowerCase()) || contact.LastName.startsWith(document.getElementById('searchBar').value.trim().toLowerCase());
+        return contact.FirstName.toLowerCase().startsWith(document.getElementById('searchBar').value.trim().toLowerCase()) || contact.LastName.toLowerCase().startsWith(document.getElementById('searchBar').value.trim().toLowerCase());
     }
 
     let tmp = { search: searchName };
