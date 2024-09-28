@@ -160,7 +160,7 @@ function createAccount() {
         }
     }
 
-    document.getElementById("loginResult").innerHTML = "";
+    // document.getElementById("loginResult").innerHTML = "";
 }
 
 // Populates all contacts on the screen
