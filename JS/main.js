@@ -101,6 +101,7 @@ function readCookie() {
 
 // Handles account creation
 function createAccount() {
+
     // Retrieve input fields values
     firstName = document.getElementById('FirstName').value;
     lastName = document.getElementById('LastName').value;
@@ -108,10 +109,27 @@ function createAccount() {
     const password = document.getElementById('createPassword').value;
     const confpassword = document.getElementById('confirmPassword').value;
 
-    // Checks if passwords match
+    // All these if statements check if the user has missed any of the input fields when submitting their form to create a account
     if (password != confpassword) {
-        document.getElementById('loginResult').innerHTML = "Your passwords do not match.";
+        document.getElementById('loginResult').innerHTML = "Your passwords do not match!";
     }
+
+    if(firstName == ''){
+        document.getElementById('loginResult').innerHTML = "First name field is missing!";
+    }
+
+    if(lastName == ''){
+        document.getElementById('loginResult').innerHTML = "First name field is missing!";
+    }
+
+    if(login == ''){
+        document.getElementById('loginResult').innerHTML = "Username field is missing!";
+    }
+
+    if(password == ''){
+        document.getElementById('loginResult').innerHTML = "Password field is missing!";
+    }
+
     else {
         if (login && password && confpassword && firstName && lastName) {
 
