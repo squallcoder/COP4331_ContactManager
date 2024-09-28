@@ -9,15 +9,19 @@
 	<body>
 		<h1 id="ContactTitle">Contact Manager</h1>
 		<div class="main-content">
+			<!-- Log out content -->
 			<div class="logout" >
 				<button type="button" id="logoutButton" onclick="openLogOutModal()">Log out</button>
 			</div>
+
+			<!-- Function buttons -->
 			<div class="buttons-container">
 				<button type="button" id="addButton" onclick="openAddContactModal()">Add Contact</button>
 				<button type="button" id="deleteButton" onclick="openDeleteContactModal()">Delete Contact</button>
 				<button type="button" id="updateButton" onclick="openSelectContactModal()">Update Contact</button>
 			</div>
 
+			<!-- List of contacts -->
 			<div class="contact-container">
 				<div class="top-nav">
 					<input type="search" id="searchBar" placeholder="Search contact here..." onclick="clearAndPopulate()">
@@ -28,7 +32,7 @@
 			</div>
 		</div>
 
-		<!-- //This piece of code shows a display with the contact name and two buttons that can update ot delete a contact -->
+		<!-- Contact card -->
 		<div id="contactModal" class="modal">
 			<div class="modal-content">
 				<span class="close" onclick="closeModal()">&times;</span>
@@ -41,7 +45,7 @@
 			</div>
 		</div>
 
-		<!-- //This is a page where you can edit the contact  -->
+		<!-- Select contact to update  -->
 		<div id="selectContactModal" class="modal">
 			<div class="modal-content">
 				<span class="close" onclick="closeSelectContactModal()">&times;</span>
@@ -53,6 +57,7 @@
 			</div>
 		</div>
 
+		<!-- Update contact -->
 		<div id="editContactModal" class="modal">
 			<div class="modal-content">
 				<span class="close" onclick="closeEditContactModal()">&times;</span>
@@ -68,6 +73,7 @@
 			</div>
 		</div>
 
+		<!-- Add contact -->
 		<div id="addContactModal" class="modal">
 			<div class="modal-content">
 				<span class="close" onclick="closeAddContactModal()">&times;</span>
@@ -81,6 +87,7 @@
 			</div>
 		</div>
 
+		<!-- Log out -->
 		<div id="logOutModal" class="modal">
 			<div class="modal-content">
 				<span class="close" onclick="closeLogOutModal()">&times</span>
@@ -95,6 +102,7 @@
 			</div>
 		</div>
 		
+		<!-- Delete contact -->
 		<div id="deleteContactModal" class="modal">
 			<div class="modal-content">
 			<span class="close" onclick="closeDeleteContactModal()">&times</span>
@@ -105,6 +113,5 @@
 			<span id="deleteResult"></span>
 			</div>
 		</div>
-
 	</body>
 </html>
