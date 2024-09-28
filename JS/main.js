@@ -126,6 +126,11 @@ function createAccount() {
         document.getElementById('loginResult').innerHTML = "Username field is missing!";
     }
 
+    if(password == ''){
+        document.getElementById('loginResult').innerHTML = "Password field is missing!";
+    }
+
+
 
     else {
         if (login && password && confpassword && firstName && lastName) {
