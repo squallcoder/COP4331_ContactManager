@@ -144,7 +144,7 @@ body {
 	position: fixed;
 	left: 90%;
 	bottom: 90%;
-	transform: translateX(-50%); /* Center horizontally */
+	transform: translateX(-50%);
 	width: 100px;
 	height: 50px;
 	cursor: pointer;
