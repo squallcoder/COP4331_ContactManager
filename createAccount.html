@@ -13,7 +13,7 @@
             <div class="loginDiv">
                 <span id="inner-title">Enter User Information</span>
                 <div class="inputContainer">
-                <form>
+                <!-- <form id="accountForm"> -->
                 <!-- <span class="error-symbol" id="errorSymbol">&#9888;</span> -->
                 <!-- <label id="FirstLabel" for="FirstName">First name:</label> -->
                 <input type="firstName" id="FirstName" placeholder="First Name" class="input-field" required><br />
@@ -21,9 +21,9 @@
                 <input type="username" id="createUsername" placeholder="Username" class="input-field" required><br />
                 <input type="password" id="createPassword" placeholder="Password" class="input-field" required><br />
                 <input type="password" id="confirmPassword" placeholder="Confirm Password" class="input-field" required><br />
-                <button type="create" id="createButton" class="buttons" onclick="createAccount()">Create</button>
+                <button type="button" id="createButton" class="buttons" onclick="createAccount()">Create</button>
                 <button type="button" id="loginRedirect" class="buttons" onclick="window.location.href='index.html'" style="display: none;">Go to Login Page</button>
-                 </form>
+                 <!-- </form> -->
                 </div>
                 <span id="loginResult"></span>
             </div>
